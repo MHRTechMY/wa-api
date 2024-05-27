@@ -22,7 +22,7 @@ function returnError(req: Request, res: Response, error: any) {
   req.logger.error(error);
   res.status(500).json({
     status: 'Error',
-    message: 'Erro ao enviar a mensagem.',
+    message: 'Error by sending the message.',
     error: error,
   });
 }
@@ -39,7 +39,7 @@ export async function sendMessage(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
     #swagger.requestBody = {
       required: true,
@@ -57,8 +57,8 @@ export async function sendMessage(req: Request, res: Response) {
           },
           examples: {
             "Send message to contact": {
-              value: { 
-                phone: '5521999999999',
+              value: {
+                phone: '601112345678',
                 isGroup: false,
                 isNewsletter: false,
                 message: 'Hi from WPPConnect',
@@ -99,7 +99,7 @@ export async function sendMessage(req: Request, res: Response) {
 
     if (results.length === 0)
       return res.status(400).json('Error sending message');
-    req.io.emit('mensagem-enviada', results);
+    req.io.emit('sent-message', results);
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -114,7 +114,7 @@ export async function editMessage(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
     #swagger.requestBody = {
       required: true,
@@ -130,8 +130,8 @@ export async function editMessage(req: Request, res: Response) {
           },
           examples: {
             "Edit a message": {
-              value: { 
-                id: 'true_5521999999999@c.us_3EB04FCAA1527EB6D9DEC8',
+              value: {
+                id: 'true_601112345678@c.us_3EB04FCAA1527EB6D9DEC8',
                 newText: 'New text for message'
               }
             },
@@ -161,7 +161,7 @@ export async function sendFile(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
      #swagger.requestBody = {
       required: true,
@@ -181,7 +181,7 @@ export async function sendFile(req: Request, res: Response) {
             examples: {
                 "Default": {
                     value: {
-                        "phone": "5521999999999",
+                        "phone": "601112345678",
                         "isGroup": false,
                         "isNewsletter": false,
                         "filename": "file name lol",
@@ -228,7 +228,7 @@ export async function sendFile(req: Request, res: Response) {
     }
 
     if (results.length === 0)
-      return res.status(400).json('Error sending message');
+      return res.status(400).json('Error sending file');
     if (req.file) await unlinkAsync(pathFile);
     returnSucess(res, results);
   } catch (error) {
@@ -244,7 +244,7 @@ export async function sendVoice(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
      #swagger.requestBody = {
         required: true,
@@ -262,7 +262,7 @@ export async function sendVoice(req: Request, res: Response) {
                 examples: {
                     "Default": {
                         value: {
-                            "phone": "5521999999999",
+                            "phone": "601112345678",
                             "isGroup": false,
                             "path": "<path_file>",
                             "quotedMessageId": "message Id"
@@ -296,7 +296,7 @@ export async function sendVoice(req: Request, res: Response) {
     }
 
     if (results.length === 0)
-      return res.status(400).json('Error sending message');
+      return res.status(400).json('Error sending voice');
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -311,7 +311,7 @@ export async function sendVoice64(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
      #swagger.requestBody = {
         required: true,
@@ -328,7 +328,7 @@ export async function sendVoice64(req: Request, res: Response) {
                 examples: {
                     "Default": {
                         value: {
-                            "phone": "5521999999999",
+                            "phone": "601112345678",
                             "isGroup": false,
                             "base64Ptt": "<base64_string>"
                         }
@@ -355,7 +355,7 @@ export async function sendVoice64(req: Request, res: Response) {
     }
 
     if (results.length === 0)
-      return res.status(400).json('Error sending message');
+      return res.status(400).json('Error sending voice');
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -370,7 +370,7 @@ export async function sendLinkPreview(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
      #swagger.requestBody = {
         required: true,
@@ -388,7 +388,7 @@ export async function sendLinkPreview(req: Request, res: Response) {
                 examples: {
                     "Default": {
                         value: {
-                            "phone": "5521999999999",
+                            "phone": "601112345678",
                             "isGroup": false,
                             "url": "http://www.link.com",
                             "caption": "Text for describe link"
@@ -425,7 +425,7 @@ export async function sendLocation(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
      #swagger.requestBody = {
         required: true,
@@ -445,7 +445,7 @@ export async function sendLocation(req: Request, res: Response) {
                 examples: {
                     "Default": {
                         value: {
-                            "phone": "5521999999999",
+                            "phone": "601112345678",
                             "isGroup": false,
                             "lat": "-89898322",
                             "lng": "-545454",
@@ -474,7 +474,7 @@ export async function sendLocation(req: Request, res: Response) {
     }
 
     if (results.length === 0)
-      return res.status(400).json('Error sending message');
+      return res.status(400).json('Error sending location');
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -489,7 +489,7 @@ export async function sendButtons(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA',
+      schema: '60123456789',
      }
      #swagger.deprecated=true
    */
@@ -519,7 +519,7 @@ export async function sendListMessage(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA',
+      schema: '60123456789',
      }
      #swagger.requestBody = {
       required: true,
@@ -537,8 +537,8 @@ export async function sendListMessage(req: Request, res: Response) {
           },
           examples: {
             "Send list message": {
-              value: { 
-                phone: '5521999999999',
+              value: {
+                phone: '601112345678',
                 isGroup: false,
                 description: 'Desc for list',
                 buttonText: 'Select a option',
@@ -570,7 +570,7 @@ export async function sendListMessage(req: Request, res: Response) {
     phone,
     description = '',
     sections,
-    buttonText = 'SELECIONE UMA OPÇÃO',
+    buttonText = 'Select a option',
   } = req.body;
 
   try {
@@ -603,7 +603,7 @@ export async function sendOrderMessage(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
     #swagger.requestBody = {
       required: true,
@@ -620,8 +620,8 @@ export async function sendOrderMessage(req: Request, res: Response) {
           },
           examples: {
             "Send with custom items": {
-              value: { 
-                phone: '5521999999999',
+              value: {
+                phone: '601112345678',
                 isGroup: false,
                 items: [
                   {
@@ -640,8 +640,8 @@ export async function sendOrderMessage(req: Request, res: Response) {
               }
             },
             "Send with product items": {
-              value: { 
-                phone: '5521999999999',
+              value: {
+                phone: '601112345678',
                 isGroup: false,
                 items: [
                   {
@@ -654,8 +654,8 @@ export async function sendOrderMessage(req: Request, res: Response) {
               }
             },
             "Send with custom items and options": {
-              value: { 
-                phone: '5521999999999',
+              value: {
+                phone: '601112345678',
                 isGroup: false,
                 items: [
                   {
@@ -689,7 +689,7 @@ export async function sendOrderMessage(req: Request, res: Response) {
 
     if (results.length === 0)
       return res.status(400).json('Error sending order message');
-    req.io.emit('mensagem-enviada', results);
+    req.io.emit('sent-message', results);
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -704,7 +704,7 @@ export async function sendPollMessage(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
     #swagger.requestBody = {
         required: true,
@@ -723,7 +723,7 @@ export async function sendPollMessage(req: Request, res: Response) {
                 examples: {
                     "Default": {
                         value: {
-                          phone: '5521999999999',
+                          phone: '601112345678',
                           isGroup: false,
                           name: 'Poll name',
                           choices: ['Option 1', 'Option 2', 'Option 3'],
@@ -765,7 +765,7 @@ export async function sendStatusText(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
      #swagger.requestBody = {
       required: true,
@@ -784,7 +784,7 @@ export async function sendStatusText(req: Request, res: Response) {
           examples: {
             Default: {
               value: {
-                phone: '5521999999999',
+                phone: '601112345678',
                 isGroup: false,
                 message: 'Reply to message',
                 messageId: '<id_message>'
@@ -817,7 +817,7 @@ export async function replyMessage(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
      #swagger.requestBody = {
       required: true,
@@ -835,7 +835,7 @@ export async function replyMessage(req: Request, res: Response) {
           examples: {
             "Default": {
               value: {
-                "phone": "5521999999999",
+                "phone": "601112345678",
                 "isGroup": false,
                 "message": "Reply to message",
                 "messageId": "<id_message>"
@@ -856,7 +856,7 @@ export async function replyMessage(req: Request, res: Response) {
 
     if (results.length === 0)
       return res.status(400).json('Error sending message');
-    req.io.emit('mensagem-enviada', { message: message, to: phone });
+    req.io.emit('sent-message', { message: message, to: phone });
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -871,7 +871,7 @@ export async function sendMentioned(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
      #swagger.requestBody = {
   required: true,
@@ -890,7 +890,7 @@ export async function sendMentioned(req: Request, res: Response) {
       examples: {
         "Default": {
           value: {
-            "phone": "5521999999999",
+            "phone": "601112345678",
             "isGroup": true,
             "message": "Your text message",
             "mentioned": ["@556593077171@c.us"]
@@ -931,7 +931,7 @@ export async function sendImageAsSticker(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
      #swagger.requestBody = {
       required: true,
@@ -949,7 +949,7 @@ export async function sendImageAsSticker(req: Request, res: Response) {
           examples: {
             "Default": {
               value: {
-                "phone": "5521999999999",
+                "phone": "601112345678",
                 "isGroup": true,
                 "path": "<path_file>"
               }
@@ -975,7 +975,7 @@ export async function sendImageAsSticker(req: Request, res: Response) {
     }
 
     if (results.length === 0)
-      return res.status(400).json('Error sending message');
+      return res.status(400).json('Error sending sticker');
     if (req.file) await unlinkAsync(pathFile);
     returnSucess(res, results);
   } catch (error) {
@@ -990,7 +990,7 @@ export async function sendImageAsStickerGif(req: Request, res: Response) {
             "bearerAuth": []
      }]
      #swagger.parameters["session"] = {
-      schema: 'NERDWHATS_AMERICA'
+      schema: '60123456789'
      }
      #swagger.requestBody = {
       required: true,
@@ -1008,7 +1008,7 @@ export async function sendImageAsStickerGif(req: Request, res: Response) {
           examples: {
             'Default': {
               value: {
-                phone: '5521999999999',
+                phone: '601112345678',
                 isGroup: true,
                 path: '<path_file>',
               },
@@ -1034,7 +1034,7 @@ export async function sendImageAsStickerGif(req: Request, res: Response) {
     }
 
     if (results.length === 0)
-      return res.status(400).json('Error sending message');
+      return res.status(400).json('Error sending sticker');
     if (req.file) await unlinkAsync(pathFile);
     returnSucess(res, results);
   } catch (error) {
