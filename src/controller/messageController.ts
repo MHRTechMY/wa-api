@@ -1,4 +1,3 @@
-
 import { Request, Response } from 'express';
 import { unlinkAsync } from '../util/functions';
 
@@ -44,6 +43,7 @@ export async function sendMessage(req: Request, res: Response) {
               value: {
                 phone: '601112345678',
                 isGroup: false,
+                isCommunity: false,
                 isNewsletter: false,
                 message: 'Hi from WPPConnect',
               }
@@ -63,7 +63,39 @@ export async function sendMessage(req: Request, res: Response) {
               value: {
                 phone: '8865623215244578',
                 isGroup: true,
+                isCommunity: false,
+                isNewsletter: false,
                 message: 'Hi from WPPConnect',
+              }
+            },
+            "Send message to community": {
+              value: {
+                phone: '8865623215244578',
+                isGroup: false,
+                isCommunity: true,
+                isNewsletter: false,
+                message: 'Hi from WPPConnect',
+              }
+            },
+            "Send message to channel": {
+              value: {
+                phone: '8865623215244578',
+                isGroup: false,
+                isCommunity: false,
+                isNewsletter: true,
+                message: 'Hi from WPPConnect',
+              }
+            },
+            "Send message with reply": {
+              value: {
+                phone: '601112345678',
+                isGroup: false,
+                isCommunity: false,
+                isNewsletter: false,
+                message: 'Hi from WPPConnect with reply',
+                options: {
+                  quotedMsg: 'true_...@c.us_3EB01DE65ACC6_out',
+                }
               }
             },
           }
@@ -207,12 +239,11 @@ export async function sendFile(req: Request, res: Response) {
           caption: msg,
           quotedMsg: quotedMessageId,
           ...options,
-        })
+        }),
       );
     }
 
-    if (results.length === 0)
-      return res.status(400).json('Error sending file');
+    if (results.length === 0) return res.status(400).json('Error sending file');
     if (req.file) await unlinkAsync(pathFile);
     returnSucess(res, results);
   } catch (error) {
@@ -274,8 +305,8 @@ export async function sendVoice(req: Request, res: Response) {
           path,
           filename,
           message,
-          quotedMessageId
-        )
+          quotedMessageId,
+        ),
       );
     }
 
@@ -333,8 +364,8 @@ export async function sendVoice64(req: Request, res: Response) {
           base64Ptt,
           'Voice Audio',
           '',
-          quotedMessageId
-        )
+          quotedMessageId,
+        ),
       );
     }
 
@@ -389,7 +420,7 @@ export async function sendLinkPreview(req: Request, res: Response) {
     const results: any = [];
     for (const contato of phone) {
       results.push(
-        await req.client.sendLinkPreview(`${contato}`, url, caption)
+        await req.client.sendLinkPreview(`${contato}`, url, caption),
       );
     }
 
@@ -453,7 +484,7 @@ export async function sendLocation(req: Request, res: Response) {
           lng: lng,
           address: address,
           name: title,
-        })
+        }),
       );
     }
 
@@ -567,7 +598,7 @@ export async function sendListMessage(req: Request, res: Response) {
           buttonText: buttonText,
           description: description,
           sections: sections,
-        })
+        }),
       );
     }
 
@@ -729,7 +760,7 @@ export async function sendPollMessage(req: Request, res: Response) {
 
     for (const contact of phone) {
       results.push(
-        await req.client.sendPollMessage(contact, name, choices, options)
+        await req.client.sendPollMessage(contact, name, choices, options),
       );
     }
 
@@ -894,7 +925,7 @@ export async function sendMentioned(req: Request, res: Response) {
       response = await req.client.sendMentioned(
         `${contato}`,
         message,
-        mentioned
+        mentioned,
       );
     }
 

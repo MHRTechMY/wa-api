@@ -3033,6 +3033,7 @@
                   "value": {
                     "phone": "601112345678",
                     "isGroup": false,
+                    "isCommunity": false,
                     "isNewsletter": false,
                     "message": "Hi from WPPConnect"
                   }
@@ -3041,7 +3042,39 @@
                   "value": {
                     "phone": "8865623215244578",
                     "isGroup": true,
+                    "isCommunity": false,
+                    "isNewsletter": false,
                     "message": "Hi from WPPConnect"
+                  }
+                },
+                "Send message to community": {
+                  "value": {
+                    "phone": "8865623215244578",
+                    "isGroup": false,
+                    "isCommunity": true,
+                    "isNewsletter": false,
+                    "message": "Hi from WPPConnect"
+                  }
+                },
+                "Send message to channel": {
+                  "value": {
+                    "phone": "8865623215244578",
+                    "isGroup": false,
+                    "isCommunity": false,
+                    "isNewsletter": true,
+                    "message": "Hi from WPPConnect"
+                  }
+                },
+                "Send message with reply": {
+                  "value": {
+                    "phone": "601112345678",
+                    "isGroup": false,
+                    "isCommunity": false,
+                    "isNewsletter": false,
+                    "message": "Hi from WPPConnect with reply",
+                    "options": {
+                      "quotedMsg": "true_...@c.us_3EB01DE65ACC6_out"
+                    }
                   }
                 }
               }
