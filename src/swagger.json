@@ -335,7 +335,7 @@
       "get": {
         "tags": ["Auth"],
         "description": "",
-        "operationId": "closeSession",
+        "operationId": "getSessionState",
         "parameters": [
           {
             "name": "session",
