@@ -85,7 +85,7 @@ export default {
     prefix: 'tagone-',
   },
   db: {
-    mongodbCollection: 'wappconnect',
+    mongodbCollection: 'wppconnect',
     mongodbDatabase: 'tokens',
     mongodbHost: 'localhost',
     mongodbPort: 27017,
@@ -97,7 +97,7 @@ export default {
     redisPort: 6379,
     redisPassword: '',
     redisDb: 0,
-    redisPrefix: 'wappconnect-tokens',
+    redisPrefix: 'wppconnect-tokens',
   },
   aws_s3: {
     region: 'ap-southeast-1' as any,
