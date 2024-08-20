@@ -100,11 +100,11 @@ export default {
     redisPrefix: 'wppconnect-tokens',
   },
   aws_s3: {
-    region: 'ap-southeast-1' as any,
     access_key_id: null,
     secret_key: null,
-    defaultBucketName: null,
-    endpoint: null,
-    forcePathStyle: null,
+    defaultBucketName: 'mhrtech-wppconnect',
+    endpoint: 'http://localhost:9000',
+    region: '0' as any,
+    forcePathStyle: true,
   },
 } as unknown as ServerOptions;
