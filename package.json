@@ -28,10 +28,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.635.0",
+    "@aws-sdk/client-s3": "^3.637.0",
     "@wppconnect-team/wppconnect": "^1.33.0",
     "archiver": "^7.0.1",
-    "axios": "^1.7.4",
+    "axios": "^1.7.5",
     "bcrypt": "^5.1.1",
     "buffer-to-stream": "1.0.0",
     "cors": "^2.8.5",
@@ -72,7 +72,7 @@
     "@types/jest": "^29.5.12",
     "@types/merge-deep": "^3.0.3",
     "@types/mime-types": "^2.1.4",
-    "@types/multer": "^1.4.11",
+    "@types/multer": "^1.4.12",
     "@types/node": "^22.5.0",
     "@types/qrcode": "^1.5.5",
     "@types/swagger-ui-express": "^4.1.6",
@@ -84,7 +84,7 @@
     "conventional-changelog-cli": "^5.0.0",
     "crypto-js": "^4.2.0",
     "eslint": "^8.57.0",
-    "eslint-config-love": "^62.0.0",
+    "eslint-config-love": "^63.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^17.10.2",
@@ -96,7 +96,7 @@
     "jest": "^29.7.0",
     "license-check-and-add": "^4.0.5",
     "mime-types": "^2.1.35",
-    "mongoose": "^8.5.3",
+    "mongoose": "^8.5.4",
     "nodemon": "^3.1.4",
     "prettier": "^3.3.3",
     "pretty-quick": "^4.0.0",
@@ -110,11 +110,11 @@
     "sanitize-filename": "^1.6.3",
     "shx": "^0.3.4",
     "swagger-ui-dist": "^5.17.14",
-    "ts-jest": "^29.2.4",
+    "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.1",
-    "tsx": "^4.17.0",
+    "tsx": "^4.18.0",
     "typescript": "^5.5.4",
-    "webpack": "^5.93.0",
+    "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
@@ -122,5 +122,5 @@
     "mongoose": "*",
     "redis": "*"
   },
-  "packageManager": "yarn@4.4.0"
+  "packageManager": "yarn@4.4.1"
 }
