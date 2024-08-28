@@ -130,11 +130,10 @@
         }
       }
     },
-    "/api/{secretkey}/backup-sessions": {
-      "get": {
+    "/api/{secretkey}/restore-sessions": {
+      "post": {
         "tags": ["Auth"],
-        "description": "Please, open the router in your browser, in swagger this not run",
-        "produces": ["application/zip"],
+        "description": "",
         "parameters": [
           {
             "name": "secretkey",
@@ -176,10 +175,11 @@
         }
       }
     },
-    "/api/{secretkey}/restore-sessions": {
-      "post": {
+    "/api/{secretkey}/backup-sessions": {
+      "get": {
         "tags": ["Auth"],
-        "description": "",
+        "description": "Please, open the router in your browser, in swagger this not run",
+        "produces": ["application/zip"],
         "parameters": [
           {
             "name": "secretkey",
@@ -205,23 +205,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          }
-        },
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "file": {
-                    "type": "string",
-                    "format": "binary"
-                  }
-                },
-                "required": ["file"]
-              }
-            }
           }
         }
       }
@@ -362,7 +345,7 @@
         ]
       }
     },
-    "/api/{secretkey}/start-all": {
+    "/api/{secretkey}/qrcode-session": {
       "post": {
         "tags": ["Auth"],
         "description": "",
@@ -507,7 +490,7 @@
     },
     "/api/{session}/check-number-status/{phone}": {
       "get": {
-        "tags": ["Profiles"],
+        "tags": ["Profile"],
         "description": "",
         "parameters": [
           {
@@ -637,65 +620,10 @@
           {
             "bearerAuth": []
           }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "phone": {
-                    "type": "string"
-                  },
-                  "isGroup": {
-                    "type": "boolean"
-                  },
-                  "isNewsletter": {
-                    "type": "boolean"
-                  },
-                  "message": {
-                    "type": "string"
-                  },
-                  "options": {
-                    "type": "object"
-                  }
-                }
-              },
-              "examples": {
-                "Send message to contact": {
-                  "value": {
-                    "phone": "601112345678",
-                    "isGroup": false,
-                    "isNewsletter": false,
-                    "message": "Hi from WPPConnect"
-                  }
-                },
-                "Send message with reply": {
-                  "value": {
-                    "phone": "5521999999999",
-                    "isGroup": false,
-                    "isNewsletter": false,
-                    "message": "Hi from WPPConnect with reply",
-                    "options": {
-                      "quotedMsg": "true_...@c.us_3EB01DE65ACC6_out"
-                    }
-                  }
-                },
-                "Send message to group": {
-                  "value": {
-                    "phone": "8865623215244578",
-                    "isGroup": true,
-                    "message": "Hi from WPPConnect"
-                  }
-                }
-              }
-            }
-          }
-        }
+        ]
       }
     },
-    "/api/{session}/edit-message": {
+    "/api/{session}/profile-status": {
       "post": {
         "tags": ["Profile"],
         "description": "",
@@ -1909,7 +1837,7 @@
     },
     "/api/{session}/mark-unseen": {
       "post": {
-        "tags": ["Messages"],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -2369,18 +2297,27 @@
             "in": "query"
           },
           {
-            "name": "direction",
+            "name": "session",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string",
-              "example": "before"
-            },
-            "in": "query"
+              "example": "60123456789"
+            }
           },
           {
             "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "messageId",
             "schema": {
               "type": "string",
-              "example": "<message_id_to_use_direction>"
+              "example": "<messageId>"
             },
             "in": "query"
           }
@@ -2478,11 +2415,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          "default": {
+            "description": ""
           }
         },
         "security": [
@@ -2806,11 +2740,11 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "400": {
+            "description": "Bad Request"
           },
-          "500": {
-            "description": "Internal Server Error"
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
@@ -2838,67 +2772,6 @@
                   "value": {
                     "msgId": "<messageId>",
                     "reaction": "😜"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/{session}/send-reply": {
-      "post": {
-        "tags": ["Messages"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "session",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "60123456789"
-            }
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "phone": {
-                    "type": "string"
-                  },
-                  "isGroup": {
-                    "type": "boolean"
-                  },
-                  "message": {
-                    "type": "string"
-                  },
-                  "messageId": {
-                    "type": "string"
-                  }
-                }
-              },
-              "examples": {
-                "Default": {
-                  "value": {
-                    "phone": "601112345678",
-                    "isGroup": false,
-                    "message": "Reply to message",
-                    "messageId": "<id_message>"
                   }
                 }
               }
@@ -4033,7 +3906,7 @@
                     "type": "object"
                   }
                 },
-                "required": ["path"]
+                "required": ["text"]
               },
               "examples": {
                 "Default": {
@@ -4090,7 +3963,7 @@
                     "type": "string"
                   }
                 },
-                "required": ["text"]
+                "required": ["path"]
               },
               "examples": {
                 "Default": {
@@ -4501,7 +4374,7 @@
                     "type": "string"
                   }
                 },
-                "required": ["groupId", "phone"]
+                "required": ["participants", "name"]
               },
               "examples": {
                 "Default": {
@@ -4615,13 +4488,13 @@
                     "type": "string"
                   }
                 },
-                "required": ["participants", "name"]
+                "required": ["groupId"]
               },
               "examples": {
                 "Default": {
                   "value": {
-                    "participants": ["601112345678"],
-                    "name": "Group name"
+                    "groupId": "<groupId>",
+                    "description": "some text here"
                   }
                 }
               }
@@ -4675,7 +4548,7 @@
                     "type": "string"
                   }
                 },
-                "required": ["groupId", "phone"]
+                "required": ["groupId"]
               },
               "examples": {
                 "Default": {
@@ -5018,7 +4891,7 @@
                     "type": "string"
                   }
                 },
-                "required": ["inviteCode"]
+                "required": ["groupId", "phone"]
               },
               "examples": {
                 "Default": {
@@ -5072,7 +4945,14 @@
                     "type": "string"
                   }
                 },
-                "required": ["groupId"]
+                "required": ["invitecode"]
+              },
+              "examples": {
+                "Default": {
+                  "value": {
+                    "invitecode": "<groupInviteCode>"
+                  }
+                }
               }
             }
           }
@@ -5178,7 +5058,7 @@
                     "type": "string"
                   }
                 },
-                "required": ["groupId", "phone"]
+                "required": ["inviteCode"]
               },
               "examples": {
                 "Default": {
@@ -5231,15 +5111,7 @@
                     "type": "string"
                   }
                 },
-                "required": ["groupId", "phone"]
-              },
-              "examples": {
-                "Default": {
-                  "value": {
-                    "groupId": "<groupId>",
-                    "phone": "601112345678"
-                  }
-                }
+                "required": ["groupId"]
               }
             }
           }

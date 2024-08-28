@@ -65,7 +65,7 @@ export async function sendMessage(req: Request, res: Response) {
               }
             },
             "Send message with reply": {
-              value: { 
+              value: {
                 phone: '5521999999999',
                 isGroup: false,
                 isNewsletter: false,
