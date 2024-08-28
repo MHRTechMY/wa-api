@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /*
  * Copyright 2021 WPPConnect Team
  *
@@ -103,7 +104,7 @@ export default class CreateSessionUtil {
                 );
                 if (
                   statusFind === 'autocloseCalled' ||
-                  statusFind === 'desconnectedMobile'
+                  statusFind === 'disconnectedMobile'
                 ) {
                   client.status = 'CLOSED';
                   client.qrcode = null;
@@ -269,7 +270,7 @@ export default class CreateSessionUtil {
 
   async listenMessages(client: WhatsAppServer, req: Request) {
     await client.onMessage(async (message: any) => {
-      eventEmitter.emit(`mensagem-${client.session}`, client, message);
+      eventEmitter.emit(`message-${client.session}`, client, message);
       callWebHook(client, req, 'onmessage', message);
       if (message.type === 'location')
         client.onLiveLocation(message.sender.id, (location) => {
