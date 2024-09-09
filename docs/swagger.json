@@ -2542,7 +2542,7 @@
               "examples": {
                 "Delete message to all": {
                   "value": {
-                    "phone": "5521999999999",
+                    "phone": "601112345678",
                     "isGroup": false,
                     "messageId": "<messageId>",
                     "deleteMediaInDevice": true
