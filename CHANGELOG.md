@@ -1,13 +1,19 @@
+## 2.7.0 (2024-09-09)
+
+### Bug Fixes
+
+- **deps:** update dependency @wppconnect-team/wppconnect to ^1.34.0 ([#2015](https://github.com/wppconnect-team/wppconnect-server/issues/2015)) ([7bedd09](https://github.com/wppconnect-team/wppconnect-server/commit/7bedd09bd1a1575964311c989e3377bc6e737704))
+
 ## 2.6.0 (2024-08-05)
 
-## Bug Fixes
+### Bug Fixes
 
 - **deps:** update dependency @wppconnect-team/wppconnect to ^1.32.4 ([550ff5d](https://github.com/wppconnect-team/wppconnect-server/commit/550ff5d13f13d55585119b3f1dbba517ccddb8cc))
 - **deps:** update dependency @wppconnect-team/wppconnect to ^1.33.0 ([#1978](https://github.com/wppconnect-team/wppconnect-server/issues/1978)) ([fdc30a8](https://github.com/wppconnect-team/wppconnect-server/commit/fdc30a8af41ebc8d73493c9857b6ff48b8fa8ea3))
 
-## Features
+### Features
 
--- Added login by code support ([#1959](https://github.com/wppconnect-team/wppconnect-server/issues/1959)) ([0e60d34](https://github.com/wppconnect-team/wppconnect-server/commit/0e60d343b0cfadb288f22a704dd63a2ea2733f8e))
+- Added login by code support ([#1959](https://github.com/wppconnect-team/wppconnect-server/issues/1959)) ([0e60d34](https://github.com/wppconnect-team/wppconnect-server/commit/0e60d343b0cfadb288f22a704dd63a2ea2733f8e))
 
 ## 2.5.2 (2024-06-24)
 
