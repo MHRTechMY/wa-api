@@ -3,11 +3,14 @@
 .husky
 .vscode
 .yarn
+*.bak
 *.bat
-*.bat.bak
 *.lock
+*.log
 *.tgz
 dist
 log
 node_modules
-npm-debug.log
+uploads
+usersData
+WhatsAppImages
