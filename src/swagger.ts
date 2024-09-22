@@ -22,7 +22,7 @@ const endpointsFiles = ['./src/routes/index.ts'];
 
 const doc = {
   info: {
-    version: '2.0.0',
+    version: '2.7.0',
     title: 'WPPConnect API Rest',
     description:
       'Welcome to the wppconnect-server API documentation. This API provides a set of endpoints to interact with the wppconnect-server application, allowing you to build integrations and automate interactions with WhatsApp.',

@@ -374,7 +374,12 @@ routes.post(
 );
 // routes.post('/api/:session/send-reply', verifyToken, statusConnection, MessageController.replyMessage);
 // routes.post('/api/:session/send-status', verifyToken, statusConnection, MessageController.sendStatusText);
-// routes.post('/api/:session/send-buttons', verifyToken, statusConnection, MessageController.sendButtons);
+routes.post(
+  '/api/:session/send-buttons',
+  verifyToken,
+  statusConnection,
+  MessageController.sendButtons,
+);
 // routes.post('/api/:session/send-file-base64',verifyToken,statusConnection,MessageController.sendFile);
 routes.post(
   '/api/:session/send-file',
