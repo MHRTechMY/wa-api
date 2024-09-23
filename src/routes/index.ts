@@ -187,24 +187,14 @@ routes.get(
   statusConnection,
   GroupController.getAllBroadcastList,
 );
-routes.get(
-  '/api/:session/all-new-messages',
-  verifyToken,
-  statusConnection,
-  DeviceController.getAllNewMessages,
-);
+// routes.get('/api/:session/all-new-messages', verifyToken, statusConnection, DeviceController.getAllNewMessages);
 routes.get(
   '/api/:session/all-unread-messages',
   verifyToken,
   statusConnection,
   DeviceController.getAllUnreadMessages,
 );
-routes.get(
-  '/api/:session/all-messages-in-chat/:phone',
-  verifyToken,
-  statusConnection,
-  DeviceController.getAllMessagesInChat,
-);
+// routes.get('/api/:session/all-messages-in-chat/:phone', verifyToken, statusConnection, DeviceController.getAllMessagesInChat);
 routes.get(
   '/api/:session/chat-by-id/:phone',
   verifyToken,
@@ -394,12 +384,7 @@ routes.post(
   statusConnection,
   MessageController.sendMessage,
 );
-routes.post(
-  '/api/:session/send-link-preview',
-  verifyToken,
-  statusConnection,
-  MessageController.sendLinkPreview,
-);
+// routes.post('/api/:session/send-link-preview', verifyToken, statusConnection, MessageController.sendLinkPreview);
 // routes.post('/api/:session/send-voice-base64',verifyToken,statusConnection,MessageController.sendVoice64);
 routes.post(
   '/api/:session/send-voice',
