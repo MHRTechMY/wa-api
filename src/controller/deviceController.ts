@@ -1000,7 +1000,6 @@ export async function forwardMessages(req: Request, res: Response) {
         await req.client.forwardMessage(contact, messageId, skipMyMessages),
       );
     }
-    req.io.emit('forward-message', results);
     return res.status(201).json({ status: 'success', response: results });
   } catch (error) {
     req.logger.error(error);
