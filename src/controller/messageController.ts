@@ -629,6 +629,7 @@ export async function sendButtons(req: Request, res: Response) {
     }
     if (results.length === 0)
       return returnError(req, res, 'Error sending message with buttons');
+    req.io.emit('sent-button', results);
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
