@@ -2699,6 +2699,12 @@
                   },
                   "messageId": {
                     "type": "string"
+                  },
+                  "options": {
+                    "type": "object",
+                    "skipMyMessages": {
+                      "type": "boolean"
+                    }
                   }
                 }
               },
@@ -2707,7 +2713,10 @@
                   "value": {
                     "phone": "601112345678",
                     "isGroup": false,
-                    "messageId": "<messageId>"
+                    "messageId": "<messageId>",
+                    "options": {
+                      "skipMyMessages": false
+                    }
                   }
                 }
               }

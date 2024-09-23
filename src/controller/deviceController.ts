@@ -15,7 +15,6 @@
  */
 import { Chat } from '@wppconnect-team/wppconnect';
 import { Request, Response } from 'express';
-
 import { contactToArray, unlinkAsync } from '../util/functions';
 import { clientsArray } from '../util/sessionUtil';
 
@@ -75,12 +74,10 @@ export async function setProfileName(req: Request, res: Response) {
      }
    */
   const { name } = req.body;
-
   if (!name)
     return res
       .status(400)
       .json({ status: 'error', message: 'Parameter name is required!' });
-
   try {
     const result = await req.client.setProfileName(name);
     return res.status(200).json({ status: 'success', response: result });
@@ -219,7 +216,6 @@ export async function listChats(req: Request, res: Response) {
       onlyWithUnreadMessage,
       withLabels,
     } = req.body;
-
     const response = await req.client.listChats({
       id: id,
       count: count,
@@ -229,7 +225,6 @@ export async function listChats(req: Request, res: Response) {
       onlyWithUnreadMessage: onlyWithUnreadMessage,
       withLabels: withLabels,
     });
-
     return res.status(200).json(response);
   } catch (e) {
     req.logger.error(e);
@@ -264,10 +259,12 @@ export async function getAllChatsWithMessages(req: Request, res: Response) {
     });
   }
 }
+
 export async function getAllMessagesInChat(req: Request, res: Response) {
   /**
    * #swagger.tags = ["Chats"]
      #swagger.autoBody = false
+     #swagger.deprecated = true
      #swagger.security = [{
             "bearerAuth": []
      }]
@@ -294,7 +291,6 @@ export async function getAllMessagesInChat(req: Request, res: Response) {
       includeMe = true,
       includeNotifications = true,
     } = req.query;
-
     let response;
     for (const contact of contactToArray(phone, isGroup as boolean)) {
       response = await req.client.getAllMessagesInChat(
@@ -303,7 +299,6 @@ export async function getAllMessagesInChat(req: Request, res: Response) {
         includeNotifications as boolean,
       );
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (e) {
     req.logger.error(e);
@@ -319,6 +314,7 @@ export async function getAllNewMessages(req: Request, res: Response) {
   /**
    * #swagger.tags = ["Chats"]
      #swagger.autoBody = false
+     #swagger.deprecated = true
      #swagger.security = [{
             "bearerAuth": []
      }]
@@ -382,7 +378,6 @@ export async function getChatById(req: Request, res: Response) {
    */
   const { phone } = req.params;
   const { isGroup } = req.query;
-
   try {
     let result = {} as Chat;
     if (isGroup) {
@@ -390,13 +385,12 @@ export async function getChatById(req: Request, res: Response) {
     } else {
       result = await req.client.getChatById(`${phone}@c.us`);
     }
-
     return res.status(200).json(result);
   } catch (e) {
     req.logger.error(e);
     return res.status(500).json({
       status: 'error',
-      message: 'Error changing chat by Id',
+      message: 'Error getting chat by Id',
       error: e,
     });
   }
@@ -419,10 +413,8 @@ export async function getMessageById(req: Request, res: Response) {
    */
   const session = req.session;
   const { messageId } = req.params;
-
   try {
     const result = await req.client.getMessageById(messageId);
-
     returnSucess(res, session, (result as any).chatId.user, result);
   } catch (error) {
     returnError(req, res, session, error);
@@ -520,18 +512,16 @@ export async function getBlockList(req: Request, res: Response) {
      }
    */
   const response = await req.client.getBlockList();
-
   try {
     const blocked = response.map((contact: any) => {
       return { phone: contact ? contact.split('@')[0] : '' };
     });
-
     return res.status(200).json({ status: 'success', response: blocked });
   } catch (e) {
     req.logger.error(e);
     return res.status(500).json({
       status: 'error',
-      message: 'Error retrieving blocked contact list',
+      message: 'Error retrieving blocked list',
       error: e,
     });
   }
@@ -572,7 +562,6 @@ export async function deleteChat(req: Request, res: Response) {
    */
   const { phone } = req.body;
   const session = req.session;
-
   try {
     const results: any = {};
     for (const contact of phone) {
@@ -583,6 +572,7 @@ export async function deleteChat(req: Request, res: Response) {
     returnError(req, res, session, error);
   }
 }
+
 export async function deleteAllChats(req: Request, res: Response) {
   /**
    * #swagger.tags = ["Chats"]
@@ -620,7 +610,6 @@ export async function clearChat(req: Request, res: Response) {
      #swagger.parameters["session"] = {
       schema: '60123456789'
      }
-
      #swagger.requestBody = {
       required: false,
       "@content": {
@@ -646,7 +635,6 @@ export async function clearChat(req: Request, res: Response) {
    */
   const { phone } = req.body;
   const session = req.session;
-
   try {
     const results: any = {};
     for (const contact of phone) {
@@ -695,7 +683,6 @@ export async function archiveChat(req: Request, res: Response) {
      #swagger.parameters["session"] = {
       schema: '60123456789'
      }
-
      #swagger.requestBody = {
       required: false,
       "@content": {
@@ -722,7 +709,6 @@ export async function archiveChat(req: Request, res: Response) {
      }
    */
   const { phone, value = true } = req.body;
-
   try {
     const response = await req.client.archiveChat(`${phone}`, value);
     return res.status(201).json({ status: 'success', response: response });
@@ -788,11 +774,12 @@ export async function getAllChatsArchiveds(req: Request, res: Response) {
     req.logger.error(e);
     return res.status(500).json({
       status: 'error',
-      message: 'Error on archive all chats',
+      message: 'Error getting archived chats',
       error: e,
     });
   }
 }
+
 export async function deleteMessage(req: Request, res: Response) {
   /**
    * #swagger.tags = ["Messages"]
@@ -803,7 +790,6 @@ export async function deleteMessage(req: Request, res: Response) {
      #swagger.parameters["session"] = {
       schema: '60123456789'
      }
-
      #swagger.requestBody = {
       required: false,
       "@content": {
@@ -840,7 +826,6 @@ export async function deleteMessage(req: Request, res: Response) {
      }
    */
   const { phone, messageId, deleteMediaInDevice, onlyLocal } = req.body;
-
   try {
     const result = await req.client.deleteMessage(
       `${phone}`,
@@ -855,7 +840,7 @@ export async function deleteMessage(req: Request, res: Response) {
     }
     return res.status(401).json({
       status: 'error',
-      response: { message: 'Error unknown on delete message' },
+      response: { message: 'Error on delete message' },
     });
   } catch (e) {
     req.logger.error(e);
@@ -864,6 +849,7 @@ export async function deleteMessage(req: Request, res: Response) {
       .json({ status: 'error', message: 'Error on delete message', error: e });
   }
 }
+
 export async function reactMessage(req: Request, res: Response) {
   /**
    * #swagger.tags = ["Messages"]
@@ -898,10 +884,8 @@ export async function reactMessage(req: Request, res: Response) {
      }
    */
   const { msgId, reaction } = req.body;
-
   try {
     await req.client.sendReactionToMessage(msgId, reaction);
-
     return res
       .status(200)
       .json({ status: 'success', response: { message: 'Reaction sended' } });
@@ -955,7 +939,6 @@ export async function reply(req: Request, res: Response) {
      }
    */
   const { phone, text, messageid } = req.body;
-
   try {
     const response = await req.client.reply(`${phone}@c.us`, text, messageid);
     return res.status(200).json({ status: 'success', response: response });
@@ -987,14 +970,21 @@ export async function forwardMessages(req: Request, res: Response) {
               phone: { type: "string" },
               isGroup: { type: "boolean" },
               messageId: { type: "string" },
+              options: {
+                type: "object",
+                skipMyMessages": { type: "boolean" }
+              }
             }
           },
           examples: {
-            "Default": {
+            "Forward message": {
               value: {
                 phone: "601112345678",
                 isGroup: false,
                 messageId: "<messageId>",
+                options: {
+                  skipMyMessages: false
+                }
               }
             },
           }
@@ -1002,23 +992,22 @@ export async function forwardMessages(req: Request, res: Response) {
       }
      }
    */
-  const { phone, messageId, isGroup = false } = req.body;
-
+  const { phone, messageId, skipMyMessages = false } = req.body;
   try {
-    let response;
-
-    if (!isGroup) {
-      response = await req.client.forwardMessage(`${phone[0]}`, messageId);
-    } else {
-      response = await req.client.forwardMessage(`${phone[0]}`, messageId);
+    const results: any = [];
+    for (const contact of phone) {
+      results.push(
+        await req.client.forwardMessage(contact, messageId, skipMyMessages),
+      );
     }
-
-    return res.status(201).json({ status: 'success', response: response });
-  } catch (e) {
-    req.logger.error(e);
-    return res
-      .status(500)
-      .json({ status: 'error', message: 'Error forwarding message', error: e });
+    return res.status(201).json({ status: 'success', response: results });
+  } catch (error) {
+    req.logger.error(error);
+    return res.status(500).json({
+      status: 'error',
+      message: 'Error forwarding message',
+      error: error,
+    });
   }
 }
 
@@ -1056,7 +1045,6 @@ export async function markUnseenMessage(req: Request, res: Response) {
      }
    */
   const { phone } = req.body;
-
   try {
     await req.client.markUnseenMessage(`${phone}`);
     return res
@@ -1104,7 +1092,6 @@ export async function blockContact(req: Request, res: Response) {
      }
    */
   const { phone } = req.body;
-
   try {
     await req.client.blockContact(`${phone}`);
     return res
@@ -1152,7 +1139,6 @@ export async function unblockContact(req: Request, res: Response) {
      }
    */
   const { phone } = req.body;
-
   try {
     await req.client.unblockContact(`${phone}`);
     return res
@@ -1209,12 +1195,10 @@ export async function pinChat(req: Request, res: Response) {
      }
    */
   const { phone, state } = req.body;
-
   try {
     for (const contact of phone) {
       await req.client.pinChat(contact, state === 'true', false);
     }
-
     return res
       .status(200)
       .json({ status: 'success', response: { message: 'Chat fixed' } });
@@ -1249,13 +1233,10 @@ export async function setProfilePic(req: Request, res: Response) {
     return res
       .status(400)
       .json({ status: 'Error', message: 'File parameter is required!' });
-
   try {
     const { path: pathFile } = req.file;
-
     await req.client.setProfilePic(pathFile);
     await unlinkAsync(pathFile);
-
     return res.status(200).json({
       status: 'success',
       response: { message: 'Profile photo successfully changed' },
@@ -1339,7 +1320,6 @@ export async function getLastSeen(req: Request, res: Response) {
   const { phone } = req.params;
   try {
     const response = await req.client.getLastSeen(`${phone}@c.us`);
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1368,7 +1348,6 @@ export async function getListMutes(req: Request, res: Response) {
   const { type = 'all' } = req.params;
   try {
     const response = await req.client.getListMutes(type);
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1409,7 +1388,6 @@ export async function loadAndGetAllMessagesInChat(req: Request, res: Response) {
       includeMe as boolean,
       includeNotifications as boolean,
     );
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1418,6 +1396,7 @@ export async function loadAndGetAllMessagesInChat(req: Request, res: Response) {
       .json({ status: 'error', response: 'Error on open list', error: error });
   }
 }
+
 export async function getMessages(req: Request, res: Response) {
   /**
      #swagger.tags = ["Messages"]
@@ -1505,7 +1484,6 @@ export async function sendContactVcard(req: Request, res: Response) {
         name,
       );
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1555,13 +1533,11 @@ export async function sendMute(req: Request, res: Response) {
      }
    */
   const { phone, time, type = 'hours', isGroup = false } = req.body;
-
   try {
     let response;
     for (const contact of contactToArray(phone, isGroup)) {
       response = await req.client.sendMute(`${contact}`, time, type);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1606,7 +1582,6 @@ export async function sendSeen(req: Request, res: Response) {
    */
   const { phone } = req.body;
   const session = req.session;
-
   try {
     const results: any = [];
     for (const contact of phone) {
@@ -1656,13 +1631,11 @@ export async function setChatState(req: Request, res: Response) {
      }
    */
   const { phone, chatstate, isGroup = false } = req.body;
-
   try {
     let response;
     for (const contact of contactToArray(phone, isGroup)) {
       response = await req.client.setChatState(`${contact}`, chatstate);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1710,13 +1683,11 @@ export async function setTemporaryMessages(req: Request, res: Response) {
      }
    */
   const { phone, value = true, isGroup = false } = req.body;
-
   try {
     let response;
     for (const contact of contactToArray(phone, isGroup)) {
       response = await req.client.setTemporaryMessages(`${contact}`, value);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1770,7 +1741,6 @@ export async function setTyping(req: Request, res: Response) {
       if (value) response = await req.client.startTyping(contact);
       else response = await req.client.stopTyping(contact);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1790,7 +1760,6 @@ export async function setRecording(req: Request, res: Response) {
      #swagger.parameters["session"] = {
       schema: '60123456789'
      }
-
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -1825,7 +1794,6 @@ export async function setRecording(req: Request, res: Response) {
       if (value) response = await req.client.startRecording(contact, duration);
       else response = await req.client.stopRecoring(contact);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1857,7 +1825,6 @@ export async function checkNumberStatus(req: Request, res: Response) {
     for (const contact of contactToArray(phone, false)) {
       response = await req.client.checkNumberStatus(`${contact}`);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1889,7 +1856,6 @@ export async function getContact(req: Request, res: Response) {
     for (const contact of contactToArray(phone as string, false)) {
       response = await req.client.getContact(contact);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1912,7 +1878,6 @@ export async function getAllContacts(req: Request, res: Response) {
    */
   try {
     const response = await req.client.getAllContacts();
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1946,7 +1911,6 @@ export async function getNumberProfile(req: Request, res: Response) {
     for (const contact of contactToArray(phone as string, false)) {
       response = await req.client.getNumberProfile(contact);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -1979,7 +1943,6 @@ export async function getProfilePicFromServer(req: Request, res: Response) {
     for (const contact of contactToArray(phone as string, isGroup as boolean)) {
       response = await req.client.getProfilePicFromServer(contact);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -2036,7 +1999,6 @@ export async function setProfileStatus(req: Request, res: Response) {
         $status: 'My new status',
       }
      }
-
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -2061,7 +2023,6 @@ export async function setProfileStatus(req: Request, res: Response) {
   const { status } = req.body;
   try {
     const response = await req.client.setProfileStatus(status);
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (e) {
     req.logger.error(e);
@@ -2070,6 +2031,7 @@ export async function setProfileStatus(req: Request, res: Response) {
       .json({ status: 'error', message: 'Error on set profile status' });
   }
 }
+
 export async function rejectCall(req: Request, res: Response) {
   /**
      #swagger.tags = ["Chats"]
@@ -2080,7 +2042,6 @@ export async function rejectCall(req: Request, res: Response) {
      #swagger.parameters["session"] = {
       schema: '60123456789'
      }
-
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -2105,7 +2066,6 @@ export async function rejectCall(req: Request, res: Response) {
   const { callId } = req.body;
   try {
     const response = await req.client.rejectCall(callId);
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (e) {
     req.logger.error(e);
@@ -2151,7 +2111,6 @@ export async function starMessage(req: Request, res: Response) {
   const { messageId, star = true } = req.body;
   try {
     const response = await req.client.starMessage(messageId, star);
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -2180,7 +2139,6 @@ export async function getReactions(req: Request, res: Response) {
   const messageId = req.params.id;
   try {
     const response = await req.client.getReactions(messageId);
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -2209,7 +2167,6 @@ export async function getVotes(req: Request, res: Response) {
   const messageId = req.params.id;
   try {
     const response = await req.client.getVotes(messageId);
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (error) {
     req.logger.error(error);
@@ -2218,6 +2175,7 @@ export async function getVotes(req: Request, res: Response) {
       .json({ status: 'error', message: 'Error on get votes', error: error });
   }
 }
+
 export async function chatWoot(req: Request, res: Response) {
   /**
      #swagger.tags = ["Misc"]
@@ -2258,7 +2216,6 @@ export async function chatWoot(req: Request, res: Response) {
   try {
     if (await client.isConnected()) {
       const event = req.body.event;
-
       if (
         event == 'conversation_status_changed' ||
         event == 'conversation_resolved' ||
@@ -2268,13 +2225,11 @@ export async function chatWoot(req: Request, res: Response) {
           .status(200)
           .json({ status: 'success', message: 'Success on receive chatwoot' });
       }
-
       const {
         message_type,
         phone = req.body.conversation.meta.sender.phone_number.replace('+', ''),
         message = req.body.conversation.messages[0],
       } = req.body;
-
       if (event != 'message_created' && message_type != 'outgoing')
         return res.status(200);
       for (const contact of contactToArray(phone, false)) {
@@ -2309,6 +2264,7 @@ export async function chatWoot(req: Request, res: Response) {
     });
   }
 }
+
 export async function getPlatformFromMessage(req: Request, res: Response) {
   /**
    * #swagger.tags = ["Misc"]
