@@ -420,9 +420,7 @@ export async function sendLinkPreview(req: Request, res: Response) {
   try {
     const results: any = [];
     for (const contact of phone) {
-      results.push(
-        await req.client.sendLinkPreview(`${contact}`, url, caption),
-      );
+      results.push(await req.client.sendLinkPreview(contact, url, caption));
     }
     if (results.length === 0)
       return res.status(400).json('Error sending message');
@@ -1017,11 +1015,7 @@ export async function sendMentioned(req: Request, res: Response) {
   try {
     let response;
     for (const contact of phone) {
-      response = await req.client.sendMentioned(
-        `${contact}`,
-        message,
-        mentioned,
-      );
+      response = await req.client.sendMentioned(contact, message, mentioned);
     }
     return res.status(201).json({ status: 'success', response: response });
   } catch (error) {
