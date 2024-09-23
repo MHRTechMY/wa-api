@@ -58,9 +58,7 @@
   "paths": {
     "/api/{session}/{secretkey}/generate-token": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "parameters": [
           {
@@ -97,9 +95,7 @@
     },
     "/api/{session}/{secretkey}/clear-session-data": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "parameters": [
           {
@@ -136,9 +132,7 @@
     },
     "/api/{secretkey}/restore-sessions": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "parameters": [
           {
@@ -174,9 +168,7 @@
                     "format": "binary"
                   }
                 },
-                "required": [
-                  "file"
-                ]
+                "required": ["file"]
               }
             }
           }
@@ -185,13 +177,9 @@
     },
     "/api/{secretkey}/backup-sessions": {
       "get": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "Please, open the router in your browser, in swagger this not run",
-        "produces": [
-          "application/zip"
-        ],
+        "produces": ["application/zip"],
         "parameters": [
           {
             "name": "secretkey",
@@ -223,9 +211,7 @@
     },
     "/api/{secretkey}/start-all": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "operationId": "startAllSessions",
         "parameters": [
@@ -271,9 +257,7 @@
     },
     "/api/{secretkey}/show-all-sessions": {
       "get": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "operationId": "showAllSessions",
         "parameters": [
@@ -304,9 +288,7 @@
     },
     "/api/{session}/check-connection-session": {
       "get": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "operationId": "CheckConnectionState",
         "parameters": [
@@ -334,9 +316,7 @@
     },
     "/api/{session}/status-session": {
       "get": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "operationId": "getSessionState",
         "parameters": [
@@ -367,9 +347,7 @@
     },
     "/api/{session}/qrcode-session": {
       "get": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "operationId": "getQrCode",
         "parameters": [
@@ -400,9 +378,7 @@
     },
     "/api/{session}/start-session": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "operationId": "startSession",
         "parameters": [
@@ -452,9 +428,7 @@
     },
     "/api/{session}/close-session": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "operationId": "closeSession",
         "parameters": [
@@ -485,9 +459,7 @@
     },
     "/api/{session}/logout-session": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "This route logout and delete session data",
         "operationId": "logoutSession",
         "parameters": [
@@ -518,9 +490,7 @@
     },
     "/api/{session}/check-number-status/{phone}": {
       "get": {
-        "tags": [
-          "Profile"
-        ],
+        "tags": ["Profile"],
         "description": "",
         "parameters": [
           {
@@ -559,9 +529,7 @@
     },
     "/api/{session}/change-username": {
       "post": {
-        "tags": [
-          "Profile"
-        ],
+        "tags": ["Profile"],
         "description": "",
         "parameters": [
           {
@@ -616,9 +584,7 @@
     },
     "/api/{session}/profile-pic": {
       "post": {
-        "tags": [
-          "Profile"
-        ],
+        "tags": ["Profile"],
         "description": "",
         "parameters": [
           {
@@ -659,9 +625,7 @@
     },
     "/api/{session}/profile-status": {
       "post": {
-        "tags": [
-          "Profile"
-        ],
+        "tags": ["Profile"],
         "description": "",
         "parameters": [
           {
@@ -684,9 +648,7 @@
                   "example": "My new status"
                 }
               },
-              "required": [
-                "status"
-              ]
+              "required": ["status"]
             }
           }
         ],
@@ -729,9 +691,7 @@
     },
     "/api/{session}/edit-business-profile": {
       "post": {
-        "tags": [
-          "Profile"
-        ],
+        "tags": ["Profile"],
         "description": "Edit your Business profile",
         "operationId": "editBusinessProfile",
         "parameters": [
@@ -774,11 +734,7 @@
                       "example": false
                     }
                   },
-                  "required": [
-                    "id",
-                    "localized_display_name",
-                    "not_a_biz"
-                  ]
+                  "required": ["id", "localized_display_name", "not_a_biz"]
                 },
                 "website": {
                   "type": "array",
@@ -791,12 +747,7 @@
                   }
                 }
               },
-              "required": [
-                "adress",
-                "email",
-                "categories",
-                "website"
-              ]
+              "required": ["adress", "email", "categories", "website"]
             }
           }
         ],
@@ -874,9 +825,7 @@
     },
     "/api/{session}/contact/{phone}": {
       "get": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "",
         "parameters": [
           {
@@ -915,9 +864,7 @@
     },
     "/api/{session}/profile-pic/{phone}": {
       "get": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "",
         "parameters": [
           {
@@ -963,9 +910,7 @@
     },
     "/api/{session}/profile-status/{phone}": {
       "get": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "",
         "parameters": [
           {
@@ -1004,9 +949,7 @@
     },
     "/api/{session}/blocklist": {
       "get": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "",
         "parameters": [
           {
@@ -1036,9 +979,7 @@
     },
     "/api/{session}/block-contact": {
       "post": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "",
         "parameters": [
           {
@@ -1094,9 +1035,7 @@
     },
     "/api/{session}/unblock-contact": {
       "post": {
-        "tags": [
-          "Contacts"
-        ],
+        "tags": ["Contacts"],
         "description": "",
         "parameters": [
           {
@@ -1152,9 +1091,7 @@
     },
     "/api/{session}/list-chats": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "summary": "Retrieve a list of chats",
         "description": "This body is not required. Not sent body to get all chats or filter.",
         "parameters": [
@@ -1251,9 +1188,7 @@
     },
     "/api/{session}/all-chats-archived": {
       "get": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "Retrieves all archived chats.",
         "parameters": [
           {
@@ -1283,9 +1218,7 @@
     },
     "/api/{session}/all-broadcast-list": {
       "get": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1315,9 +1248,7 @@
     },
     "/api/{session}/all-new-messages": {
       "get": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1347,9 +1278,7 @@
     },
     "/api/{session}/all-unread-messages": {
       "get": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1379,9 +1308,7 @@
     },
     "/api/{session}/all-messages-in-chat/{phone}": {
       "get": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1444,9 +1371,7 @@
     },
     "/api/{session}/chat-by-id/{phone}": {
       "get": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1493,9 +1418,7 @@
     },
     "/api/{session}/chat-is-online/{phone}": {
       "get": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1534,9 +1457,7 @@
     },
     "/api/{session}/last-seen/{phone}": {
       "get": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1575,9 +1496,7 @@
     },
     "/api/{session}/list-mutes/{type}": {
       "get": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1616,9 +1535,7 @@
     },
     "/api/{session}/message-by-id/{messageId}": {
       "get": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1654,9 +1571,7 @@
     },
     "/api/{session}/archive-chat": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1716,9 +1631,7 @@
     },
     "/api/{session}/archive-all-chats": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1748,9 +1661,7 @@
     },
     "/api/{session}/clear-chat": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1803,9 +1714,7 @@
     },
     "/api/{session}/clear-all-chats": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1835,9 +1744,7 @@
     },
     "/api/{session}/delete-chat": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1890,9 +1797,7 @@
     },
     "/api/{session}/delete-all-chats": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1922,9 +1827,7 @@
     },
     "/api/{session}/mark-unseen": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -1980,9 +1883,7 @@
     },
     "/api/{session}/send-seen": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -2035,9 +1936,7 @@
     },
     "/api/{session}/send-mute": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -2101,9 +2000,7 @@
     },
     "/api/{session}/pin-chat": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -2134,11 +2031,7 @@
                   "example": true
                 }
               },
-              "required": [
-                "phone",
-                "isGroup",
-                "state"
-              ]
+              "required": ["phone", "isGroup", "state"]
             }
           }
         ],
@@ -2188,9 +2081,7 @@
     },
     "/api/{session}/typing": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -2250,9 +2141,7 @@
     },
     "/api/{session}/recording": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -2316,9 +2205,7 @@
     },
     "/api/{session}/reject-call": {
       "post": {
-        "tags": [
-          "Chats"
-        ],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
@@ -2370,9 +2257,7 @@
     },
     "/api/{session}/get-messages/{phone}": {
       "get": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -2435,9 +2320,7 @@
     },
     "/api/{session}/reactions/{id}": {
       "get": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -2483,9 +2366,7 @@
     },
     "/api/{session}/votes/{id}": {
       "get": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -2531,9 +2412,7 @@
     },
     "/api/{session}/contact-vcard": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -2586,9 +2465,7 @@
                     "phone": "601112345678",
                     "isGroup": false,
                     "name": "Name of contact",
-                    "contactsId": [
-                      "601112345678"
-                    ]
+                    "contactsId": ["601112345678"]
                   }
                 }
               }
@@ -2599,9 +2476,7 @@
     },
     "/api/{session}/delete-message": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -2678,9 +2553,7 @@
     },
     "/api/{session}/download-media": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "operationId": "downloadMediabyMessage",
         "parameters": [
@@ -2729,9 +2602,7 @@
     },
     "/api/{session}/edit-message": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -2787,9 +2658,7 @@
     },
     "/api/{session}/forward-messages": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -2849,9 +2718,7 @@
     },
     "/api/{session}/react-message": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -2907,10 +2774,7 @@
     },
     "/api/{session}/send-buttons": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
-        "summary": "Deprecated non functioning method",
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -2924,8 +2788,14 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
@@ -2933,14 +2803,150 @@
             "bearerAuth": []
           }
         ],
-        "deprecated": true
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "type": "string"
+                  },
+                  "isGroup": {
+                    "type": "boolean"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "options": {
+                    "type": "object",
+                    "title": {
+                      "type": "string"
+                    },
+                    "footer": {
+                      "type": "string"
+                    },
+                    "buttons": {
+                      "type": "array",
+                      "properties": {
+                        "text": {
+                          "type": "string"
+                        },
+                        "code": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "phoneNumber": {
+                          "type": "string"
+                        },
+                        "reply": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "Send phone button": {
+                  "value": {
+                    "phone": "601112345678",
+                    "isGroup": false,
+                    "message": "message",
+                    "options": {
+                      "title": "title",
+                      "footer": "footer",
+                      "buttons": [
+                        {
+                          "phoneNumber": "601112345678",
+                          "text": "call me"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "Send url button": {
+                  "value": {
+                    "phone": "601112345678",
+                    "isGroup": false,
+                    "message": "message",
+                    "options": {
+                      "title": "title",
+                      "footer": "footer",
+                      "buttons": [
+                        {
+                          "url": "https://www.mhrtech.my/cv",
+                          "text": "my CV"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "Send copy button": {
+                  "value": {
+                    "phone": "601112345678",
+                    "isGroup": false,
+                    "message": "message",
+                    "options": {
+                      "title": "title",
+                      "footer": "footer",
+                      "buttons": [
+                        {
+                          "code": "12345",
+                          "text": "copy"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "Send reply button": {
+                  "value": {
+                    "phone": "601112345678",
+                    "isGroup": false,
+                    "message": "message",
+                    "options": {
+                      "title": "title",
+                      "footer": "footer",
+                      "buttons": [
+                        {
+                          "reply": "reply text",
+                          "text": "reply"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "Send id button": {
+                  "value": {
+                    "phone": "601112345678",
+                    "isGroup": false,
+                    "message": "message",
+                    "options": {
+                      "title": "title",
+                      "footer": "footer",
+                      "buttons": [
+                        {
+                          "id": "customID",
+                          "text": "ID"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/{session}/send-file": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -2954,6 +2960,9 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "400": {
             "description": "Bad Request"
           },
@@ -3012,9 +3021,7 @@
     },
     "/api/{session}/send-message": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3028,8 +3035,14 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
@@ -3118,9 +3131,7 @@
     },
     "/api/{session}/send-link-preview": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3134,8 +3145,14 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
@@ -3181,9 +3198,7 @@
     },
     "/api/{session}/send-voice": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3197,8 +3212,14 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
@@ -3244,9 +3265,7 @@
     },
     "/api/{session}/send-image": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3260,6 +3279,9 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "400": {
             "description": "Bad Request"
           },
@@ -3318,9 +3340,7 @@
     },
     "/api/{session}/send-location": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3334,8 +3354,14 @@
           }
         ],
         "responses": {
+          "201": {
+            "description": "Created"
+          },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         },
         "security": [
@@ -3389,9 +3415,7 @@
     },
     "/api/{session}/send-mentioned": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3407,6 +3431,12 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -3440,11 +3470,7 @@
                     }
                   }
                 },
-                "required": [
-                  "phone",
-                  "message",
-                  "mentioned"
-                ]
+                "required": ["phone", "message", "mentioned"]
               },
               "examples": {
                 "Default": {
@@ -3452,9 +3478,7 @@
                     "phone": "601112345678",
                     "isGroup": true,
                     "message": "Your text message",
-                    "mentioned": [
-                      "@556593077171@c.us"
-                    ]
+                    "mentioned": ["@556593077171@c.us"]
                   }
                 }
               }
@@ -3465,9 +3489,7 @@
     },
     "/api/{session}/send-poll-message": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3520,11 +3542,7 @@
                     "phone": "601112345678",
                     "isGroup": false,
                     "name": "Poll name",
-                    "choices": [
-                      "Option 1",
-                      "Option 2",
-                      "Option 3"
-                    ],
+                    "choices": ["Option 1", "Option 2", "Option 3"],
                     "options": {
                       "selectableCount": 1
                     }
@@ -3538,9 +3556,7 @@
     },
     "/api/{session}/send-sticker-gif": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3583,10 +3599,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "phone",
-                  "path"
-                ]
+                "required": ["phone", "path"]
               },
               "examples": {
                 "Default": {
@@ -3604,9 +3617,7 @@
     },
     "/api/{session}/send-sticker": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3649,10 +3660,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "phone",
-                  "path"
-                ]
+                "required": ["phone", "path"]
               },
               "examples": {
                 "Default": {
@@ -3670,9 +3678,7 @@
     },
     "/api/{session}/send-list-message": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3753,9 +3759,7 @@
     },
     "/api/{session}/send-link-catalog": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3802,9 +3806,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phones": [
-                      "<array_phone_id"
-                    ],
+                    "phones": ["<array_phone_id"],
                     "message": "Message"
                   }
                 }
@@ -3816,9 +3818,7 @@
     },
     "/api/{session}/send-order-message": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3924,9 +3924,7 @@
     },
     "/api/{session}/star-message": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -3982,9 +3980,7 @@
     },
     "/api/{session}/temporary-messages": {
       "post": {
-        "tags": [
-          "Messages"
-        ],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -4044,9 +4040,7 @@
     },
     "/api/{session}/send-text-storie": {
       "post": {
-        "tags": [
-          "Status"
-        ],
+        "tags": ["Status"],
         "description": "",
         "parameters": [
           {
@@ -4112,9 +4106,7 @@
                     "type": "object"
                   }
                 },
-                "required": [
-                  "text"
-                ]
+                "required": ["text"]
               },
               "examples": {
                 "Default": {
@@ -4134,9 +4126,7 @@
     },
     "/api/{session}/send-image-storie": {
       "post": {
-        "tags": [
-          "Status"
-        ],
+        "tags": ["Status"],
         "description": "",
         "parameters": [
           {
@@ -4173,9 +4163,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "path"
-                ]
+                "required": ["path"]
               },
               "examples": {
                 "Default": {
@@ -4191,9 +4179,7 @@
     },
     "/api/{session}/send-video-storie": {
       "post": {
-        "tags": [
-          "Status"
-        ],
+        "tags": ["Status"],
         "description": "",
         "parameters": [
           {
@@ -4230,9 +4216,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "path"
-                ]
+                "required": ["path"]
               },
               "examples": {
                 "Default": {
@@ -4248,9 +4232,7 @@
     },
     "/api/{session}/common-groups/{wid}": {
       "get": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4289,9 +4271,7 @@
     },
     "/api/{session}/group-admins/{groupId}": {
       "get": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4336,9 +4316,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId"
-                ]
+                "required": ["groupId"]
               },
               "examples": {
                 "Default": {
@@ -4354,9 +4332,7 @@
     },
     "/api/{session}/group-invite-link/{groupId}": {
       "get": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4401,9 +4377,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId"
-                ]
+                "required": ["groupId"]
               },
               "examples": {
                 "Default": {
@@ -4419,9 +4393,7 @@
     },
     "/api/{session}/group-members-ids/{groupId}": {
       "get": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4460,9 +4432,7 @@
     },
     "/api/{session}/group-members/{groupId}": {
       "get": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4500,9 +4470,7 @@
     },
     "/api/{session}/group-revoke-link/{groupId}": {
       "get": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4547,9 +4515,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId"
-                ]
+                "required": ["groupId"]
               },
               "examples": {
                 "Default": {
@@ -4565,9 +4531,7 @@
     },
     "/api/{session}/create-group": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4610,17 +4574,12 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "participants",
-                  "name"
-                ]
+                "required": ["participants", "name"]
               },
               "examples": {
                 "Default": {
                   "value": {
-                    "participants": [
-                      "601112345678"
-                    ],
+                    "participants": ["601112345678"],
                     "name": "Group name"
                   }
                 }
@@ -4632,9 +4591,7 @@
     },
     "/api/{session}/group-subject": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4674,9 +4631,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId"
-                ]
+                "required": ["groupId"]
               },
               "examples": {
                 "Default": {
@@ -4693,9 +4648,7 @@
     },
     "/api/{session}/group-description": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4735,9 +4688,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId"
-                ]
+                "required": ["groupId"]
               },
               "examples": {
                 "Default": {
@@ -4754,9 +4705,7 @@
     },
     "/api/{session}/group-pic": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4799,9 +4748,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId"
-                ]
+                "required": ["groupId"]
               },
               "examples": {
                 "Default": {
@@ -4818,9 +4765,7 @@
     },
     "/api/{session}/group-property": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4863,9 +4808,7 @@
                     "type": "boolean"
                   }
                 },
-                "required": [
-                  "groupId"
-                ]
+                "required": ["groupId"]
               },
               "examples": {
                 "Default": {
@@ -4883,9 +4826,7 @@
     },
     "/api/{session}/messages-admins-only": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4922,9 +4863,7 @@
                     "type": "boolean"
                   }
                 },
-                "required": [
-                  "groupId"
-                ]
+                "required": ["groupId"]
               },
               "examples": {
                 "Default": {
@@ -4941,9 +4880,7 @@
     },
     "/api/{session}/promote-participant-group": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -4983,10 +4920,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId",
-                  "phone"
-                ]
+                "required": ["groupId", "phone"]
               },
               "examples": {
                 "Default": {
@@ -5003,9 +4937,7 @@
     },
     "/api/{session}/demote-participant-group": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -5045,10 +4977,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId",
-                  "phone"
-                ]
+                "required": ["groupId", "phone"]
               },
               "examples": {
                 "Default": {
@@ -5065,9 +4994,7 @@
     },
     "/api/{session}/add-participant-group": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -5107,10 +5034,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId",
-                  "phone"
-                ]
+                "required": ["groupId", "phone"]
               },
               "examples": {
                 "Default": {
@@ -5127,9 +5051,7 @@
     },
     "/api/{session}/remove-participant-group": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -5169,10 +5091,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId",
-                  "phone"
-                ]
+                "required": ["groupId", "phone"]
               },
               "examples": {
                 "Default": {
@@ -5189,9 +5108,7 @@
     },
     "/api/{session}/group-info-from-invite-link": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -5228,9 +5145,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "invitecode"
-                ]
+                "required": ["invitecode"]
               },
               "examples": {
                 "Default": {
@@ -5246,9 +5161,7 @@
     },
     "/api/{session}/change-privacy-group": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -5288,9 +5201,7 @@
                     "type": "boolean"
                   }
                 },
-                "required": [
-                  "groupId"
-                ]
+                "required": ["groupId"]
               },
               "examples": {
                 "Default": {
@@ -5307,9 +5218,7 @@
     },
     "/api/{session}/join-code": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -5349,9 +5258,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "inviteCode"
-                ]
+                "required": ["inviteCode"]
               },
               "examples": {
                 "Default": {
@@ -5367,9 +5274,7 @@
     },
     "/api/{session}/leave-group": {
       "post": {
-        "tags": [
-          "Groups"
-        ],
+        "tags": ["Groups"],
         "description": "",
         "parameters": [
           {
@@ -5406,9 +5311,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId"
-                ]
+                "required": ["groupId"]
               }
             }
           }
@@ -5417,9 +5320,7 @@
     },
     "/api/{session}/community-participants/{id}": {
       "get": {
-        "tags": [
-          "Community"
-        ],
+        "tags": ["Community"],
         "description": "",
         "parameters": [
           {
@@ -5458,9 +5359,7 @@
     },
     "/api/{session}/create-community": {
       "post": {
-        "tags": [
-          "Community"
-        ],
+        "tags": ["Community"],
         "description": "",
         "parameters": [
           {
@@ -5509,10 +5408,7 @@
                   "value": {
                     "name": "My community name",
                     "description": "Description for your community",
-                    "groupIds": [
-                      "groupId1",
-                      "groupId2"
-                    ]
+                    "groupIds": ["groupId1", "groupId2"]
                   }
                 }
               }
@@ -5523,9 +5419,7 @@
     },
     "/api/{session}/deactivate-community": {
       "post": {
-        "tags": [
-          "Community"
-        ],
+        "tags": ["Community"],
         "description": "",
         "parameters": [
           {
@@ -5577,9 +5471,7 @@
     },
     "/api/{session}/add-community-subgroup": {
       "post": {
-        "tags": [
-          "Community"
-        ],
+        "tags": ["Community"],
         "description": "",
         "parameters": [
           {
@@ -5624,9 +5516,7 @@
                 "Default": {
                   "value": {
                     "id": "<your_community_id@g.us>",
-                    "groupsIds": [
-                      "group1Id@g.us"
-                    ]
+                    "groupsIds": ["group1Id@g.us"]
                   }
                 }
               }
@@ -5637,9 +5527,7 @@
     },
     "/api/{session}/remove-community-subgroup": {
       "post": {
-        "tags": [
-          "Community"
-        ],
+        "tags": ["Community"],
         "description": "",
         "parameters": [
           {
@@ -5684,9 +5572,7 @@
                 "Default": {
                   "value": {
                     "id": "<your_community_id@g.us>",
-                    "groupsIds": [
-                      "group1Id@g.us"
-                    ]
+                    "groupsIds": ["group1Id@g.us"]
                   }
                 }
               }
@@ -5697,9 +5583,7 @@
     },
     "/api/{session}/promote-community-participant": {
       "post": {
-        "tags": [
-          "Community"
-        ],
+        "tags": ["Community"],
         "description": "",
         "parameters": [
           {
@@ -5744,9 +5628,7 @@
                 "Default": {
                   "value": {
                     "id": "<your_community_id@g.us>",
-                    "participantsId": [
-                      "group1Id@g.us"
-                    ]
+                    "participantsId": ["group1Id@g.us"]
                   }
                 }
               }
@@ -5757,9 +5639,7 @@
     },
     "/api/{session}/demote-community-participant": {
       "post": {
-        "tags": [
-          "Community"
-        ],
+        "tags": ["Community"],
         "description": "",
         "parameters": [
           {
@@ -5804,9 +5684,7 @@
                 "Default": {
                   "value": {
                     "id": "<your_community_id@g.us>",
-                    "participantsId": [
-                      "group1Id@g.us"
-                    ]
+                    "participantsId": ["group1Id@g.us"]
                   }
                 }
               }
@@ -5817,9 +5695,7 @@
     },
     "/api/{session}/newsletter": {
       "post": {
-        "tags": [
-          "Newsletter"
-        ],
+        "tags": ["Newsletter"],
         "description": "",
         "operationId": "createNewsletter",
         "parameters": [
@@ -5876,9 +5752,7 @@
     },
     "/api/{session}/newsletter/{id}": {
       "put": {
-        "tags": [
-          "Newsletter"
-        ],
+        "tags": ["Newsletter"],
         "description": "",
         "operationId": "editNewsletter",
         "parameters": [
@@ -5952,9 +5826,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Newsletter"
-        ],
+        "tags": ["Newsletter"],
         "description": "",
         "operationId": "destroyNewsletter",
         "parameters": [
@@ -5991,9 +5863,7 @@
     },
     "/api/{session}/mute-newsletter/{id}": {
       "post": {
-        "tags": [
-          "Newsletter"
-        ],
+        "tags": ["Newsletter"],
         "description": "",
         "operationId": "muteNewsletter",
         "parameters": [
@@ -6030,9 +5900,7 @@
     },
     "/api/{session}/get-all-labels": {
       "get": {
-        "tags": [
-          "Labels"
-        ],
+        "tags": ["Labels"],
         "description": "",
         "parameters": [
           {
@@ -6062,9 +5930,7 @@
     },
     "/api/{session}/add-new-label": {
       "post": {
-        "tags": [
-          "Labels"
-        ],
+        "tags": ["Labels"],
         "description": "",
         "parameters": [
           {
@@ -6112,10 +5978,7 @@
                     }
                   }
                 },
-                "required": [
-                  "name",
-                  "options"
-                ]
+                "required": ["name", "options"]
               },
               "examples": {
                 "Default": {
@@ -6134,9 +5997,7 @@
     },
     "/api/{session}/add-or-remove-label": {
       "post": {
-        "tags": [
-          "Labels"
-        ],
+        "tags": ["Labels"],
         "description": "",
         "parameters": [
           {
@@ -6193,16 +6054,12 @@
                     }
                   }
                 },
-                "required": [
-                  "chatIds"
-                ]
+                "required": ["chatIds"]
               },
               "examples": {
                 "Default": {
                   "value": {
-                    "chatIds": [
-                      "601112345678"
-                    ],
+                    "chatIds": ["601112345678"],
                     "options": [
                       {
                         "labelId": "76",
@@ -6223,9 +6080,7 @@
     },
     "/api/{session}/delete-label/{id}": {
       "put": {
-        "tags": [
-          "Labels"
-        ],
+        "tags": ["Labels"],
         "description": "",
         "parameters": [
           {
@@ -6264,9 +6119,7 @@
     },
     "/api/{session}/delete-all-labels": {
       "put": {
-        "tags": [
-          "Labels"
-        ],
+        "tags": ["Labels"],
         "description": "",
         "parameters": [
           {
@@ -6296,9 +6149,7 @@
     },
     "/api/{session}/get-business-profiles-products": {
       "get": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -6333,9 +6184,7 @@
     },
     "/api/{session}/get-collections": {
       "get": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -6392,9 +6241,7 @@
     },
     "/api/{session}/get-order-by-messageId/{messageId}": {
       "get": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -6430,9 +6277,7 @@
     },
     "/api/{session}/get-product-by-id": {
       "get": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -6481,9 +6326,7 @@
     },
     "/api/{session}/get-products": {
       "get": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -6532,9 +6375,7 @@
     },
     "/api/{session}/add-product-image": {
       "post": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -6593,9 +6434,7 @@
     },
     "/api/{session}/add-product": {
       "post": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -6674,9 +6513,7 @@
     },
     "/api/{session}/change-product-image": {
       "post": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -6735,9 +6572,7 @@
     },
     "/api/{session}/create-collection": {
       "post": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -6785,10 +6620,7 @@
                 "Default": {
                   "value": {
                     "name": "Collection name",
-                    "products": [
-                      "<id_product1>",
-                      "<id_product2>"
-                    ]
+                    "products": ["<id_product1>", "<id_product2>"]
                   }
                 }
               }
@@ -6799,9 +6631,7 @@
     },
     "/api/{session}/del-collection": {
       "post": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -6856,9 +6686,7 @@
     },
     "/api/{session}/del-products": {
       "post": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -6913,9 +6741,7 @@
     },
     "/api/{session}/edit-collection": {
       "post": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -6976,9 +6802,7 @@
     },
     "/api/{session}/edit-product": {
       "post": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -7039,9 +6863,7 @@
     },
     "/api/{session}/remove-product-image": {
       "post": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -7100,9 +6922,7 @@
     },
     "/api/{session}/set-cart-enabled": {
       "post": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -7157,9 +6977,7 @@
     },
     "/api/{session}/set-product-visibility": {
       "post": {
-        "tags": [
-          "Catalogs"
-        ],
+        "tags": ["Catalogs"],
         "description": "",
         "parameters": [
           {
@@ -7186,10 +7004,7 @@
                   "example": false
                 }
               },
-              "required": [
-                "id",
-                "value"
-              ]
+              "required": ["id", "value"]
             }
           }
         ],
@@ -7239,9 +7054,7 @@
     },
     "/api/{session}/get-battery-level": {
       "get": {
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -7271,9 +7084,7 @@
     },
     "/api/{session}/get-media-by-message/{messageId}": {
       "get": {
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "description": "",
         "operationId": "getMediaByMessage",
         "parameters": [
@@ -7315,9 +7126,7 @@
     },
     "/api/{session}/get-phone-number": {
       "get": {
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -7347,9 +7156,7 @@
     },
     "/api/{session}/get-platform-from-message/{messageId}": {
       "get": {
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -7388,9 +7195,7 @@
     },
     "/api/{session}/host-device": {
       "get": {
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -7420,9 +7225,7 @@
     },
     "/api/{session}/take-screenshot": {
       "get": {
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -7452,9 +7255,7 @@
     },
     "/healthz": {
       "get": {
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "description": "This endpoint can be used to check the health status of the API. It returns a response with a status code indicating the API",
         "responses": {
           "default": {
@@ -7465,9 +7266,7 @@
     },
     "/metrics": {
       "get": {
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "description": "This endpoint can be used to check the status of API metrics. It returns a response with the collected metrics.",
         "responses": {
           "default": {
@@ -7478,9 +7277,7 @@
     },
     "/unhealthy": {
       "get": {
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "description": "This endpoint is used to force the API into an unhealthy state. It can be useful for testing error handling or simulating service disruptions.",
         "responses": {
           "default": {
@@ -7491,9 +7288,7 @@
     },
     "/api/{session}/chatwoot": {
       "post": {
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "description": "You can point your Chatwoot to this route so that it can perform functions.",
         "parameters": [
           {
@@ -7549,9 +7344,7 @@
     },
     "/api/{session}/set-limit": {
       "post": {
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "description": "Change limits of whatsapp web. Types value: maxMediaSize, maxFileSize, maxShare, statusVideoMaxDuration, unlimitedPin;",
         "parameters": [
           {
@@ -7591,10 +7384,7 @@
                     "type": "any"
                   }
                 },
-                "required": [
-                  "type",
-                  "value"
-                ]
+                "required": ["type", "value"]
               },
               "examples": {
                 "Default": {
@@ -7611,9 +7401,7 @@
     },
     "/api/{session}/subscribe-presence": {
       "post": {
-        "tags": [
-          "Misc"
-        ],
+        "tags": ["Misc"],
         "description": "",
         "operationId": "subscribePresence",
         "parameters": [

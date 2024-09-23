@@ -513,18 +513,134 @@ export async function sendLocation(req: Request, res: Response) {
 }
 
 export async function sendButtons(req: Request, res: Response) {
-  /**
-   * #swagger.tags = ["Messages"]
-   * #swagger.summary = 'Deprecated non functioning method'
-     #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
+  /*
+    swagger.tags = ["Messages"]
+    swagger.autoBody = false
+    swagger.security = [{
+      "bearerAuth": []
+    }]
+    swagger.parameters["session"] = {
       schema: '60123456789',
-     }
-     #swagger.deprecated = true
-   */
+    }
+    swagger.requestBody = {
+      required: true,
+      "@content": {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              phone: { type: "string" },
+              isGroup: { type: "boolean" },
+              message: { type: "string" },
+              options: {
+                type: "object",
+                title: { type: "string" },
+                footer: { type: "string" },
+                buttons: {
+                  type: "array" ,
+                  properties: {
+                    text: { type: "string" },
+                    code: { type: "string" },
+                    id: { type: "string" },
+                    phoneNumber: { type: "string" },
+                    reply: { type: "string" },
+                    url: { type: "string" }
+                  }
+                }
+              }
+            }
+          },
+          examples: {
+            "Send phone button": {
+              value: {
+                phone: '601112345678',
+                isGroup: false,
+                message: 'message',
+                options: {
+                  title: 'title',
+                  footer: 'footer',
+                  buttons: [
+                    {
+                      phoneNumber: '601112345678',
+                      text: 'call me'
+                    }
+                  ]
+                }
+              }
+            },
+            "Send url button": {
+              value: {
+                phone: '601112345678',
+                isGroup: false,
+                message: 'message',
+                options: {
+                  title: 'title',
+                  footer: 'footer',
+                  buttons: [
+                    {
+                      url: 'https://www.mhrtech.my/cv',
+                      text: 'my CV'
+                    }
+                  ]
+                }
+              }
+            },
+            "Send copy button": {
+              value: {
+                phone: '601112345678',
+                isGroup: false,
+                message: 'message',
+                options: {
+                  title: 'title',
+                  footer: 'footer',
+                  buttons: [
+                    {
+                      code: '12345',
+                      text: 'copy'
+                    }
+                  ]
+                }
+              }
+            },
+            "Send reply button": {
+              value: {
+                phone: '601112345678',
+                isGroup: false,
+                message: 'message',
+                options: {
+                  title: 'title',
+                  footer: 'footer',
+                  buttons: [
+                    {
+                      reply: 'reply text',
+                      text: 'reply'
+                    }
+                  ]
+                }
+              }
+            },
+            "Send id button": {
+              value: {
+                phone: '601112345678',
+                isGroup: false,
+                message: 'message',
+                options: {
+                  title: 'title',
+                  footer: 'footer',
+                  buttons: [
+                    {
+                      id: 'customID',
+                      text: 'ID'
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  */
   const { phone, message, options } = req.body;
 
   try {
