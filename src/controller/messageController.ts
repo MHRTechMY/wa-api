@@ -520,11 +520,10 @@ export async function sendButtons(req: Request, res: Response) {
                   type: "array" ,
                   properties: {
                     text: { type: "string" },
-                    code: { type: "string" },
                     id: { type: "string" },
                     phoneNumber: { type: "string" },
-                    reply: { type: "string" },
-                    url: { type: "string" }
+                    url: { type: "string" },
+                    code: { type: "string" }
                   }
                 }
               }
@@ -582,7 +581,7 @@ export async function sendButtons(req: Request, res: Response) {
                 }
               }
             },
-            "Send reply button": {
+            "Send quick reply button": {
               value: {
                 phone: '601112345678',
                 isGroup: false,
@@ -592,25 +591,8 @@ export async function sendButtons(req: Request, res: Response) {
                   footer: 'footer',
                   buttons: [
                     {
-                      reply: 'reply text',
-                      text: 'reply'
-                    }
-                  ]
-                }
-              }
-            },
-            "Send id button": {
-              value: {
-                phone: '601112345678',
-                isGroup: false,
-                message: 'message',
-                options: {
-                  title: 'title',
-                  footer: 'footer',
-                  buttons: [
-                    {
-                      id: 'customID',
-                      text: 'ID'
+                      id: 'customId',
+                      text: 'quick reply'
                     }
                   ]
                 }
@@ -625,7 +607,7 @@ export async function sendButtons(req: Request, res: Response) {
   try {
     const results: any = [];
     for (const contact of phone) {
-      results.push(await req.client.sendText(contact, message, options));
+      results.push(await req.client.sendButtons(contact, message, options));
     }
     if (results.length === 0)
       return returnError(req, res, 'Error sending message with buttons');
