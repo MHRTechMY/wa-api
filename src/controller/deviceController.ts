@@ -711,7 +711,10 @@ export async function archiveChat(req: Request, res: Response) {
    */
   const { phone, value = true } = req.body;
   try {
-    const response = await req.client.archiveChat(`${phone}`, value);
+    const response: any = {};
+    for (const contact of phone) {
+      response[contact] = await req.client.archiveChat(contact, value);
+    }
     return res.status(201).json({ status: 'success', response: response });
   } catch (e) {
     req.logger.error(e);
