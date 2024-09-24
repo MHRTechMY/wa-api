@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 import { Request, Response } from 'express';
+
 import { unlinkAsync } from '../util/functions';
 
 function returnError(req: Request, res: Response, error: any) {
@@ -607,7 +608,7 @@ export async function sendButtons(req: Request, res: Response) {
   try {
     const results: any = [];
     for (const contact of phone) {
-      results.push(await req.client.sendButtons(contact, message, options));
+      results.push(await req.client.sendText(contact, message, options));
     }
     if (results.length === 0)
       return returnError(req, res, 'Error sending message with buttons');

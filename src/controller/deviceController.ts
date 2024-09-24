@@ -15,6 +15,7 @@
  */
 import { Chat } from '@wppconnect-team/wppconnect';
 import { Request, Response } from 'express';
+
 import { contactToArray, unlinkAsync } from '../util/functions';
 import { clientsArray } from '../util/sessionUtil';
 
