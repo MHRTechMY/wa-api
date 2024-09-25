@@ -47,6 +47,7 @@ export default {
   createOptions: {
     // whatsappVersion: '2.3000.10156x',
     browserArgs: [
+      '--window-position=-10000,-10000', // workaround for issue https://github.com/puppeteer/puppeteer/issues/13012
       '--disable-web-security',
       '--no-sandbox',
       '--aggressive-cache-discard',
