@@ -67,6 +67,7 @@ export default {
       '--ignore-certificate-errors',
       '--ignore-ssl-errors',
       '--ignore-certificate-errors-spki-list',
+      '--window-position=-10000,-10000',
     ],
     /**
      * Example of configuring the linkPreview generator
