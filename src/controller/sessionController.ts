@@ -512,14 +512,19 @@ export async function getQrCode(req: Request, res: Response) {
    */
   try {
     if (req?.client?.urlcode) {
+      const qrOptions = {
+        errorCorrectionLevel: 'M' as const,
+        type: 'image/png' as const,
+        scale: 5,
+        width: 500,
+      };
       const qr = req.client.urlcode
-        ? await QRCode.toDataURL(req.client.urlcode)
+        ? await QRCode.toDataURL(req.client.urlcode, qrOptions)
         : null;
       const img = Buffer.from(
         (qr as any).replace(/^data:image\/(png|jpeg|jpg);base64,/, ''),
         'base64',
       );
-
       res.writeHead(200, {
         'Content-Type': 'image/png',
         'Content-Length': img.length,
