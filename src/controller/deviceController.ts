@@ -974,10 +974,7 @@ export async function forwardMessages(req: Request, res: Response) {
               phone: { type: "string" },
               isGroup: { type: "boolean" },
               messageId: { type: "string" },
-              options: {
-                type: "object",
-                skipMyMessages": { type: "boolean" }
-              }
+              options: { type: "object" }
             }
           },
           examples: {

@@ -50,6 +50,7 @@ export async function sendMessage(req: Request, res: Response) {
               phone: { type: "string" },
               isGroup: { type: "boolean" },
               isNewsletter: { type: "boolean" },
+              isLid: { type: "boolean" },
               message: { type: "string" },
               options: { type: "object" },
             }
@@ -61,6 +62,7 @@ export async function sendMessage(req: Request, res: Response) {
                 isGroup: false,
                 isCommunity: false,
                 isNewsletter: false,
+                isLid: false,
                 message: 'Hi from WPPConnect',
               }
             },
@@ -69,6 +71,7 @@ export async function sendMessage(req: Request, res: Response) {
                 phone: '5521999999999',
                 isGroup: false,
                 isNewsletter: false,
+                isLid: false,
                 message: 'Hi from WPPConnect with reply',
                 options: {
                   quotedMsg: 'true_...@c.us_3EB01DE65ACC6_out',
@@ -81,6 +84,7 @@ export async function sendMessage(req: Request, res: Response) {
                 isGroup: true,
                 isCommunity: false,
                 isNewsletter: false,
+                isLid: false,
                 message: 'Hi from WPPConnect',
               }
             },
@@ -90,6 +94,7 @@ export async function sendMessage(req: Request, res: Response) {
                 isGroup: false,
                 isCommunity: true,
                 isNewsletter: false,
+                isLid: false,
                 message: 'Hi from WPPConnect',
               }
             },
@@ -99,6 +104,7 @@ export async function sendMessage(req: Request, res: Response) {
                 isGroup: false,
                 isCommunity: false,
                 isNewsletter: true,
+                isLid: false,
                 message: 'Hi from WPPConnect',
               }
             },
@@ -108,6 +114,7 @@ export async function sendMessage(req: Request, res: Response) {
                 isGroup: false,
                 isCommunity: false,
                 isNewsletter: false,
+                isLid: false,
                 message: 'Hi from WPPConnect with reply',
                 options: {
                   quotedMsg: 'true_...@c.us_3EB01DE65ACC6_out',
@@ -197,23 +204,25 @@ export async function sendFile(req: Request, res: Response) {
             schema: {
                 type: "object",
                 properties: {
-                    "phone": { type: "string" },
-                    "isGroup": { type: "boolean" },
-                    "isNewsletter": { type: "boolean" },
-                    "filename": { type: "string" },
-                    "caption": { type: "string" },
-                    "base64": { type: "string" }
+                    phone: { type: "string" },
+                    isGroup: { type: "boolean" },
+                    isNewsletter: { type: "boolean" },
+                    isLid: { type: "boolean" },
+                    filename: { type: "string" },
+                    caption: { type: "string" },
+                    base64: { type: "string" }
                 }
             },
             examples: {
                 "Default": {
                     value: {
-                        "phone": "601112345678",
-                        "isGroup": false,
-                        "isNewsletter": false,
-                        "filename": "file name lol",
-                        "caption": "caption for my file",
-                        "base64": "<base64> string"
+                        phone: "601112345678",
+                        isGroup: false,
+                        isNewsletter: false,
+                        isLid: false,
+                        filename: "file name lol",
+                        caption: "caption for my file",
+                        base64: "<base64> string"
                     }
                 }
             }
@@ -274,19 +283,19 @@ export async function sendVoice(req: Request, res: Response) {
                 schema: {
                     type: "object",
                     properties: {
-                        "phone": { type: "string" },
-                        "isGroup": { type: "boolean" },
-                        "path": { type: "string" },
-                        "quotedMessageId": { type: "string" }
+                        phone: { type: "string" },
+                        isGroup: { type: "boolean" },
+                        path: { type: "string" },
+                        quotedMessageId: { type: "string" }
                     }
                 },
                 examples: {
                     "Default": {
                         value: {
-                            "phone": "601112345678",
-                            "isGroup": false,
-                            "path": "<path_file>",
-                            "quotedMessageId": "message Id"
+                            phone: "601112345678",
+                            isGroup: false,
+                            path: "<path_file>",
+                            quotedMessageId: "message Id"
                         }
                     }
                 }
@@ -339,17 +348,17 @@ export async function sendVoice64(req: Request, res: Response) {
                 schema: {
                     type: "object",
                     properties: {
-                        "phone": { type: "string" },
-                        "isGroup": { type: "boolean" },
-                        "base64Ptt": { type: "string" }
+                        phone: { type: "string" },
+                        isGroup: { type: "boolean" },
+                        base64Ptt: { type: "string" }
                     }
                 },
                 examples: {
                     "Default": {
                         value: {
-                            "phone": "601112345678",
-                            "isGroup": false,
-                            "base64Ptt": "<base64_string>"
+                            phone: "601112345678",
+                            isGroup: false,
+                            base64Ptt: "<base64_string>"
                         }
                     }
                 }
@@ -397,19 +406,19 @@ export async function sendLinkPreview(req: Request, res: Response) {
                 schema: {
                     type: "object",
                     properties: {
-                        "phone": { type: "string" },
-                        "isGroup": { type: "boolean" },
-                        "url": { type: "string" },
-                        "caption": { type: "string" }
+                        phone: { type: "string" },
+                        isGroup: { type: "boolean" },
+                        url: { type: "string" },
+                        caption: { type: "string" }
                     }
                 },
                 examples: {
                     "Default": {
                         value: {
-                            "phone": "601112345678",
-                            "isGroup": false,
-                            "url": "http://www.link.com",
-                            "caption": "Text for describe link"
+                            phone: "601112345678",
+                            isGroup: false,
+                            url: "http://www.link.com",
+                            caption: "Text for describe link"
                         }
                     }
                 }
@@ -448,23 +457,23 @@ export async function sendLocation(req: Request, res: Response) {
                 schema: {
                     type: "object",
                     properties: {
-                        "phone": { type: "string" },
-                        "isGroup": { type: "boolean" },
-                        "lat": { type: "string" },
-                        "lng": { type: "string" },
-                        "title": { type: "string" },
-                        "address": { type: "string" }
+                        phone: { type: "string" },
+                        isGroup: { type: "boolean" },
+                        lat: { type: "string" },
+                        lng: { type: "string" },
+                        title: { type: "string" },
+                        address: { type: "string" }
                     }
                 },
                 examples: {
                     "Default": {
                         value: {
-                            "phone": "601112345678",
-                            "isGroup": false,
-                            "lat": "-89898322",
-                            "lng": "-545454",
-                            "title": "Rio de Janeiro",
-                            "address": "Av. N. S. de Copacabana, 25, Copacabana"
+                            phone: "601112345678",
+                            isGroup: false,
+                            lat: "-89898322",
+                            lng: "-545454",
+                            title: "Rio de Janeiro",
+                            address: "Av. N. S. de Copacabana, 25, Copacabana"
                         }
                     }
                 }
@@ -921,19 +930,19 @@ export async function replyMessage(req: Request, res: Response) {
           schema: {
             type: "object",
             properties: {
-              "phone": { type: "string" },
-              "isGroup": { type: "boolean" },
-              "message": { type: "string" },
-              "messageId": { type: "string" }
+              phone: { type: "string" },
+              isGroup: { type: "boolean" },
+              message: { type: "string" },
+              messageId: { type: "string" }
             }
           },
           examples: {
             "Default": {
               value: {
-                "phone": "601112345678",
-                "isGroup": false,
-                "message": "Reply to message",
-                "messageId": "<id_message>"
+                phone: "601112345678",
+                isGroup: false,
+                message: "Reply to message",
+                messageId: "<id_message>"
               }
             }
           }
@@ -973,20 +982,20 @@ export async function sendMentioned(req: Request, res: Response) {
       schema: {
         type: "object",
         properties: {
-          "phone": { type: "string" },
-          "isGroup": { type: "boolean" },
-          "message": { type: "string" },
-          "mentioned": { type: "array", items: { type: "string" } }
+          phone: { type: "string" },
+          isGroup: { type: "boolean" },
+          message: { type: "string" },
+          mentioned: { type: "array", items: { type: "string" } }
         },
         required: ["phone", "message", "mentioned"]
       },
       examples: {
         "Default": {
           value: {
-            "phone": "groupId@g.us",
-            "isGroup": true,
-            "message": "Your text message",
-            "mentioned": ["@556593077171@c.us"]
+            phone: "groupId@g.us",
+            isGroup: true,
+            message: "Your text message",
+            mentioned: ["@556593077171@c.us"]
           }
         }
       }
@@ -1028,18 +1037,18 @@ export async function sendImageAsSticker(req: Request, res: Response) {
           schema: {
             type: "object",
             properties: {
-              "phone": { type: "string" },
-              "isGroup": { type: "boolean" },
-              "path": { type: "string" }
+              phone: { type: "string" },
+              isGroup: { type: "boolean" },
+              path: { type: "string" }
             },
             required: ["phone", "path"]
           },
           examples: {
             "Default": {
               value: {
-                "phone": "601112345678",
-                "isGroup": true,
-                "path": "<path_file>"
+                phone: "601112345678",
+                isGroup: true,
+                path: "<path_file>"
               }
             }
           }
