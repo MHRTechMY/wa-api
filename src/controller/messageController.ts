@@ -983,7 +983,7 @@ export async function sendMentioned(req: Request, res: Response) {
       examples: {
         "Default": {
           value: {
-            "phone": "601112345678",
+            "phone": "groupId@g.us",
             "isGroup": true,
             "message": "Your text message",
             "mentioned": ["@556593077171@c.us"]
