@@ -21,7 +21,7 @@
     "prepare": "husky install",
     "release": "release-it",
     "start": "node ./dist/server.js",
-    "swagger:copy-assets": "shx cp -R ./node_modules/swagger-ui-dist ./docs",
+    "swagger:copy-assets": "shx cp -R ./node_modules/swagger-ui-dist/* ./docs",
     "swagger:copy-json": "shx cp ./src/swagger.json ./docs",
     "swagger:fix-url": "sed -i \"s|https://petstore.swagger.io/v2/swagger.json|./swagger.json|g\" ./docs/swagger-initializer.js",
     "swagger:generate": "yarn swagger:copy-assets && yarn swagger:copy-json && yarn swagger:fix-url",
