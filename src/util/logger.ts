@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,10 @@
 import winston from 'winston';
 
 // Use JSON logging for log files
-// Here winston.format.errors() just seem to work
-// because there is no winston.format.simple()
+// Here winston.format.errors() just seem to work because there is no winston.format.simple()
 const jsonLogFileFormat = winston.format.combine(
   winston.format.errors({ stack: true }),
-  winston.format.timestamp({ format: 'YYYY-MM-DDTHH:mm:ss.SSS' }),
+  winston.format.timestamp(),
   winston.format.prettyPrint(),
 );
 
@@ -31,9 +30,7 @@ export function createLogger(options: any) {
     level: 'debug',
     format: jsonLogFileFormat,
   });
-
-  // When running locally, write everything to the console
-  // with proper stacktraces enabled
+  // When running locally, write everything to the console with proper stacktraces enabled
   if (options.logger.indexOf('console') > -1) {
     logger.add(
       new winston.transports.Console({
@@ -61,6 +58,5 @@ export function createLogger(options: any) {
       }),
     );
   }
-
   return logger;
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,20 +23,15 @@ import {
 
 export async function getAllGroups(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.deprecated = true
      #swagger.summary = 'Deprecated in favor of 'list-chats'
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
    */
   try {
     const response = await req.client.getAllGroups();
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (e) {
     req.logger.error(e);
@@ -48,14 +43,10 @@ export async function getAllGroups(req: Request, res: Response) {
 
 export async function joinGroupByCode(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       content: {
@@ -63,9 +54,7 @@ export async function joinGroupByCode(req: Request, res: Response) {
           schema: {
             type: "object",
             properties: {
-              inviteCode: {
-                type: "string"
-              }
+              inviteCode: { type: "string" }
             },
             required: ["inviteCode"]
           },
@@ -81,10 +70,8 @@ export async function joinGroupByCode(req: Request, res: Response) {
     }
    */
   const { inviteCode } = req.body;
-
   if (!inviteCode)
     return res.status(400).send({ message: 'Invitation Code is required' });
-
   try {
     await req.client.joinGroup(inviteCode);
     res.status(201).json({
@@ -106,14 +93,10 @@ export async function joinGroupByCode(req: Request, res: Response) {
 
 export async function createGroup(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       content: {
@@ -123,20 +106,16 @@ export async function createGroup(req: Request, res: Response) {
             properties: {
               participants: {
                 type: "array",
-                items: {
-                  type: "string"
-                }
+                items: { type: "string" }
               },
-              name: {
-                type: "string"
-              }
+              name: { type: "string" }
             },
             required: ["participants", "name"]
           },
           examples: {
             "Default": {
               value: {
-                participants: ["601112345678"],
+                participants: ["601234567890"],
                 name: "Group name"
               }
             }
@@ -146,11 +125,9 @@ export async function createGroup(req: Request, res: Response) {
     }
    */
   const { participants, name } = req.body;
-
   try {
     let response = {};
     const infoGroup: any = [];
-
     for (const group of groupNameToArray(name)) {
       response = await req.client.createGroup(
         group,
@@ -162,7 +139,6 @@ export async function createGroup(req: Request, res: Response) {
         participants: (response as any).participants,
       });
     }
-
     return res.status(201).json({
       status: 'success',
       response: {
@@ -181,14 +157,10 @@ export async function createGroup(req: Request, res: Response) {
 
 export async function leaveGroup(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -205,12 +177,10 @@ export async function leaveGroup(req: Request, res: Response) {
     }
    */
   const { groupId } = req.body;
-
   try {
     for (const group of groupToArray(groupId)) {
       await req.client.leaveGroup(group);
     }
-
     return res.status(200).json({
       status: 'success',
       response: {
@@ -230,14 +200,10 @@ export async function leaveGroup(req: Request, res: Response) {
 
 export async function getGroupMembers(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
    */
   const { groupId } = req.params;
 
@@ -259,14 +225,10 @@ export async function getGroupMembers(req: Request, res: Response) {
 
 export async function addParticipant(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       content: {
@@ -283,7 +245,7 @@ export async function addParticipant(req: Request, res: Response) {
             "Default": {
               value: {
                 groupId: "<groupId>",
-                phone: "601112345678"
+                phone: "601234567890"
               }
             }
           }
@@ -292,16 +254,13 @@ export async function addParticipant(req: Request, res: Response) {
     }
    */
   const { groupId, phone } = req.body;
-
   try {
     let response = {};
     const arrayGroups: any = [];
-
     for (const group of groupToArray(groupId)) {
       response = await req.client.addParticipant(group, contactToArray(phone));
       arrayGroups.push(response);
     }
-
     return res.status(201).json({
       status: 'success',
       response: {
@@ -323,14 +282,10 @@ export async function addParticipant(req: Request, res: Response) {
 
 export async function removeParticipant(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -347,7 +302,7 @@ export async function removeParticipant(req: Request, res: Response) {
             "Default": {
               value: {
                 "groupId": "<groupId>",
-                "phone": "601112345678"
+                "phone": "601234567890"
               }
             }
           }
@@ -356,11 +311,9 @@ export async function removeParticipant(req: Request, res: Response) {
     }
    */
   const { groupId, phone } = req.body;
-
   try {
     let response: any = {};
     const arrayGroups: any = [];
-
     for (const group of groupToArray(groupId)) {
       response = await req.client.removeParticipant(
         group,
@@ -368,7 +321,6 @@ export async function removeParticipant(req: Request, res: Response) {
       );
       arrayGroups.push(response);
     }
-
     return res.status(200).json({
       status: 'success',
       response: {
@@ -389,14 +341,10 @@ export async function removeParticipant(req: Request, res: Response) {
 
 export async function promoteParticipant(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -413,7 +361,7 @@ export async function promoteParticipant(req: Request, res: Response) {
             "Default": {
               value: {
                 "groupId": "<groupId>",
-                "phone": "601112345678"
+                "phone": "601234567890"
               }
             }
           }
@@ -422,14 +370,12 @@ export async function promoteParticipant(req: Request, res: Response) {
     }
    */
   const { groupId, phone } = req.body;
-
   try {
     const arrayGroups: any = [];
     for (const group of groupToArray(groupId)) {
       await req.client.promoteParticipant(group, contactToArray(phone));
       arrayGroups.push(group);
     }
-
     return res.status(201).json({
       status: 'success',
       response: {
@@ -450,14 +396,10 @@ export async function promoteParticipant(req: Request, res: Response) {
 
 export async function demoteParticipant(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -474,7 +416,7 @@ export async function demoteParticipant(req: Request, res: Response) {
             "Default": {
               value: {
                 "groupId": "<groupId>",
-                "phone": "601112345678"
+                "phone": "601234567890"
               }
             }
           }
@@ -483,14 +425,12 @@ export async function demoteParticipant(req: Request, res: Response) {
     }
    */
   const { groupId, phone } = req.body;
-
   try {
     const arrayGroups: any = [];
     for (const group of groupToArray(groupId)) {
       await req.client.demoteParticipant(group, contactToArray(phone));
       arrayGroups.push(group);
     }
-
     return res.status(201).json({
       status: 'success',
       response: {
@@ -511,14 +451,10 @@ export async function demoteParticipant(req: Request, res: Response) {
 
 export async function getGroupAdmins(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -542,16 +478,13 @@ export async function getGroupAdmins(req: Request, res: Response) {
     }
    */
   const { groupId } = req.params;
-
   try {
     let response = {};
     const arrayGroups: any = [];
-
     for (const group of groupToArray(groupId)) {
       response = await req.client.getGroupAdmins(group);
       arrayGroups.push(response);
     }
-
     return res.status(200).json({ status: 'success', response: arrayGroups });
   } catch (e) {
     req.logger.error(e);
@@ -565,14 +498,10 @@ export async function getGroupAdmins(req: Request, res: Response) {
 
 export async function getGroupInviteLink(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -580,15 +509,7 @@ export async function getGroupInviteLink(req: Request, res: Response) {
           schema: {
             type: "object",
             properties: {
-              "groupId": { type: "string" }
-            },
-            required: ["groupId"]
-          },
-          examples: {
-            "Default": {
-              value: {
-                "groupId": "<groupId>"
-              }
+              groupId: { type: "string" }
             }
           }
         }
@@ -601,7 +522,6 @@ export async function getGroupInviteLink(req: Request, res: Response) {
     for (const group of groupToArray(groupId)) {
       response = await req.client.getGroupInviteLink(group);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (e) {
     req.logger.error(e);
@@ -615,14 +535,10 @@ export async function getGroupInviteLink(req: Request, res: Response) {
 
 export async function revokeGroupInviteLink(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -630,15 +546,7 @@ export async function revokeGroupInviteLink(req: Request, res: Response) {
           schema: {
             type: "object",
             properties: {
-              "groupId": { type: "string" }
-            },
-            required: ["groupId"]
-          },
-          examples: {
-            "Default": {
-              value: {
-                "groupId": "<groupId>"
-              }
+              $groupId: { type: "string" }
             }
           }
         }
@@ -646,14 +554,11 @@ export async function revokeGroupInviteLink(req: Request, res: Response) {
     }
    */
   const { groupId } = req.params;
-
   let response = {};
-
   try {
     for (const group of groupToArray(groupId)) {
       response = await req.client.revokeGroupInviteLink(group);
     }
-
     return res.status(200).json({
       status: 'Success',
       response: response,
@@ -670,14 +575,10 @@ export async function revokeGroupInviteLink(req: Request, res: Response) {
 
 export async function getAllBroadcastList(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Chats"]
+    #swagger.tags = ["Misc"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
    */
   try {
     const response = await req.client.getAllBroadcastList();
@@ -694,14 +595,10 @@ export async function getAllBroadcastList(req: Request, res: Response) {
 
 export async function getGroupInfoFromInviteLink(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -709,15 +606,7 @@ export async function getGroupInfoFromInviteLink(req: Request, res: Response) {
           schema: {
             type: "object",
             properties: {
-              "invitecode": { type: "string" }
-            },
-            required: ["invitecode"]
-          },
-          examples: {
-            "Default": {
-              value: {
-                "invitecode": "<groupInviteCode>"
-              }
+              invitecode: { type: "string" }
             }
           }
         }
@@ -740,17 +629,11 @@ export async function getGroupInfoFromInviteLink(req: Request, res: Response) {
 
 export async function getGroupMembersIds(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
-     #swagger.parameters["groupId"] = {
-      schema: '<groupId>'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
+     #swagger.parameters["groupId"] = { schema: '<groupId>' }
    */
   const { groupId } = req.params;
   let response = {};
@@ -771,14 +654,10 @@ export async function getGroupMembersIds(req: Request, res: Response) {
 
 export async function setGroupDescription(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -786,17 +665,8 @@ export async function setGroupDescription(req: Request, res: Response) {
           schema: {
             type: "object",
             properties: {
-              "groupId": { type: "string" },
-              "description": { type: "string" }
-            },
-            required: ["groupId"]
-          },
-          examples: {
-            "Default": {
-              value: {
-                "groupId": "<groupId>",
-                "description": "some text here"
-              }
+              groupId: { type: "string" },
+              description: { type: "string" }
             }
           }
         }
@@ -804,14 +674,11 @@ export async function setGroupDescription(req: Request, res: Response) {
     }
    */
   const { groupId, description } = req.body;
-
   let response = {};
-
   try {
     for (const group of groupToArray(groupId)) {
       response = await req.client.setGroupDescription(group, description);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (e) {
     req.logger.error(e);
@@ -825,14 +692,10 @@ export async function setGroupDescription(req: Request, res: Response) {
 
 export async function setGroupProperty(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -840,18 +703,17 @@ export async function setGroupProperty(req: Request, res: Response) {
           schema: {
             type: "object",
             properties: {
-              "groupId": { type: "string" },
-              "property": { type: "string" },
-              "value": { type: "boolean" }
-            },
-            required: ["groupId"]
+              groupId: { type: "string" },
+              property: { type: "string" },
+              value: { type: "boolean" }
+            }
           },
           examples: {
             "Default": {
               value: {
-                "groupId": "<groupId>",
-                "property": "membershipApprovalMode / isLidAddressingMode / reportToAdminMode / isAutoApproveMode",
-                "value": true
+                groupId: "<groupId>",
+                property: "announcement/restrict/no_frequently_forwarded/ephemeral",
+                value: true
               }
             }
           }
@@ -860,14 +722,11 @@ export async function setGroupProperty(req: Request, res: Response) {
     }
    */
   const { groupId, property, value = true } = req.body;
-
   let response = {};
-
   try {
     for (const group of groupToArray(groupId)) {
       response = await req.client.setGroupProperty(group, property, value);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (e) {
     req.logger.error(e);
@@ -881,14 +740,10 @@ export async function setGroupProperty(req: Request, res: Response) {
 
 export async function setGroupSubject(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -896,17 +751,8 @@ export async function setGroupSubject(req: Request, res: Response) {
           schema: {
             type: "object",
             properties: {
-              "groupId": { type: "string" },
-              "title": { type: "string" }
-            },
-            required: ["groupId"]
-          },
-          examples: {
-            "Default": {
-              value: {
-                "groupId": "<groupId>",
-                "title": "<newSubject>"
-              }
+              groupId: { type: "string" },
+              title: { type: "string" }
             }
           }
         }
@@ -914,14 +760,11 @@ export async function setGroupSubject(req: Request, res: Response) {
     }
    */
   const { groupId, title } = req.body;
-
   let response = {};
-
   try {
     for (const group of groupToArray(groupId)) {
       response = await req.client.setGroupSubject(group, title);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (e) {
     req.logger.error(e);
@@ -935,14 +778,10 @@ export async function setGroupSubject(req: Request, res: Response) {
 
 export async function setMessagesAdminsOnly(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -950,33 +789,20 @@ export async function setMessagesAdminsOnly(req: Request, res: Response) {
           schema: {
             type: "object",
             properties: {
-              "groupId": { type: "string" },
-              "value": { type: "boolean" }
-            },
-            required: ["groupId"]
-          },
-          examples: {
-            "Default": {
-              value: {
-                "groupId": "<groupId>",
-                "value": true
-              }
+              $groupId: { type: "string" },
+              $value: { type: "boolean" }
             }
-          }
           }
         }
       }
     }
    */
   const { groupId, value = true } = req.body;
-
   let response = {};
-
   try {
     for (const group of groupToArray(groupId)) {
       response = await req.client.setMessagesAdminsOnly(group, value);
     }
-
     return res.status(200).json({ status: 'success', response: response });
   } catch (e) {
     req.logger.error(e);
@@ -990,14 +816,10 @@ export async function setMessagesAdminsOnly(req: Request, res: Response) {
 
 export async function changePrivacyGroup(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -1005,17 +827,8 @@ export async function changePrivacyGroup(req: Request, res: Response) {
           schema: {
             type: "object",
             properties: {
-              "groupId": { type: "string" },
-              "status": { type: "boolean" }
-            },
-            required: ["groupId"]
-          },
-          examples: {
-            "Default": {
-              value: {
-                "groupId": "<groupId>",
-                "status": true
-              }
+              $groupId: { type: "string" },
+              $status: { type: "boolean" }
             }
           }
         }
@@ -1023,7 +836,6 @@ export async function changePrivacyGroup(req: Request, res: Response) {
     }
    */
   const { groupId, status } = req.body;
-
   try {
     for (const group of contactToArray(groupId)) {
       await req.client.setGroupProperty(
@@ -1032,7 +844,6 @@ export async function changePrivacyGroup(req: Request, res: Response) {
         status === 'true',
       );
     }
-
     return res.status(200).json({
       status: 'success',
       response: { message: 'Group privacy changed successfully' },
@@ -1049,14 +860,10 @@ export async function changePrivacyGroup(req: Request, res: Response) {
 
 export async function setGroupProfilePic(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -1064,17 +871,8 @@ export async function setGroupProfilePic(req: Request, res: Response) {
           schema: {
             type: "object",
             properties: {
-              "groupId": { type: "string" },
-              "path": { type: "string" }
-            },
-            required: ["groupId"]
-          },
-          examples: {
-            "Default": {
-              value: {
-                "groupId": "<groupId>",
-                "path": "<url>"
-              }
+              groupId: { type: "string" },
+              path: { type: "string" }
             }
           }
         }
@@ -1082,19 +880,15 @@ export async function setGroupProfilePic(req: Request, res: Response) {
     }
    */
   const { groupId, path } = req.body;
-
   if (!path && !req.file)
     return res.status(401).send({
       message: 'Sending the image is mandatory',
     });
-
   const pathFile = path || req.file?.path;
-
   try {
     for (const contact of contactToArray(groupId, true)) {
       await req.client.setGroupIcon(contact, pathFile);
     }
-
     return res.status(201).json({
       status: 'success',
       response: { message: 'Group profile photo successfully changed' },
@@ -1111,21 +905,17 @@ export async function setGroupProfilePic(req: Request, res: Response) {
 
 export async function getCommonGroups(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Groups"]
+    #swagger.tags = ["Group"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
-     #swagger.parameters["wid"] = {
-      schema: '601112345678@c.us'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
+     #swagger.parameters["phone"] = { schema: '601234567890' }
    */
-  const { wid } = req.params;
+  const { phone } = req.params;
   try {
-    return res.status(200).json(await (req.client as any).getCommonGroups(wid));
+    return res
+      .status(200)
+      .json(await (req.client as any).getCommonGroups(phone));
   } catch (e) {
     req.logger.error(e);
     return res.status(500).json({

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,39 +18,35 @@ import { Request, Response } from 'express';
 
 export async function createCommunity(req: Request, res: Response) {
   /**
-       #swagger.tags = ["Community"]
-       #swagger.autoBody = false
-       #swagger.security = [{
-              "bearerAuth": []
-       }]
-       #swagger.parameters["session"] = {
-        schema: '60123456789'
-       }
-      #swagger.requestBody = {
-        required: true,
-        "@content": {
-          "application/json": {
-            schema: {
-              type: "object",
-              properties: {
-                name: { type: "string" },
-                description: { type: "boolean" },
-                groupIds: { type: "array" },
+    #swagger.tags = ["Community"]
+    #swagger.autoBody = false
+    #swagger.security = [{ "bearerAuth": [] }]
+    #swagger.parameters["session"] = { schema: '60123456789' }
+    #swagger.requestBody = {
+      required: true,
+      "@content": {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              name: { type: "string" },
+              description: { type: "boolean" },
+              groupIds: { type: "array" },
+            }
+          },
+          examples: {
+            "Default": {
+              value: {
+                name: "My community name",
+                description: "Description for your community",
+                groupIds: ["groupId1", "groupId2"],
               }
             },
-            examples: {
-              "Default": {
-                value: {
-                  name: "My community name",
-                  description: "Description for your community",
-                  groupIds: ["groupId1", "groupId2"],
-                }
-              },
-            }
           }
         }
-       }
-     */
+      }
+    }
+  */
   const { name, description, groupIds } = req.body;
 
   try {
@@ -73,35 +69,31 @@ export async function createCommunity(req: Request, res: Response) {
 
 export async function deactivateCommunity(req: Request, res: Response) {
   /**
-         #swagger.tags = ["Community"]
-         #swagger.autoBody = false
-         #swagger.security = [{
-                "bearerAuth": []
-         }]
-         #swagger.parameters["session"] = {
-          schema: '60123456789'
-         }
-        #swagger.requestBody = {
-          required: true,
-          "@content": {
-            "application/json": {
-              schema: {
-                type: "object",
-                properties: {
-                  id: { type: "string" },
-                }
-              },
-              examples: {
-                "Default": {
-                  value: {
-                    id: "<your_community_id@g.us>",
-                  }
-                },
-              }
+    #swagger.tags = ["Community"]
+    #swagger.autoBody = false
+    #swagger.security = [{ "bearerAuth": [] }]
+    #swagger.parameters["session"] = { schema: '60123456789' }
+    #swagger.requestBody = {
+      required: true,
+      "@content": {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              id: { type: "string" },
             }
+          },
+          examples: {
+            "Default": {
+              value: {
+                id: "<you_community_id@g.us>",
+              }
+            },
           }
-         }
-       */
+        }
+      }
+    }
+  */
   const { id } = req.body;
 
   try {
@@ -122,35 +114,31 @@ export async function addSubgroupsCommunity(req: Request, res: Response) {
   /**
     #swagger.tags = ["Community"]
     #swagger.autoBody = false
-    #swagger.security = [{
-            "bearerAuth": []
-    }]
-    #swagger.parameters["session"] = {
-    schema: '60123456789'
-    }
+    #swagger.security = [{ "bearerAuth": [] }]
+    #swagger.parameters["session"] = { schema: '60123456789' }
     #swagger.requestBody = {
-        required: true,
-        "@content": {
-            "application/json": {
-                schema: {
-                    type: "object",
-                    properties: {
-                        id: { type: "string" },
-                        groupsIds: { type: "array" },
-                    }
-                },
-                examples: {
-                    "Default": {
-                        value: {
-                            id: "<your_community_id@g.us>",
-                            groupsIds: ["group1Id@g.us"]
-                        }
-                    },
-                }
+      required: true,
+      "@content": {
+        "application/json": {
+          schema: {
+            type: "object",
+            properties: {
+              id: { type: "string" },
+              groupsIds: { type: "array" },
             }
+          },
+          examples: {
+            "Default": {
+              value: {
+                id: "<you_community_id@g.us>",
+                groupsIds: ["group1Id@g.us"]
+              }
+            },
+          }
         }
+      }
     }
-    */
+  */
   const { id, groupsIds } = req.body;
 
   try {
@@ -169,14 +157,10 @@ export async function addSubgroupsCommunity(req: Request, res: Response) {
 
 export async function removeSubgroupsCommunity(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Community"]
+    #swagger.tags = ["Community"]
     #swagger.autoBody = false
-    #swagger.security = [{
-            "bearerAuth": []
-    }]
-    #swagger.parameters["session"] = {
-    schema: '60123456789'
-    }
+    #swagger.security = [{ "bearerAuth": [] }]
+    #swagger.parameters["session"] = { schema: '60123456789' }
     #swagger.requestBody = {
         required: true,
         "@content": {
@@ -191,7 +175,7 @@ export async function removeSubgroupsCommunity(req: Request, res: Response) {
                 examples: {
                     "Default": {
                         value: {
-                            id: "<your_community_id@g.us>",
+                            id: "<you_community_id@g.us>",
                             groupsIds: ["group1Id@g.us"]
                         }
                     },
@@ -220,12 +204,8 @@ export async function demoteCommunityParticipant(req: Request, res: Response) {
   /**
     #swagger.tags = ["Community"]
     #swagger.autoBody = false
-    #swagger.security = [{
-            "bearerAuth": []
-    }]
-    #swagger.parameters["session"] = {
-    schema: '60123456789'
-    }
+    #swagger.security = [{ "bearerAuth": [] }]
+    #swagger.parameters["session"] = { schema: '60123456789' }
     #swagger.requestBody = {
         required: true,
         "@content": {
@@ -240,7 +220,7 @@ export async function demoteCommunityParticipant(req: Request, res: Response) {
                 examples: {
                     "Default": {
                         value: {
-                            id: "<your_community_id@g.us>",
+                            id: "<you_community_id@g.us>",
                             participantsId: ["group1Id@g.us"]
                         }
                     },
@@ -272,12 +252,8 @@ export async function promoteCommunityParticipant(req: Request, res: Response) {
   /**
     #swagger.tags = ["Community"]
     #swagger.autoBody = false
-    #swagger.security = [{
-            "bearerAuth": []
-    }]
-    #swagger.parameters["session"] = {
-    schema: '60123456789'
-    }
+    #swagger.security = [{ "bearerAuth": [] }]
+    #swagger.parameters["session"] = { schema: '60123456789' }
     #swagger.requestBody = {
         required: true,
         "@content": {
@@ -292,7 +268,7 @@ export async function promoteCommunityParticipant(req: Request, res: Response) {
                 examples: {
                     "Default": {
                         value: {
-                            id: "<your_community_id@g.us>",
+                            id: "<you_community_id@g.us>",
                             participantsId: ["group1Id@g.us"]
                         }
                     },
@@ -324,15 +300,9 @@ export async function getCommunityParticipants(req: Request, res: Response) {
   /**
     #swagger.tags = ["Community"]
     #swagger.autoBody = false
-    #swagger.security = [{
-            "bearerAuth": []
-    }]
-    #swagger.parameters["session"] = {
-        schema: '60123456789'
-    }
-    #swagger.parameters["id"] = {
-        schema: 'communityId@g.us'
-    }
+    #swagger.security = [{ "bearerAuth": [] }]
+    #swagger.parameters["session"] = { schema: '60123456789' }
+    #swagger.parameters["id"] = { schema: 'communityId@g.us' }
     */
   const { id } = req.params;
 

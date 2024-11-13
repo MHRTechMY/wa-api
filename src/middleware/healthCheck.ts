@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ import { Request, Response } from 'express';
 
 export async function healthz(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Misc"]
+    #swagger.tags = ["Misc"]
      #swagger.autoBody = false
      #swagger.description = 'This endpoint can be used to check the health status of the API. It returns a response with a status code indicating the API's health status.'
      }
@@ -38,7 +38,7 @@ export async function healthz(req: Request, res: Response) {
 
 export async function unhealthy(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Misc"]
+    #swagger.tags = ["Misc"]
      #swagger.autoBody = false
      #swagger.description = 'This endpoint is used to force the API into an unhealthy state. It can be useful for testing error handling or simulating service disruptions.'
      }

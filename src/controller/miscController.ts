@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import { clientsArray } from '../util/sessionUtil';
 
 export async function backupAllSessions(req: Request, res: Response) {
   /**
-     * #swagger.tags = ["Auth"]
+     *#swagger.tags = ["Misc"]
      * #swagger.description = 'Please, open the router in your browser, in swagger this not run'
      * #swagger.produces = ['application/octet-stream']
      * #swagger.consumes = ['application/octet-stream']
@@ -43,21 +43,19 @@ export async function backupAllSessions(req: Request, res: Response) {
       }
      */
   const { secretkey } = req.params;
-
   if (secretkey !== config.secretKey) {
     return res.status(400).json({
       response: 'error',
-      message: 'The token is incorrect',
+      message: 'The token is invalid',
     });
   }
-
   try {
     res.setHeader('Content-Type', 'application/zip');
     return res.send(await backupSessions(req));
   } catch (error) {
     return res.status(500).json({
       status: false,
-      message: 'Error on backup session',
+      message: 'Error backup session',
       error: error,
     });
   }
@@ -65,7 +63,7 @@ export async function backupAllSessions(req: Request, res: Response) {
 
 export async function restoreAllSessions(req: Request, res: Response) {
   /**
-   #swagger.tags = ["Auth"]
+  #swagger.tags = ["Misc"]
    #swagger.autoBody = false
     #swagger.parameters["secretkey"] = {
     required: true,
@@ -90,21 +88,19 @@ export async function restoreAllSessions(req: Request, res: Response) {
     }
   */
   const { secretkey } = req.params;
-
   if (secretkey !== config.secretKey) {
     return res.status(400).json({
       response: 'error',
-      message: 'The token is incorrect',
+      message: 'The token is invalid',
     });
   }
-
   try {
     const result = await restoreSessions(req, req.file as any);
     return res.status(200).json(result);
   } catch (error: any) {
     return res.status(500).json({
       status: false,
-      message: 'Error on restore session',
+      message: 'Error restore session',
       error: error,
     });
   }
@@ -112,16 +108,11 @@ export async function restoreAllSessions(req: Request, res: Response) {
 
 export async function takeScreenshot(req: Request, res: Response) {
   /**
-   #swagger.tags = ["Misc"]
+  #swagger.tags = ["Misc"]
    #swagger.autoBody = false
-    #swagger.security = [{
-          "bearerAuth": []
-    }]
-    #swagger.parameters["session"] = {
-    schema: '60123456789'
-    }
+    #swagger.security = [{ "bearerAuth": [] }]
+    #swagger.parameters["session"] = { schema: '60123456789' }
   */
-
   try {
     const result = await req.client.takeScreenshot();
     return res.status(200).json(result);
@@ -136,24 +127,21 @@ export async function takeScreenshot(req: Request, res: Response) {
 
 export async function clearSessionData(req: Request, res: Response) {
   /**
-   #swagger.tags = ["Auth"]
+  #swagger.tags = ["Misc"]
    #swagger.autoBody = false
     #swagger.parameters["secretkey"] = {
     required: true,
     schema: 'THISISMYSECRETKEY'
     }
-    #swagger.parameters["session"] = {
-    schema: '60123456789'
-    }
+    #swagger.parameters["session"] = { schema: '60123456789' }
   */
-
   try {
     const { secretkey, session } = req.params;
 
     if (secretkey !== config.secretKey) {
       return res.status(400).json({
         response: 'error',
-        message: 'The token is incorrect',
+        message: 'The token is invalid',
       });
     }
     if (req?.client?.page) {
@@ -175,7 +163,7 @@ export async function clearSessionData(req: Request, res: Response) {
     logger.error(error);
     return res.status(500).json({
       status: false,
-      message: 'Error on clear session data',
+      message: 'Error clear session data',
       error: error,
     });
   }
@@ -183,15 +171,11 @@ export async function clearSessionData(req: Request, res: Response) {
 
 export async function setLimit(req: Request, res: Response) {
   /**
-   #swagger.tags = ["Misc"]
+  #swagger.tags = ["Misc"]
    #swagger.description = 'Change limits of whatsapp web. Types value: maxMediaSize, maxFileSize, maxShare, statusVideoMaxDuration, unlimitedPin;'
    #swagger.autoBody = false
-    #swagger.security = [{
-          "bearerAuth": []
-    }]
-    #swagger.parameters["session"] = {
-    schema: '60123456789'
-    }
+    #swagger.security = [{ "bearerAuth": [] }]
+    #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       content: {
@@ -219,14 +203,13 @@ export async function setLimit(req: Request, res: Response) {
 
   try {
     const { type, value } = req.body;
-    if (!type || !value) throw new Error('Send de type and value');
-
+    if (!type || !value) throw new Error('Send the type and value');
     const result = await req.client.setLimit(type, value);
     return res.status(200).json(result);
   } catch (error: any) {
     return res.status(500).json({
       status: false,
-      message: 'Error on set limit',
+      message: 'Error set limit',
       error: error,
     });
   }

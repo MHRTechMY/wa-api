@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -115,8 +114,10 @@ export default class CreateSessionUtil {
                   status: statusFind,
                   session: client.session,
                 });
-                req.logger.info(statusFind + '\n\n');
-              } catch (error) {}
+                req.logger.info(`[${session}] ${statusFind}`);
+              } catch (error) {
+                req.logger.warn(`[${session}] ${error}`);
+              }
             },
           },
         ),

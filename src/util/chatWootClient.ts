@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ export default class chatWootClient {
       : `WPPConnect`;
     this.mobile_number = this.config.mobile_number
       ? this.config.mobile_number
-      : '60112345678';
+      : '60123456789';
     this.sender = {
       pushname: this.mobile_name,
       id: this.mobile_number,
@@ -52,7 +52,7 @@ export default class chatWootClient {
       },
     });
 
-    //sign the qrcode event
+    //signs the qrcode event
     eventEmitter.on(`qrcode-${session}`, (qrCode, urlCode, client) => {
       setTimeout(async () => {
         if (config?.chatwoot?.sendQrCode !== false) {
@@ -69,7 +69,7 @@ export default class chatWootClient {
       }, 1000);
     });
 
-    //acting the status event
+    //signs the status event
     eventEmitter.on(`status-${session}`, (client, status) => {
       if (config?.chatwoot?.sendStatus !== false) {
         this.sendMessage(client, {
@@ -80,8 +80,8 @@ export default class chatWootClient {
       }
     });
 
-    //assina o evento de mensagem
-    eventEmitter.on(`mensagem-${session}`, (client, message) => {
+    //signs the message event
+    eventEmitter.on(`message-${session}`, (client, message) => {
       this.sendMessage(client, message);
     });
   }
@@ -173,13 +173,11 @@ export default class chatWootClient {
 
   async sendMessage(client: any, message: any) {
     if (message.isGroupMsg || message.chatId.indexOf('@broadcast') > 0) return;
-
     const contact = await this.createContact(message);
     const conversation = await this.createConversation(
       contact,
       message.chatId.split('@')[0],
     );
-
     try {
       if (
         [
@@ -196,30 +194,24 @@ export default class chatWootClient {
         const extension = mime.extension(message.mimetype);
         const filename = `${message.timestamp}.${extension}`;
         let b64;
-
         if (message.qrCode) {
           b64 = message.qrCode;
         } else {
           const buffer = await client.decryptFile(message);
           b64 = buffer.toString('base64');
         }
-
         const mediaData = Buffer.from(b64, 'base64');
         const stream = bufferutils.bufferToReadableStream(mediaData);
-
         const data = new FormData();
         if (message.caption) {
           data.append('content', message.caption);
         }
-
         data.append('attachments[]', stream, {
           filename: filename,
           contentType: message.mimetype,
         });
-
         data.append('message_type', 'incoming');
         data.append('private', 'false');
-
         const configPost: AxiosRequestConfig = {
           baseURL: this.config.baseURL,
           headers: {
@@ -228,9 +220,7 @@ export default class chatWootClient {
           },
         };
         const endpoint = `api/v1/accounts/${this.account_id}/conversations/${conversation.id}/messages`;
-
         const result = await axios.post(endpoint, data, configPost);
-
         return result;
       } else {
         const body = {
@@ -238,7 +228,6 @@ export default class chatWootClient {
           message_type: 'incoming',
         };
         const endpoint = `api/v1/accounts/${this.account_id}/conversations/${conversation.id}/messages`;
-
         const { data } = await this.api.post(endpoint, body);
         return data;
       }
@@ -274,7 +263,6 @@ export default class chatWootClient {
     body.phone_number = `+${body.phone_number}`;
     const contact = await this.findContact(body.phone_number.replace('+', ''));
     if (contact && contact.meta.count > 0) return contact.payload[0];
-
     try {
       const data = await this.api.post(
         `api/v1/accounts/${this.account_id}/contacts`,
@@ -304,14 +292,12 @@ export default class chatWootClient {
   async createConversation(contact: any, source_id: any) {
     const conversation = await this.findConversation(contact);
     if (conversation) return conversation;
-
     const body = {
       source_id: source_id,
       inbox_id: this.inbox_id,
       contact_id: contact.id,
       status: 'open',
     };
-
     try {
       const { data } = await this.api.post(
         `api/v1/accounts/${this.account_id}/conversations`,

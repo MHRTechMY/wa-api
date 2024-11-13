@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ export default async function statusConnection(
             return res.status(400).json({
               response: null,
               status: 'Connected',
-              message: `The number ${num} does not exist.`,
+              message: `The number ${num} does not exist`,
             });
           } else {
             if ((numbers as any).indexOf(profile.id._serialized) < 0) {
@@ -64,7 +64,7 @@ export default async function statusConnection(
       return res.status(404).json({
         response: null,
         status: 'Disconnected',
-        message: 'WhatsApp session is not active.',
+        message: 'The WhatsApp session is inactive',
       });
     }
     next();
@@ -73,7 +73,7 @@ export default async function statusConnection(
     return res.status(404).json({
       response: null,
       status: 'Disconnected',
-      message: 'WhatsApp session is not active.',
+      message: 'The WhatsApp session is inactive',
     });
   }
 }

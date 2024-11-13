@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ const register = new Prometheus.Registry();
 
 export async function metrics(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Misc"]
+    #swagger.tags = ["Misc"]
      #swagger.autoBody = false
      #swagger.description = 'This endpoint can be used to check the status of API metrics. It returns a response with the collected metrics.'
      }

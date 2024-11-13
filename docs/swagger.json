@@ -95,7 +95,7 @@
     },
     "/api/{session}/{secretkey}/clear-session-data": {
       "post": {
-        "tags": ["Auth"],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -132,7 +132,7 @@
     },
     "/api/{secretkey}/restore-sessions": {
       "post": {
-        "tags": ["Auth"],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -179,11 +179,9 @@
     },
     "/api/{secretkey}/backup-sessions": {
       "get": {
-        "tags": ["Auth"],
+        "tags": ["Misc"],
         "description": "Please, open the router in your browser, in swagger this not run",
-        "produces": [
-          "application/zip"
-        ],
+        "produces": ["application/zip"],
         "parameters": [
           {
             "name": "secretkey",
@@ -494,7 +492,7 @@
     },
     "/api/{session}/check-number-status/{phone}": {
       "get": {
-        "tags": ["Profile"],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -512,7 +510,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "601112345678"
+              "example": "601234567890"
             }
           }
         ],
@@ -698,7 +696,7 @@
     "/api/{session}/edit-business-profile": {
       "post": {
         "tags": ["Profile"],
-        "description": "Edit your Business profile",
+        "description": "Edit your bussiness profile",
         "operationId": "editBusinessProfile",
         "parameters": [
           {
@@ -718,11 +716,11 @@
               "properties": {
                 "adress": {
                   "type": "string",
-                  "example": "PETRONAS Twin Towers, Kuala Lumpur City Centre, 50088 Kuala Lumpur, Malaysia"
+                  "example": "Av. Nossa Senhora de Copacabana, 315"
                 },
                 "email": {
                   "type": "string",
-                  "example": "user@domain.tld"
+                  "example": "test@test.com.br"
                 },
                 "categories": {
                   "type": "object",
@@ -733,36 +731,25 @@
                     },
                     "localized_display_name": {
                       "type": "string",
-                      "example": "Arts and Entertainment"
+                      "example": "Artes e entretenimento"
                     },
                     "not_a_biz": {
                       "type": "boolean",
                       "example": false
                     }
-                  },
-                  "required": [
-                    "id",
-                    "localized_display_name",
-                    "not_a_biz"
-                  ]
+                  }
                 },
                 "website": {
                   "type": "array",
                   "example": [
                     "https://www.wppconnect.io",
-                    "https://www.teste2.my"
+                    "https://www.teste2.com.br"
                   ],
                   "items": {
                     "type": "string"
                   }
                 }
-              },
-              "required": [
-                "adress",
-                "email",
-                "categories",
-                "website"
-              ]
+              }
             }
           }
         ],
@@ -801,16 +788,16 @@
                 }
               },
               "example": {
-                "adress": "PETRONAS Twin Towers, Kuala Lumpur City Centre, 50088 Kuala Lumpur, Malaysia",
-                "email": "user@domain.tld",
+                "adress": "Av. Nossa Senhora de Copacabana, 315",
+                "email": "test@test.com.br",
                 "categories": {
-                  "$id": "133436743388217",
-                  "$localized_display_name": "Arts and Entertainment",
-                  "$not_a_biz": false
+                  "id": "133436743388217",
+                  "localized_display_name": "Artes e entretenimento",
+                  "not_a_biz": false
                 },
                 "website": [
                   "https://www.wppconnect.io",
-                  "https://www.teste2.my"
+                  "https://www.teste2.com.br"
                 ]
               }
             }
@@ -820,7 +807,7 @@
     },
     "/api/{session}/all-contacts": {
       "get": {
-        "tags": ["Contacts"],
+        "tags": ["Contact"],
         "description": "",
         "parameters": [
           {
@@ -841,7 +828,7 @@
     },
     "/api/{session}/contact/{phone}": {
       "get": {
-        "tags": ["Contacts"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -859,7 +846,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "601112345678"
+              "example": "601234567890"
             }
           }
         ],
@@ -880,7 +867,7 @@
     },
     "/api/{session}/profile-pic/{phone}": {
       "get": {
-        "tags": ["Contacts"],
+        "tags": ["Contact"],
         "description": "",
         "parameters": [
           {
@@ -898,7 +885,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "601112345678"
+              "example": "601234567890"
             }
           },
           {
@@ -926,7 +913,7 @@
     },
     "/api/{session}/profile-status/{phone}": {
       "get": {
-        "tags": ["Contacts"],
+        "tags": ["Contact"],
         "description": "",
         "parameters": [
           {
@@ -944,7 +931,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "601112345678"
+              "example": "601234567890"
             }
           }
         ],
@@ -965,7 +952,7 @@
     },
     "/api/{session}/blocklist": {
       "get": {
-        "tags": ["Contacts"],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -995,7 +982,7 @@
     },
     "/api/{session}/block-contact": {
       "post": {
-        "tags": ["Contacts"],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -1039,7 +1026,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false
                   }
                 }
@@ -1051,7 +1038,7 @@
     },
     "/api/{session}/unblock-contact": {
       "post": {
-        "tags": ["Contacts"],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -1095,7 +1082,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false
                   }
                 }
@@ -1107,7 +1094,7 @@
     },
     "/api/{session}/list-chats": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "summary": "Retrieve a list of chats",
         "description": "This body is not required. Not sent body to get all chats or filter.",
         "parameters": [
@@ -1204,7 +1191,7 @@
     },
     "/api/{session}/all-chats-archived": {
       "get": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "Retrieves all archived chats.",
         "parameters": [
           {
@@ -1234,7 +1221,7 @@
     },
     "/api/{session}/all-broadcast-list": {
       "get": {
-        "tags": ["Chats"],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -1264,7 +1251,7 @@
     },
     "/api/{session}/all-unread-messages": {
       "get": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1294,7 +1281,7 @@
     },
     "/api/{session}/chat-by-id/{phone}": {
       "get": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1312,7 +1299,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "601112345678"
+              "example": "601234567890"
             }
           },
           {
@@ -1341,7 +1328,7 @@
     },
     "/api/{session}/chat-is-online/{phone}": {
       "get": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1359,7 +1346,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "601112345678"
+              "example": "601234567890"
             }
           }
         ],
@@ -1380,7 +1367,7 @@
     },
     "/api/{session}/last-seen/{phone}": {
       "get": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1398,7 +1385,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "601112345678"
+              "example": "601234567890"
             }
           }
         ],
@@ -1419,7 +1406,7 @@
     },
     "/api/{session}/list-mutes/{type}": {
       "get": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1458,7 +1445,7 @@
     },
     "/api/{session}/message-by-id/{messageId}": {
       "get": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1494,7 +1481,7 @@
     },
     "/api/{session}/archive-chat": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1541,7 +1528,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "value": true
                   }
@@ -1554,7 +1541,7 @@
     },
     "/api/{session}/archive-all-chats": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1584,7 +1571,7 @@
     },
     "/api/{session}/clear-chat": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1625,7 +1612,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false
                   }
                 }
@@ -1637,7 +1624,7 @@
     },
     "/api/{session}/clear-all-chats": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1667,7 +1654,7 @@
     },
     "/api/{session}/delete-chat": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1708,7 +1695,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false
                   }
                 }
@@ -1720,7 +1707,7 @@
     },
     "/api/{session}/delete-all-chats": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1750,7 +1737,7 @@
     },
     "/api/{session}/mark-unseen": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Messages"],
         "description": "",
         "parameters": [
           {
@@ -1794,7 +1781,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false
                   }
                 }
@@ -1806,7 +1793,7 @@
     },
     "/api/{session}/send-seen": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1847,7 +1834,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false
                   }
                 }
@@ -1859,7 +1846,7 @@
     },
     "/api/{session}/send-mute": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1909,7 +1896,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "time": 1,
                     "type": "hours"
@@ -1923,7 +1910,7 @@
     },
     "/api/{session}/pin-chat": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -1943,7 +1930,7 @@
               "properties": {
                 "phone": {
                   "type": "string",
-                  "example": "601112345678"
+                  "example": "601234567890"
                 },
                 "isGroup": {
                   "type": "boolean",
@@ -1953,12 +1940,7 @@
                   "type": "boolean",
                   "example": true
                 }
-              },
-              "required": [
-                "phone",
-                "isGroup",
-                "state"
-              ]
+              }
             }
           }
         ],
@@ -1996,7 +1978,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "state": true
                   }
                 }
@@ -2008,7 +1990,7 @@
     },
     "/api/{session}/typing": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -2055,7 +2037,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "value": true
                   }
@@ -2068,7 +2050,7 @@
     },
     "/api/{session}/recording": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Chat"],
         "description": "",
         "parameters": [
           {
@@ -2118,7 +2100,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "duration": 5,
                     "value": true
@@ -2132,7 +2114,7 @@
     },
     "/api/{session}/reject-call": {
       "post": {
-        "tags": ["Chats"],
+        "tags": ["Misc"],
         "description": "",
         "parameters": [
           {
@@ -2202,7 +2184,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "601112345678@c.us"
+              "example": "601234567890"
             }
           },
           {
@@ -2389,11 +2371,11 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "name": "Name of contact",
                     "contactsId": [
-                      "601112345678"
+                      "601234567890"
                     ]
                   }
                 }
@@ -2461,7 +2443,7 @@
               "examples": {
                 "Delete message to all": {
                   "value": {
-                    "phone": "5521999999999",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "messageId": "<messageId>",
                     "deleteMediaInDevice": true
@@ -2469,7 +2451,7 @@
                 },
                 "Delete message only me": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "messageId": "<messageId>"
                   }
@@ -2575,7 +2557,7 @@
               "examples": {
                 "Edit a message": {
                   "value": {
-                    "id": "true_601112345678@c.us_3EB04FCAA1527EB6D9DEC8",
+                    "id": "true_601234567890@c.us_3EB04FCAA1527EB6D9DEC8",
                     "newText": "New text for message"
                   }
                 }
@@ -2629,20 +2611,18 @@
                   "messageId": {
                     "type": "string"
                   },
-                  "options": {
-                    "type": "object"
+                  "skipMyMessages": {
+                    "type": "boolean"
                   }
                 }
               },
               "examples": {
-                "Forward message": {
+                "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "messageId": "<messageId>",
-                    "options": {
-                      "skipMyMessages": false
-                    }
+                    "skipMyMessages": false
                   }
                 }
               }
@@ -2717,7 +2697,8 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "60123456789"
             }
           }
         ],
@@ -2726,26 +2707,12 @@
             "description": ""
           }
         },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "phone": {
-                    "example": "any"
-                  },
-                  "message": {
-                    "example": "any"
-                  },
-                  "options": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
+        "security": [
+          {
+            "bearerAuth": []
           }
-        }
+        ],
+        "deprecated": true
       }
     },
     "/api/{session}/send-file": {
@@ -2809,7 +2776,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "isNewsletter": false,
                     "isLid": false,
@@ -2879,9 +2846,8 @@
               "examples": {
                 "Send message to contact": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
-                    "isCommunity": false,
                     "isNewsletter": false,
                     "isLid": false,
                     "message": "Hi from WPPConnect"
@@ -2889,9 +2855,8 @@
                 },
                 "Send message with reply": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
-                    "isCommunity": false,
                     "isNewsletter": false,
                     "isLid": false,
                     "message": "Hi from WPPConnect with reply",
@@ -2904,29 +2869,6 @@
                   "value": {
                     "phone": "8865623215244578",
                     "isGroup": true,
-                    "isCommunity": false,
-                    "isNewsletter": false,
-                    "isLid": false,
-                    "message": "Hi from WPPConnect"
-                  }
-                },
-                "Send message to community": {
-                  "value": {
-                    "phone": "8865623215244578",
-                    "isGroup": false,
-                    "isCommunity": true,
-                    "isNewsletter": false,
-                    "isLid": false,
-                    "message": "Hi from WPPConnect"
-                  }
-                },
-                "Send message to channel": {
-                  "value": {
-                    "phone": "8865623215244578",
-                    "isGroup": false,
-                    "isCommunity": false,
-                    "isNewsletter": true,
-                    "isLid": false,
                     "message": "Hi from WPPConnect"
                   }
                 }
@@ -2985,7 +2927,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "path": "<path_file>",
                     "quotedMessageId": "message Id"
@@ -3058,7 +3000,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "isNewsletter": false,
                     "isLid": false,
@@ -3128,7 +3070,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "lat": "-89898322",
                     "lng": "-545454",
@@ -3206,7 +3148,7 @@
                     "isGroup": true,
                     "message": "Your text message",
                     "mentioned": [
-                      "@556593077171@c.us"
+                      "556593077171@c.us"
                     ]
                   }
                 }
@@ -3268,7 +3210,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "name": "Poll name",
                     "choices": [
@@ -3340,7 +3282,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": true,
                     "path": "<path_file>"
                   }
@@ -3404,7 +3346,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": true,
                     "path": "<path_file>"
                   }
@@ -3467,7 +3409,7 @@
               "examples": {
                 "Send list message": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "description": "Desc for list",
                     "buttonText": "Select a option",
@@ -3606,7 +3548,7 @@
               "examples": {
                 "Send with custom items": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "items": [
                       {
@@ -3626,7 +3568,7 @@
                 },
                 "Send with product items": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "items": [
                       {
@@ -3640,7 +3582,7 @@
                 },
                 "Send with custom items and options": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "items": [
                       {
@@ -3709,7 +3651,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "messageId": "601112345678",
+                    "messageId": "601234567890",
                     "star": true
                   }
                 }
@@ -3768,7 +3710,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phone": "601112345678",
+                    "phone": "601234567890",
                     "isGroup": false,
                     "value": true
                   }
@@ -3979,7 +3921,7 @@
     },
     "/api/{session}/common-groups/{wid}": {
       "get": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -3996,9 +3938,16 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string",
-              "example": "601112345678@c.us"
+              "type": "string"
             }
+          },
+          {
+            "name": "phone",
+            "schema": {
+              "type": "string",
+              "example": "601234567890"
+            },
+            "in": "query"
           }
         ],
         "responses": {
@@ -4018,7 +3967,7 @@
     },
     "/api/{session}/group-admins/{groupId}": {
       "get": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4081,7 +4030,7 @@
     },
     "/api/{session}/group-invite-link/{groupId}": {
       "get": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4125,16 +4074,6 @@
                   "groupId": {
                     "type": "string"
                   }
-                },
-                "required": [
-                  "groupId"
-                ]
-              },
-              "examples": {
-                "Default": {
-                  "value": {
-                    "groupId": "<groupId>"
-                  }
                 }
               }
             }
@@ -4144,7 +4083,7 @@
     },
     "/api/{session}/group-members-ids/{groupId}": {
       "get": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4183,7 +4122,7 @@
     },
     "/api/{session}/group-members/{groupId}": {
       "get": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4221,7 +4160,7 @@
     },
     "/api/{session}/group-revoke-link/{groupId}": {
       "get": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4265,16 +4204,6 @@
                   "groupId": {
                     "type": "string"
                   }
-                },
-                "required": [
-                  "groupId"
-                ]
-              },
-              "examples": {
-                "Default": {
-                  "value": {
-                    "groupId": "<groupId>"
-                  }
                 }
               }
             }
@@ -4284,7 +4213,7 @@
     },
     "/api/{session}/create-group": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4336,7 +4265,7 @@
                 "Default": {
                   "value": {
                     "participants": [
-                      "601112345678"
+                      "601234567890"
                     ],
                     "name": "Group name"
                   }
@@ -4349,7 +4278,7 @@
     },
     "/api/{session}/group-subject": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4388,17 +4317,6 @@
                   "title": {
                     "type": "string"
                   }
-                },
-                "required": [
-                  "groupId"
-                ]
-              },
-              "examples": {
-                "Default": {
-                  "value": {
-                    "groupId": "<groupId>",
-                    "title": "<newSubject>"
-                  }
                 }
               }
             }
@@ -4408,7 +4326,7 @@
     },
     "/api/{session}/group-description": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4447,17 +4365,6 @@
                   "description": {
                     "type": "string"
                   }
-                },
-                "required": [
-                  "groupId"
-                ]
-              },
-              "examples": {
-                "Default": {
-                  "value": {
-                    "groupId": "<groupId>",
-                    "description": "some text here"
-                  }
                 }
               }
             }
@@ -4467,7 +4374,7 @@
     },
     "/api/{session}/group-pic": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4509,17 +4416,6 @@
                   "path": {
                     "type": "string"
                   }
-                },
-                "required": [
-                  "groupId"
-                ]
-              },
-              "examples": {
-                "Default": {
-                  "value": {
-                    "groupId": "<groupId>",
-                    "path": "<url>"
-                  }
                 }
               }
             }
@@ -4529,7 +4425,7 @@
     },
     "/api/{session}/group-property": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4571,16 +4467,13 @@
                   "value": {
                     "type": "boolean"
                   }
-                },
-                "required": [
-                  "groupId"
-                ]
+                }
               },
               "examples": {
                 "Default": {
                   "value": {
                     "groupId": "<groupId>",
-                    "property": "membershipApprovalMode / isLidAddressingMode / reportToAdminMode / isAutoApproveMode",
+                    "property": "announcement/restrict/no_frequently_forwarded/ephemeral",
                     "value": true
                   }
                 }
@@ -4592,7 +4485,7 @@
     },
     "/api/{session}/messages-admins-only": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4606,8 +4499,11 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "security": [
@@ -4628,17 +4524,6 @@
                   "value": {
                     "type": "boolean"
                   }
-                },
-                "required": [
-                  "groupId"
-                ]
-              },
-              "examples": {
-                "Default": {
-                  "value": {
-                    "groupId": "<groupId>",
-                    "value": true
-                  }
                 }
               }
             }
@@ -4648,7 +4533,7 @@
     },
     "/api/{session}/promote-participant-group": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4697,7 +4582,7 @@
                 "Default": {
                   "value": {
                     "groupId": "<groupId>",
-                    "phone": "601112345678"
+                    "phone": "601234567890"
                   }
                 }
               }
@@ -4708,7 +4593,7 @@
     },
     "/api/{session}/demote-participant-group": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4757,7 +4642,7 @@
                 "Default": {
                   "value": {
                     "groupId": "<groupId>",
-                    "phone": "601112345678"
+                    "phone": "601234567890"
                   }
                 }
               }
@@ -4768,7 +4653,7 @@
     },
     "/api/{session}/add-participant-group": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4817,7 +4702,7 @@
                 "Default": {
                   "value": {
                     "groupId": "<groupId>",
-                    "phone": "601112345678"
+                    "phone": "601234567890"
                   }
                 }
               }
@@ -4828,7 +4713,7 @@
     },
     "/api/{session}/remove-participant-group": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4877,7 +4762,7 @@
                 "Default": {
                   "value": {
                     "groupId": "<groupId>",
-                    "phone": "601112345678"
+                    "phone": "601234567890"
                   }
                 }
               }
@@ -4888,7 +4773,7 @@
     },
     "/api/{session}/group-info-from-invite-link": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4924,16 +4809,6 @@
                   "invitecode": {
                     "type": "string"
                   }
-                },
-                "required": [
-                  "invitecode"
-                ]
-              },
-              "examples": {
-                "Default": {
-                  "value": {
-                    "invitecode": "<groupInviteCode>"
-                  }
                 }
               }
             }
@@ -4943,7 +4818,7 @@
     },
     "/api/{session}/change-privacy-group": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -4982,17 +4857,6 @@
                   "status": {
                     "type": "boolean"
                   }
-                },
-                "required": [
-                  "groupId"
-                ]
-              },
-              "examples": {
-                "Default": {
-                  "value": {
-                    "groupId": "<groupId>",
-                    "status": true
-                  }
                 }
               }
             }
@@ -5002,7 +4866,7 @@
     },
     "/api/{session}/join-code": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -5060,7 +4924,7 @@
     },
     "/api/{session}/leave-group": {
       "post": {
-        "tags": ["Groups"],
+        "tags": ["Group"],
         "description": "",
         "parameters": [
           {
@@ -5251,7 +5115,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "id": "<your_community_id@g.us>"
+                    "id": "<you_community_id@g.us>"
                   }
                 }
               }
@@ -5306,7 +5170,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "id": "<your_community_id@g.us>",
+                    "id": "<you_community_id@g.us>",
                     "groupsIds": [
                       "group1Id@g.us"
                     ]
@@ -5364,7 +5228,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "id": "<your_community_id@g.us>",
+                    "id": "<you_community_id@g.us>",
                     "groupsIds": [
                       "group1Id@g.us"
                     ]
@@ -5422,7 +5286,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "id": "<your_community_id@g.us>",
+                    "id": "<you_community_id@g.us>",
                     "participantsId": [
                       "group1Id@g.us"
                     ]
@@ -5480,7 +5344,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "id": "<your_community_id@g.us>",
+                    "id": "<you_community_id@g.us>",
                     "participantsId": [
                       "group1Id@g.us"
                     ]
@@ -5494,7 +5358,7 @@
     },
     "/api/{session}/newsletter": {
       "post": {
-        "tags": ["Newsletter"],
+        "tags": [],
         "description": "",
         "operationId": "createNewsletter",
         "parameters": [
@@ -5506,6 +5370,14 @@
               "type": "string",
               "example": "60123456789"
             }
+          },
+          {
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "example": "<newsletter_id>"
+            },
+            "in": "query"
           }
         ],
         "responses": {
@@ -5528,12 +5400,22 @@
                   "name": {
                     "type": "string"
                   },
-                  "options": {
-                    "type": "object"
+                  "description": {
+                    "type": "string"
+                  },
+                  "picture": {
+                    "type": "string"
                   }
                 }
               },
               "examples": {
+                "Edit newsletter/channel": {
+                  "value": {
+                    "name": "New name of channel",
+                    "description": "New description of channel",
+                    "picture": "<new_base64_image> or send null"
+                  }
+                },
                 "Create newsletter/channel": {
                   "value": {
                     "name": "Name for your channel",
@@ -5551,7 +5433,7 @@
     },
     "/api/{session}/newsletter/{id}": {
       "put": {
-        "tags": ["Newsletter"],
+        "tags": [],
         "description": "",
         "operationId": "editNewsletter",
         "parameters": [
@@ -5570,7 +5452,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "<newsletter_id>"
+              "example": "NEWSLETTER ID"
             }
           }
         ],
@@ -5625,7 +5507,7 @@
         }
       },
       "delete": {
-        "tags": ["Newsletter"],
+        "tags": [],
         "description": "",
         "operationId": "destroyNewsletter",
         "parameters": [
@@ -5662,7 +5544,7 @@
     },
     "/api/{session}/mute-newsletter/{id}": {
       "post": {
-        "tags": ["Newsletter"],
+        "tags": [],
         "description": "",
         "operationId": "muteNewsletter",
         "parameters": [
@@ -5686,8 +5568,8 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "default": {
+            "description": ""
           }
         },
         "security": [
@@ -5765,10 +5647,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "$name": {
+                  "name": {
                     "type": "string"
                   },
-                  "$options": {
+                  "options": {
                     "type": "object",
                     "properties": {
                       "labelColor": {
@@ -5864,7 +5746,7 @@
                 "Default": {
                   "value": {
                     "chatIds": [
-                      "601112345678"
+                      "601234567890"
                     ],
                     "options": [
                       {
@@ -5972,7 +5854,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "example": "601112345678@c.us"
+              "example": "601234567890@c.us"
             }
           }
         ],
@@ -6006,7 +5888,7 @@
             "name": "phone",
             "schema": {
               "type": "string",
-              "example": "601112345678"
+              "example": "601234567890"
             },
             "in": "query"
           },
@@ -6065,7 +5947,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "example": "true_601112345678@c.us_3EB0E69ACC5B396B21F2FE"
+              "example": "true_601234567890@c.us_3EB0E69ACC5B396B21F2FE"
             }
           }
         ],
@@ -6100,7 +5982,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "example": "601112345678"
+              "example": "601234567890"
             }
           },
           {
@@ -6149,7 +6031,7 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "example": "601112345678"
+              "example": "601234567890"
             }
           },
           {
@@ -6305,10 +6187,10 @@
                     "name": "Product name",
                     "image": "<base64_string>",
                     "description": "Description for your product",
-                    "price": "8890",
+                    "price": "9999",
                     "url": "http://link_for_your_product.com",
                     "retailerId": "SKU001",
-                    "currency": "BRL"
+                    "currency": "MYR"
                   }
                 }
               }
@@ -6896,7 +6778,7 @@
     },
     "/api/{session}/get-media-by-message/{messageId}": {
       "get": {
-        "tags": ["Misc"],
+        "tags": ["Messages"],
         "description": "",
         "operationId": "getMediaByMessage",
         "parameters": [
@@ -7262,7 +7144,7 @@
                 }
               },
               "example": {
-                "phone": "601112345678",
+                "phone": "601234567890",
                 "isGroup": false,
                 "all": false
               }
@@ -7273,7 +7155,6 @@
     },
     "/api-docs": {
       "get": {
-        "tags": ["Misc"],
         "description": "",
         "responses": {
           "default": {

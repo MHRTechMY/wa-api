@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -10,7 +10,7 @@
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
+ * See the License for the specific language governing permclearSessionissions and
  * limitations under the License.
  */
 import { Request, Response } from 'express';
@@ -19,11 +19,9 @@ import { unlinkAsync } from '../util/functions';
 
 function returnError(req: Request, res: Response, error: any) {
   req.logger.error(error);
-  res.status(500).json({
-    status: 'Error',
-    message: 'Error by sending status.',
-    error: error,
-  });
+  res
+    .status(500)
+    .json({ status: 'Error', message: 'Error sending status', error: error });
 }
 
 async function returnSucess(res: Response, data: any) {
@@ -32,14 +30,10 @@ async function returnSucess(res: Response, data: any) {
 
 export async function sendTextStorie(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Status"]
+    #swagger.tags = ["Status"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.parameters["obj"] = {
       in: 'body',
       schema: {
@@ -72,18 +66,15 @@ export async function sendTextStorie(req: Request, res: Response) {
     }
    */
   const { text, options } = req.body;
-
   if (!text)
     return res.status(401).send({
       message: 'Text was not informed',
     });
-
   try {
     const results: any = [];
     results.push(await req.client.sendTextStatus(text, options));
-
     if (results.length === 0)
-      return res.status(400).json('Error sending the text of stories');
+      return res.status(400).json('Error sending text story');
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -92,14 +83,10 @@ export async function sendTextStorie(req: Request, res: Response) {
 
 export async function sendImageStorie(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Status"]
+    #swagger.tags = ["Status"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       content: {
@@ -123,20 +110,16 @@ export async function sendImageStorie(req: Request, res: Response) {
     }
    */
   const { path } = req.body;
-
   if (!path && !req.file)
     return res.status(401).send({
       message: 'Sending the image is mandatory',
     });
-
   const pathFile = path || req.file?.path;
-
   try {
     const results: any = [];
     results.push(await req.client.sendImageStatus(pathFile));
-
     if (results.length === 0)
-      return res.status(400).json('Error sending the image of stories');
+      return res.status(400).json('Error sending image story');
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -145,14 +128,10 @@ export async function sendImageStorie(req: Request, res: Response) {
 
 export async function sendVideoStorie(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Status"]
+    #swagger.tags = ["Status"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       content: {
@@ -176,21 +155,16 @@ export async function sendVideoStorie(req: Request, res: Response) {
     }
    */
   const { path } = req.body;
-
   if (!path && !req.file)
     return res.status(401).send({
       message: 'Sending the Video is mandatory',
     });
-
   const pathFile = path || req.file?.path;
-
   try {
     const results: any = [];
-
     results.push(await req.client.sendVideoStatus(pathFile));
-
     if (results.length === 0)
-      return res.status(400).json('Error sending video of stories');
+      return res.status(400).json('Error sending video story');
     if (req.file) await unlinkAsync(pathFile);
     returnSucess(res, results);
   } catch (error) {

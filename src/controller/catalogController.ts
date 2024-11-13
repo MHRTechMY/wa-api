@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,17 +19,13 @@ import { createCatalogLink } from '../util/functions';
 
 export async function getProducts(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.parameters["phone"] = {
       in: 'query',
-      schema: '601112345678',
+      schema: '601234567890',
      }
      #swagger.parameters["qnt"] = {
       in: 'query',
@@ -60,17 +56,13 @@ export async function getProducts(req: Request, res: Response) {
 
 export async function getProductById(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.parameters["phone"] = {
       in: 'query',
-      schema: '601112345678',
+      schema: '601234567890',
      }
      #swagger.parameters["id"] = {
       in: 'query',
@@ -97,14 +89,10 @@ export async function getProductById(req: Request, res: Response) {
 }
 export async function editProduct(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
     #swagger.requestBody = {
         required: true,
         "@content": {
@@ -133,7 +121,7 @@ export async function editProduct(req: Request, res: Response) {
   const { id, options } = req.body;
   if (!id || !options)
     return res.status(401).send({
-      message: 'productId or options was not informed',
+      message: 'productId or options is empty',
     });
 
   try {
@@ -150,14 +138,10 @@ export async function editProduct(req: Request, res: Response) {
 
 export async function delProducts(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
         required: true,
         "@content": {
@@ -182,7 +166,7 @@ export async function delProducts(req: Request, res: Response) {
   const { id } = req.body;
   if (!id)
     return res.status(401).send({
-      message: 'products Id was not informed',
+      message: 'productId is empty',
     });
 
   try {
@@ -199,15 +183,10 @@ export async function delProducts(req: Request, res: Response) {
 
 export async function changeProductImage(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
-
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
         required: true,
         "@content": {
@@ -234,7 +213,7 @@ export async function changeProductImage(req: Request, res: Response) {
   const { id, base64 } = req.body;
   if (!id || !base64)
     return res.status(401).send({
-      message: 'productId and base64 was not informed',
+      message: 'productId or base64 is empty',
     });
 
   try {
@@ -251,14 +230,10 @@ export async function changeProductImage(req: Request, res: Response) {
 
 export async function addProduct(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
         required: true,
         "@content": {
@@ -281,10 +256,10 @@ export async function addProduct(req: Request, res: Response) {
                           name: 'Product name',
                           image: '<base64_string>',
                           description: 'Description for your product',
-                          price: '8890',
+                          price: '9999',
                           url: 'http://link_for_your_product.com',
                           retailerId: 'SKU001',
-                          currency: 'BRL',
+                          currency: 'MYR',
                         }
                     },
                 }
@@ -299,11 +274,11 @@ export async function addProduct(req: Request, res: Response) {
     price,
     url,
     retailerId,
-    currency = 'BRL',
+    currency = 'MYR',
   } = req.body;
   if (!name || !image || !price)
     return res.status(401).send({
-      message: 'name, price and image was not informed',
+      message: 'name or price or image is empty',
     });
 
   try {
@@ -330,14 +305,10 @@ export async function addProduct(req: Request, res: Response) {
 
 export async function addProductImage(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
         required: true,
         "@content": {
@@ -364,7 +335,7 @@ export async function addProductImage(req: Request, res: Response) {
   const { id, base64 } = req.body;
   if (!id || !base64)
     return res.status(401).send({
-      message: 'productId and base64 was not informed',
+      message: 'productId or base64 is empty',
     });
 
   try {
@@ -381,14 +352,10 @@ export async function addProductImage(req: Request, res: Response) {
 
 export async function removeProductImage(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
         required: true,
         "@content": {
@@ -415,7 +382,7 @@ export async function removeProductImage(req: Request, res: Response) {
   const { id, index } = req.body;
   if (!id || !index)
     return res.status(401).send({
-      message: 'productId and index image was not informed',
+      message: 'productId or index image is empty',
     });
 
   try {
@@ -432,28 +399,18 @@ export async function removeProductImage(req: Request, res: Response) {
 
 export async function getCollections(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
-     #swagger.parameters["phone"] = {
-      schema: '601112345678'
-     }
-     #swagger.parameters["qnt"] = {
-      schema: '10'
-     }
-     #swagger.parameters["max"] = {
-      schema: '10'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
+     #swagger.parameters["phone"] = { schema: '601234567890' }
+     #swagger.parameters["qnt"] = { schema: '10' }
+     #swagger.parameters["max"] = { schema: '10' }
    */
   const { phone, qnt, max } = req.query;
   if (!phone)
     return res.status(401).send({
-      message: 'phone was not informed',
+      message: 'phone is empty',
     });
 
   try {
@@ -474,14 +431,10 @@ export async function getCollections(req: Request, res: Response) {
 
 export async function createCollection(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
         required: true,
         "@content": {
@@ -508,7 +461,7 @@ export async function createCollection(req: Request, res: Response) {
   const { name, products } = req.body;
   if (!name || !products)
     return res.status(401).send({
-      message: 'name or products was not informed',
+      message: 'name or products is empty',
     });
 
   try {
@@ -525,14 +478,10 @@ export async function createCollection(req: Request, res: Response) {
 
 export async function editCollection(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
         required: true,
         "@content": {
@@ -561,7 +510,7 @@ export async function editCollection(req: Request, res: Response) {
   const { id, options } = req.body;
   if (!id || !options)
     return res.status(401).send({
-      message: 'id or options was not informed',
+      message: 'id or options is empty',
     });
 
   try {
@@ -578,14 +527,10 @@ export async function editCollection(req: Request, res: Response) {
 
 export async function deleteCollection(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
         required: true,
         "@content": {
@@ -610,7 +555,7 @@ export async function deleteCollection(req: Request, res: Response) {
   const { id } = req.body;
   if (!id)
     return res.status(401).send({
-      message: 'id was not informed',
+      message: 'id is empty',
     });
 
   try {
@@ -627,14 +572,10 @@ export async function deleteCollection(req: Request, res: Response) {
 
 export async function setProductVisibility(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.parameters["obj"] = {
       in: 'body',
       schema: {
@@ -668,7 +609,7 @@ export async function setProductVisibility(req: Request, res: Response) {
   const { id, value } = req.body;
   if (!id || !value)
     return res.status(401).send({
-      message: 'product id or value (false, true) was not informed',
+      message: 'productId or value (false, true) is empty',
     });
 
   try {
@@ -685,14 +626,10 @@ export async function setProductVisibility(req: Request, res: Response) {
 
 export async function updateCartEnabled(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Catalogs"]
+   *#swagger.tags = ["Catalogs"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
       #swagger.requestBody = {
         required: true,
         "@content": {
@@ -717,7 +654,7 @@ export async function updateCartEnabled(req: Request, res: Response) {
   const { enabled } = req.body;
   if (!enabled)
     return res.status(401).send({
-      message: 'enabled (false, true) was not informed',
+      message: 'enabled (false, true) is empty',
     });
 
   try {
@@ -734,14 +671,10 @@ export async function updateCartEnabled(req: Request, res: Response) {
 
 export async function sendLinkCatalog(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Messages"]
+   *#swagger.tags = ["Messages"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
       #swagger.requestBody = {
         required: true,
         "@content": {
@@ -768,7 +701,7 @@ export async function sendLinkCatalog(req: Request, res: Response) {
   const { phones, message } = req.body;
   if (!phones)
     return res.status(401).send({
-      message: 'phones was not informed',
+      message: 'phones is empty',
     });
   const results = [];
   try {

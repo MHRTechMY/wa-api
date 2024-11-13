@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,16 +24,12 @@ function formatSession(session: string) {
 
 const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   const secureToken = req.serverOptions.secretKey;
-
   const { session } = req.params;
   const { authorization: token } = req.headers;
-  if (!session)
-    return res.status(401).send({ message: 'Session not informed' });
-
+  if (!session) return res.status(401).send({ message: 'Session is empty' });
   try {
     let tokenDecrypt = '';
     let sessionDecrypt = '';
-
     try {
       sessionDecrypt = session.split(':')[0];
       tokenDecrypt = session
@@ -58,12 +54,11 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
       } catch (e) {
         req.logger.error(e);
         return res.status(401).json({
-          error: 'Check that the Session and Token are correct',
+          error: 'Check that a Session and Token are correct',
           message: error,
         });
       }
     }
-
     bcrypt.compare(
       sessionDecrypt + secureToken,
       tokenDecrypt,

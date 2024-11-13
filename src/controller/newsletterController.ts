@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,15 +34,11 @@ function returnError(
 
 export async function createNewsletter(req: Request, res: Response) {
   /**
-     * #swagger.tags = ["Newsletter"]
+     *#swagger.tags = ["Newsletter]
         #swagger.operationId = 'createNewsletter'
        #swagger.autoBody = false
-       #swagger.security = [{
-              "bearerAuth": []
-       }]
-       #swagger.parameters["session"] = {
-        schema: '60123456789'
-       }
+       #swagger.security = [{ "bearerAuth": [] }]
+       #swagger.parameters["session"] = { schema: '60123456789' }
        #swagger.requestBody = {
         required: true,
         "@content": {
@@ -71,7 +67,6 @@ export async function createNewsletter(req: Request, res: Response) {
      */
   const session = req.session;
   const { name, options } = req.body;
-
   try {
     res.status(201).json(await req.client.createNewsletter(name, options));
   } catch (error) {
@@ -81,18 +76,12 @@ export async function createNewsletter(req: Request, res: Response) {
 
 export async function editNewsletter(req: Request, res: Response) {
   /**
-       * #swagger.tags = ["Newsletter"]
+       *#swagger.tags = ["Newsletter]
          #swagger.operationId = 'editNewsletter'
          #swagger.autoBody = false
-         #swagger.security = [{
-                "bearerAuth": []
-         }]
-         #swagger.parameters["session"] = {
-          schema: '60123456789'
-         }
-         #swagger.parameters["id"] = {
-          schema: '<newsletter_id>'
-         }
+         #swagger.security = [{ "bearerAuth": [] }]
+       #swagger.parameters["session"] = { schema: '60123456789' }
+         #swagger.parameters["id"] = { schema: '<newsletter_id>' }
          #swagger.requestBody = {
         required: true,
         "@content": {
@@ -130,7 +119,6 @@ export async function editNewsletter(req: Request, res: Response) {
   const session = req.session;
   const { name, description, picture } = req.body;
   const { id } = req.params;
-
   try {
     res.status(201).json(
       await req.client.editNewsletter(id, {
@@ -146,22 +134,15 @@ export async function editNewsletter(req: Request, res: Response) {
 
 export async function destroyNewsletter(req: Request, res: Response) {
   /**
- * #swagger.tags = ["Newsletter"]
+ *#swagger.tags = ["Newsletter]
     #swagger.autoBody = false
     #swagger.operationId = 'destroyNewsletter'
-    #swagger.security = [{
-            "bearerAuth": []
-    }]
-    #swagger.parameters["session"] = {
-        schema: '60123456789'
-    }
-    #swagger.parameters["id"] = {
-        schema: 'NEWSLETTER ID'
-    }
+    #swagger.security = [{ "bearerAuth": [] }]
+    #swagger.parameters["session"] = { schema: '60123456789' }
+    #swagger.parameters["id"] = { schema: 'NEWSLETTER ID' }
     */
   const session = req.session;
   const { id } = req.params;
-
   try {
     res.status(201).json(await req.client.destroyNewsletter(id));
   } catch (error) {
@@ -171,22 +152,15 @@ export async function destroyNewsletter(req: Request, res: Response) {
 
 export async function muteNewsletter(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Newsletter"]
+   *#swagger.tags = ["Newsletter]
      #swagger.operationId = 'muteNewsletter'
      #swagger.autoBody = false
-     #swagger.security = [{
-              "bearerAuth": []
-      }]
-      #swagger.parameters["session"] = {
-          schema: '60123456789'
-      }
-      #swagger.parameters["id"] = {
-          schema: 'NEWSLETTER ID'
-      }
+     #swagger.security = [{ "bearerAuth": [] }]
+      #swagger.parameters["session"] = { schema: '60123456789' }
+      #swagger.parameters["id"] = { schema: 'NEWSLETTER ID' }
       */
   const session = req.session;
   const { id } = req.params;
-
   try {
     res.status(201).json(await req.client.muteNesletter(id));
   } catch (error) {

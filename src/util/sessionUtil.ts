@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,9 +38,11 @@ export const chromiumArgs = [
   '--ignore-ssl-errors', // Ignores SSL errors
   '--ignore-certificate-errors-spki-list', // Ignores certificate errors in SPKI list
 ];
-// eslint-disable-next-line prefer-const
+
 export let clientsArray: Whatsapp[] = [];
+
 export const sessions = [];
+
 export const eventEmitter = new EventEmitter();
 
 export function deleteSessionOnArray(session: string): void {

@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,10 +46,8 @@ export function backupSessions(req: Request): Promise<any> {
       __dirname + '/../../backupFolder',
       { force: true, recursive: true },
     );
-
     archive.directory(__dirname + '/../../backupFolder', 'userDataDir');
     archive.finalize();
-
     output.on('close', () => {
       fileSystem.rmSync(__dirname + '/../../backupFolder', { recursive: true });
       const myStream = fileSystem.createReadStream(
@@ -58,7 +55,7 @@ export function backupSessions(req: Request): Promise<any> {
       );
       myStream.pipe(req.res as any);
       myStream.on('end', () => {
-        logger.info('Sessions successfully backuped. Restarting sessions...');
+        logger.info('Sessions successfully backup. Restarting sessions...');
         startAllSessions(config, logger);
         req.res?.end();
       });
@@ -78,9 +75,8 @@ export async function restoreSessions(
     throw new Error('Please, send zipped file');
   }
   const path = file.path;
-  logger.info('Starting restore sessions...');
+  logger.info('Restoring sessions...');
   await closeAllSessions(req);
-
   const extract = fileSystem
     .createReadStream(path)
     .pipe(unzipper.Extract({ path: './restore' }));
@@ -91,7 +87,7 @@ export async function restoreSessions(
         recursive: true,
       });
     } catch (error) {
-      logger.info("Folder 'tokens' not found.");
+      logger.info(`Folder 'tokens' not found | Error: ${error}`);
     }
     try {
       fileSystem.cpSync(
@@ -103,12 +99,11 @@ export async function restoreSessions(
         },
       );
     } catch (error) {
-      logger.info("Folder 'usersData' not found.");
+      logger.info(`Folder 'usersData' not found | Error: ${error}`);
     }
     logger.info('Sessions successfully restored. Starting...');
     startAllSessions(config, logger);
   });
-
   return { success: true };
 }
 
@@ -124,7 +119,7 @@ export async function closeAllSessions(req: Request) {
       }
       delete clientsArray[session];
     } catch (error) {
-      logger.error('Stop session not possible: ' + session);
+      logger.error(`Not possible stop session: ${session} | Error: ${error}`);
     }
   });
 }

@@ -31,7 +31,7 @@
             "style": "simple",
             "schema": {
               "type": "string",
-              "example": "THISISMYSECURETOKEN"
+              "example": "THISISMYSECRETKEY"
             }
           }
         ],
@@ -1433,9 +1433,9 @@
     "/all-chats-with-messages": {
       "get": {
         "tags": ["Chat"],
-        "summary": "All Chats with Messages",
+        "summary": "All Chats Whit Messages",
         "description": "Retrieves all chats with messages",
-        "operationId": "AllChatswithMessages",
+        "operationId": "AllChatsWhitMessages",
         "parameters": [
           {
             "name": "Content-Type",
@@ -7728,7 +7728,7 @@
     },
     "/send-image-storie": {
       "post": {
-        "tags": ["Status"],
+        "tags": ["Status Stories"],
         "summary": "Send Image Storie ",
         "description": "Send Image Storie",
         "operationId": "SendImageStorie",
@@ -7839,7 +7839,7 @@
     },
     "/send-video-storie": {
       "post": {
-        "tags": ["Status"],
+        "tags": ["Status Stories"],
         "summary": "Send Video Storie ",
         "description": "Send Video Storie",
         "operationId": "SendVideoStorie",
@@ -7950,7 +7950,7 @@
     },
     "/send-text-storie": {
       "post": {
-        "tags": ["Status"],
+        "tags": ["Status Stories"],
         "summary": "Send Text Storie ",
         "description": "Send Text Storie",
         "operationId": "SendTextStorie",
@@ -12076,7 +12076,7 @@
             "application/json": {
               "example": {
                 "name": "Cat",
-                "description": "withe cat",
+                "description": "white cat",
                 "image": "data:image/png;base64,..........",
                 "price": 19.9,
                 "url": "url my cat",
@@ -14452,8 +14452,8 @@
           "response": false
         }
       },
-      "AllChatswithMessages": {
-        "title": "AllChatswithMessages",
+      "AllChatsWhitMessages": {
+        "title": "AllChatsWhitMessages",
         "required": ["status", "response"],
         "type": "object",
         "properties": {
@@ -21439,7 +21439,7 @@
       "description": "Profile Methods"
     },
     {
-      "name": "Status",
+      "name": "Status Stories",
       "description": "Status Stories Methods"
     },
     {

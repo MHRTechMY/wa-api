@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,14 +18,10 @@ import { Request, Response } from 'express';
 
 export async function addNewLabel(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Labels"]
+    #swagger.tags = ["Labels"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       content: {
@@ -58,16 +54,15 @@ export async function addNewLabel(req: Request, res: Response) {
   const { name, options } = req.body;
   if (!name)
     return res.status(401).send({
-      message: 'Name was not informed',
+      message: 'Name is empty',
     });
-
   try {
     const result = await req.client.addNewLabel(name, options);
     res.status(201).json({ status: 'success', response: result });
   } catch (error) {
     res.status(500).json({
       status: 'Error',
-      message: 'Error adding label.',
+      message: 'Error adding label',
       error: error,
     });
   }
@@ -75,14 +70,10 @@ export async function addNewLabel(req: Request, res: Response) {
 
 export async function addOrRemoveLabels(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Labels"]
+    #swagger.tags = ["Labels"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       content: {
@@ -92,9 +83,7 @@ export async function addOrRemoveLabels(req: Request, res: Response) {
             properties: {
               chatIds: {
                 type: "array",
-                items: {
-                  type: "string"
-                }
+                items: { type: "string" }
               },
               options: {
                 type: "array",
@@ -112,7 +101,7 @@ export async function addOrRemoveLabels(req: Request, res: Response) {
           examples: {
             "Default": {
               value: {
-                chatIds: ["601112345678"],
+                chatIds: ["601234567890"],
                 options: [
                   { labelId: "76", type: "add" },
                   { labelId: "75", type: "remove" }
@@ -127,16 +116,15 @@ export async function addOrRemoveLabels(req: Request, res: Response) {
   const { chatIds, options } = req.body;
   if (!chatIds || !options)
     return res.status(401).send({
-      message: 'chatIds or options was not informed',
+      message: 'chatIds or options is empty',
     });
-
   try {
     const result = await req.client.addOrRemoveLabels(chatIds, options);
     res.status(201).json({ status: 'success', response: result });
   } catch (error) {
     res.status(500).json({
       status: 'Error',
-      message: 'Error when adding/deleting label.',
+      message: 'Error adding/deleting label',
       error: error,
     });
   }
@@ -144,14 +132,10 @@ export async function addOrRemoveLabels(req: Request, res: Response) {
 
 export async function getAllLabels(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Labels"]
+    #swagger.tags = ["Labels"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
    */
   try {
     const result = await req.client.getAllLabels();
@@ -159,7 +143,7 @@ export async function getAllLabels(req: Request, res: Response) {
   } catch (error) {
     res.status(500).json({
       status: 'Error',
-      message: 'Error when seeking labels.',
+      message: 'Error get labels',
       error: error,
     });
   }
@@ -167,14 +151,10 @@ export async function getAllLabels(req: Request, res: Response) {
 
 export async function deleteAllLabels(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Labels"]
+    #swagger.tags = ["Labels"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
    */
   try {
     const result = await req.client.deleteAllLabels();
@@ -182,7 +162,7 @@ export async function deleteAllLabels(req: Request, res: Response) {
   } catch (error) {
     res.status(500).json({
       status: 'Error',
-      message: 'Error when deleting all labels.',
+      message: 'Error deleting all labels',
       error: error,
     });
   }
@@ -190,14 +170,10 @@ export async function deleteAllLabels(req: Request, res: Response) {
 
 export async function deleteLabel(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Labels"]
+    #swagger.tags = ["Labels"]
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.parameters["id"] = {
       schema: '<labelId>'
      }
@@ -209,7 +185,7 @@ export async function deleteLabel(req: Request, res: Response) {
   } catch (error) {
     res.status(500).json({
       status: 'Error',
-      message: 'Error when deleting label.',
+      message: 'Error deleting label',
       error: error,
     });
   }

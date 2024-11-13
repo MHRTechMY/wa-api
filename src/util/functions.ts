@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-unused-expressions */
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,6 +52,7 @@ export function contactToArray(
   const localArr: any = [];
   if (Array.isArray(number)) {
     for (let contact of number) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       isGroup || isNewsletter
         ? (contact = contact.split('@')[0])
         : (contact = contact.split('@')[0]?.replace(/[^\w ]/g, ''));
@@ -67,6 +66,7 @@ export function contactToArray(
   } else {
     const arrContacts = number.split(/\s*[,;]\s*/g);
     for (let contact of arrContacts) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       isGroup || isNewsletter
         ? (contact = contact.split('@')[0])
         : (contact = contact.split('@')[0]?.replace(/[^\w ]/g, ''));
@@ -149,7 +149,9 @@ export async function callWebHook(
             const events = ['unreadmessages', 'onmessage'];
             if (events.includes(event) && req.serverOptions.webhook.readMessage)
               client.sendSeen(chatId);
-          } catch (e) {}
+          } catch (e) {
+            req.logger.warn('Error calling Webhook.', e);
+          }
         })
         .catch((e) => {
           req.logger.warn('Error calling Webhook.', e);
@@ -251,24 +253,20 @@ export async function startAllSessions(config: any, logger: any) {
 
 export async function startHelper(client: any, req: any) {
   if (req.serverOptions.webhook.allUnreadOnStart) await sendUnread(client, req);
-
   if (req.serverOptions.archive.enable) await archive(client, req);
 }
 
 async function sendUnread(client: any, req: any) {
-  req.logger.info(`${client.session} : Start Send Unread Messages`);
-
+  req.logger.info(`${client.session} : Start send unread messages`);
   try {
     const chats = await client.getAllChatsWithMessages(true);
-
     if (chats && chats.length > 0) {
       for (let i = 0; i < chats.length; i++)
         for (let j = 0; j < chats[i].msgs.length; j++) {
           callWebHook(client, req, 'unreadmessages', chats[i].msgs[j]);
         }
     }
-
-    req.logger.info(`${client.session} : End Send Unread Messages`);
+    req.logger.info(`${client.session} : End send unread messages`);
   } catch (ex) {
     req.logger.error(ex);
   }
@@ -278,9 +276,7 @@ async function archive(client: any, req: any) {
   async function sleep(time: number) {
     return new Promise((resolve) => setTimeout(resolve, time * 10));
   }
-
   req.logger.info(`${client.session} : Start archiving chats`);
-
   try {
     let chats = await client.getAllChats();
     if (chats && Array.isArray(chats) && chats.length > 0) {
@@ -289,7 +285,6 @@ async function archive(client: any, req: any) {
     if (chats && Array.isArray(chats) && chats.length > 0) {
       for (let i = 0; i < chats.length; i++) {
         const date = new Date(chats[i].t * 1000);
-
         if (DaysBetween(date) > req.serverOptions.archive.daysToArchive) {
           await client.archiveChat(
             chats[i].id.id || chats[i].id._serialized,
@@ -311,7 +306,6 @@ function DaysBetween(StartDate: Date) {
   const endDate = new Date();
   // The number of milliseconds in all UTC days (no DST)
   const oneDay = 1000 * 60 * 60 * 24;
-
   // A day in UTC always lasts 24 hours (unlike in other time formats)
   const start = Date.UTC(
     endDate.getFullYear(),
@@ -323,7 +317,6 @@ function DaysBetween(StartDate: Date) {
     StartDate.getMonth(),
     StartDate.getDate(),
   );
-
   // so it's safe to divide by 24 hours
   return (start - end) / oneDay;
 }
@@ -334,7 +327,6 @@ export function createFolders() {
   if (!fs.existsSync(dirFiles)) {
     fs.mkdirSync(dirFiles);
   }
-
   const dirUpload = path.resolve(__dirname, 'uploads');
   if (!fs.existsSync(dirUpload)) {
     fs.mkdirSync(dirUpload);

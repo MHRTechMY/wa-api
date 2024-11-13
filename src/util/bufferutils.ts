@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@ function bufferToReadableStream(buffer: Buffer): Readable {
       this.push(null);
     },
   });
-
   return readableInstanceStream;
 }
 
@@ -35,11 +34,9 @@ async function AsyncBufferToStream(buffer: Buffer): Promise<Readable> {
     bufferStream.on('data', () => {
       // data = chunck;
     });
-
     bufferStream.on('end', () => {
       resolve(bufferStream);
     });
-
     bufferStream.on('error', (error) => {
       reject(error);
     });

@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /*
- * Copyright 2021 WPPConnect Team
+ * Copyright 2024 WPPConnect Team
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -11,7 +10,7 @@
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
+ * See the License for the specific language governing permclearSessionissions and
  * limitations under the License.
  */
 import { Message, Whatsapp } from '@wppconnect-team/wppconnect';
@@ -37,7 +36,6 @@ async function downloadFileFunction(
 ) {
   try {
     const buffer = await client.decryptFile(message);
-
     const filename = `./WhatsAppImages/file${message.t}`;
     if (!fs.existsSync(filename)) {
       let result = '';
@@ -46,13 +44,11 @@ async function downloadFileFunction(
       } else {
         result = `${filename}.${mime.extension(message.mimetype)}`;
       }
-
       await fs.writeFile(result, buffer, (err) => {
         if (err) {
           logger.error(err);
         }
       });
-
       return result;
     } else {
       return `${filename}.${mime.extension(message.mimetype)}`;
@@ -72,20 +68,18 @@ async function downloadFileFunction(
         } else {
           result = `${filename}.${mime.extension(message.mimetype)}`;
         }
-
         await fs.writeFile(result, buffer, (err) => {
           if (err) {
             logger.error(err);
           }
         });
-
         return result;
       } else {
         return `${filename}.${mime.extension(message.mimetype)}`;
       }
     } catch (e) {
       logger.error(e);
-      logger.warn('It was not possible to download the media.');
+      logger.warn('It was not possible to download the media...');
     }
   }
 }
@@ -101,44 +95,32 @@ export async function download(message: any, client: any, logger: any) {
 
 export async function startAllSessions(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Auth"]
+   *#swagger.tags = ["Auth"]
      #swagger.autoBody = false
      #swagger.operationId = 'startAllSessions'
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
-     #swagger.parameters["secretkey"] = {
-      schema: 'THISISMYSECRETKEY'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
+     #swagger.parameters["secretkey"] = { schema: 'THISISMYSECRETKEY' }
    */
   const { secretkey } = req.params;
   const { authorization: token } = req.headers;
-
   let tokenDecrypt = '';
-
   if (secretkey === undefined) {
     tokenDecrypt = (token as any).split(' ')[0];
   } else {
     tokenDecrypt = secretkey;
   }
-
   const allSessions = await getAllTokens(req);
-
   if (tokenDecrypt !== req.serverOptions.secretKey) {
     return res.status(400).json({
       response: 'error',
-      message: 'The token is incorrect',
+      message: 'The token is invalid',
     });
   }
-
   allSessions.map(async (session: string) => {
     const util = new CreateSessionUtil();
     await util.opendata(req, session);
   });
-
   return await res
     .status(201)
     .json({ status: 'success', message: 'Starting all sessions' });
@@ -146,56 +128,42 @@ export async function startAllSessions(req: Request, res: Response) {
 
 export async function showAllSessions(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Auth"]
+   *#swagger.tags = ["Auth"]
      #swagger.autoBody = false
      #swagger.operationId = 'showAllSessions'
-     #swagger.autoQuery=false
-     #swagger.autoHeaders=false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["secretkey"] = {
-      schema: 'THISISMYSECRETKEY'
-     }
+     #swagger.autoQuery = false
+     #swagger.autoHeaders = false
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["secretkey"] = { schema: 'THISISMYSECRETKEY' }
    */
   const { secretkey } = req.params;
   const { authorization: token } = req.headers;
-
   let tokenDecrypt: any = '';
-
   if (secretkey === undefined) {
     tokenDecrypt = token?.split(' ')[0];
   } else {
     tokenDecrypt = secretkey;
   }
-
   const arr: any = [];
-
   if (tokenDecrypt !== req.serverOptions.secretKey) {
     return res.status(400).json({
       response: false,
-      message: 'The token is incorrect',
+      message: 'The token is invalid',
     });
   }
-
   Object.keys(clientsArray).forEach((item) => {
     arr.push({ session: item });
   });
-
   return res.status(200).json({ response: await getAllTokens(req) });
 }
 
 export async function startSession(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Auth"]
+   *#swagger.tags = ["Auth"]
      #swagger.autoBody = false
      #swagger.operationId = 'startSession'
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -217,22 +185,17 @@ export async function startSession(req: Request, res: Response) {
    */
   const session = req.session;
   const { waitQrCode = false } = req.body;
-
   await getSessionState(req, res);
   await SessionUtil.opendata(req, session, waitQrCode ? res : null);
 }
 
 export async function closeSession(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Auth"]
+   *#swagger.tags = ["Auth"]
      #swagger.operationId = 'closeSession'
-     #swagger.autoBody = true
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.autoBody=true
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
    */
   const session = req.session;
   try {
@@ -242,14 +205,12 @@ export async function closeSession(req: Request, res: Response) {
         .json({ status: true, message: 'Session successfully closed' });
     } else {
       (clientsArray as any)[session] = { status: null };
-
       await req.client.close();
       req.io.emit('whatsapp-status', false);
       callWebHook(req.client, req, 'closesession', {
         message: `Session: ${session} disconnected`,
         connected: false,
       });
-
       return await res
         .status(200)
         .json({ status: true, message: 'Session successfully closed' });
@@ -264,26 +225,20 @@ export async function closeSession(req: Request, res: Response) {
 
 export async function logOutSession(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Auth"]
+   *#swagger.tags = ["Auth"]
      #swagger.operationId = 'logoutSession'
    * #swagger.description = 'This route logout and delete session data'
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
    */
   try {
     const session = req.session;
     await req.client.logout();
     deleteSessionOnArray(req.session);
-
     setTimeout(async () => {
       const pathUserData = config.customUserDataDir + req.session;
       const pathTokens = __dirname + `../../../tokens/${req.session}.data.json`;
-
       if (fs.existsSync(pathUserData)) {
         await fs.promises.rm(pathUserData, {
           recursive: true,
@@ -300,16 +255,14 @@ export async function logOutSession(req: Request, res: Response) {
           retryDelay: 1000,
         });
       }
-
       req.io.emit('whatsapp-status', false);
       callWebHook(req.client, req, 'logoutsession', {
         message: `Session: ${session} logged out`,
         connected: false,
       });
-
       return await res
         .status(200)
-        .json({ status: true, message: 'Session successfully closed' });
+        .json({ status: true, message: 'Session successfully logout' });
     }, 500);
     /*try {
       await req.client.close();
@@ -318,42 +271,35 @@ export async function logOutSession(req: Request, res: Response) {
     req.logger.error(error);
     return await res
       .status(500)
-      .json({ status: false, message: 'Error closing session', error });
+      .json({ status: false, message: 'Error logging out session', error });
   }
 }
 
 export async function checkConnectionSession(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Auth"]
+   *#swagger.tags = ["Auth"]
      #swagger.operationId = 'CheckConnectionState'
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
    */
   try {
     await req.client.isConnected();
-
     return res.status(200).json({ status: true, message: 'Connected' });
   } catch (error) {
-    return res.status(200).json({ status: false, message: 'Disconnected' });
+    return res
+      .status(200)
+      .json({ status: false, message: 'Disconnected', error: error });
   }
 }
 
 export async function downloadMediaByMessage(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Messages"]
+   *#swagger.tags = ["Messages"]
      #swagger.autoBody = false
      #swagger.operationId = 'downloadMediabyMessage'
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -373,30 +319,24 @@ export async function downloadMediaByMessage(req: Request, res: Response) {
    */
   const client = req.client;
   const { messageId } = req.body;
-
   let message;
-
   try {
     if (!messageId.isMedia || !messageId.type) {
       message = await client.getMessageById(messageId);
     } else {
       message = messageId;
     }
-
     if (!message)
       return res.status(400).json({
         status: 'error',
         message: 'Message not found',
       });
-
     if (!(message['mimetype'] || message.isMedia || message.isMMS))
       return res.status(400).json({
         status: 'error',
         message: 'Message does not contain media',
       });
-
     const buffer = await client.decryptFile(message);
-
     return res
       .status(200)
       .json({ base64: buffer.toString('base64'), mimetype: message.mimetype });
@@ -412,39 +352,28 @@ export async function downloadMediaByMessage(req: Request, res: Response) {
 
 export async function getMediaByMessage(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Misc"]
+   *#swagger.tags = ["Messages"]
      #swagger.autoBody = false
      #swagger.operationId = 'getMediaByMessage'
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
-     #swagger.parameters["session"] = {
-      schema: 'messageId'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
+     #swagger.parameters["session"] = { schema: 'messageId' }
    */
   const client = req.client;
   const { messageId } = req.params;
-
   try {
     const message = await client.getMessageById(messageId);
-
     if (!message)
       return res.status(400).json({
         status: 'error',
         message: 'Message not found',
       });
-
     if (!(message['mimetype'] || message.isMedia || message.isMMS))
       return res.status(400).json({
         status: 'error',
         message: 'Message does not contain media',
       });
-
     const buffer = await client.decryptFile(message);
-
     return res
       .status(200)
       .json({ base64: buffer.toString('base64'), mimetype: message.mimetype });
@@ -452,7 +381,7 @@ export async function getMediaByMessage(req: Request, res: Response) {
     req.logger.error(ex);
     return res.status(500).json({
       status: 'error',
-      message: 'The session is not active',
+      message: 'The session is inactive',
       error: ex,
     });
   }
@@ -460,16 +389,12 @@ export async function getMediaByMessage(req: Request, res: Response) {
 
 export async function getSessionState(req: Request, res: Response) {
   /**
-     #swagger.tags = ["Auth"]
+    #swagger.tags = ["Auth"]
      #swagger.operationId = 'getSessionState'
      #swagger.summary = 'Retrieve status of a session'
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
    */
   try {
     const { waitQrCode = false } = req.body;
@@ -478,7 +403,6 @@ export async function getSessionState(req: Request, res: Response) {
       client?.urlcode != null && client?.urlcode != ''
         ? await QRCode.toDataURL(client.urlcode)
         : null;
-
     if ((client == null || client.status == null) && !waitQrCode)
       return res.status(200).json({ status: 'CLOSED', qrcode: null });
     else if (client != null)
@@ -492,7 +416,7 @@ export async function getSessionState(req: Request, res: Response) {
     req.logger.error(ex);
     return res.status(500).json({
       status: 'error',
-      message: 'The session is not active',
+      message: 'The session is inactive',
       error: ex,
     });
   }
@@ -500,18 +424,16 @@ export async function getSessionState(req: Request, res: Response) {
 
 export async function getQrCode(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Auth"]
+   *#swagger.tags = ["Auth"]
      #swagger.autoBody = false
      #swagger.operationId = 'getQrCode'
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
    */
   try {
     if (req?.client?.urlcode) {
+      // We add options to generate the QR code in higher resolution
+      // The /qrcode-session request will now return a readable qrcode.
       const qrOptions = {
         errorCorrectionLevel: 'M' as const,
         type: 'image/png' as const,
@@ -552,16 +474,12 @@ export async function getQrCode(req: Request, res: Response) {
 
 export async function killServiceWorker(req: Request, res: Response) {
   /**
-   * #swagger.ignore = true
-   * #swagger.tags = ["Messages"]
+   * #swagger.ignore=true
+   *#swagger.tags = ["Messages"]
      #swagger.operationId = 'killServiceWorkier'
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
    */
   try {
     return res
@@ -571,7 +489,7 @@ export async function killServiceWorker(req: Request, res: Response) {
     req.logger.error(ex);
     return res.status(500).json({
       status: 'error',
-      message: 'The session is not active',
+      message: 'The session is inactive',
       error: ex,
     });
   }
@@ -579,16 +497,12 @@ export async function killServiceWorker(req: Request, res: Response) {
 
 export async function restartService(req: Request, res: Response) {
   /**
-   * #swagger.ignore = true
-   * #swagger.tags = ["Messages"]
+   * #swagger.ignore=true
+   *#swagger.tags = ["Messages"]
      #swagger.operationId = 'restartService'
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
    */
   try {
     return res
@@ -598,22 +512,18 @@ export async function restartService(req: Request, res: Response) {
     req.logger.error(ex);
     return res.status(500).json({
       status: 'error',
-      response: { message: 'The session is not active', error: ex },
+      response: { message: 'The session is inactive', error: ex },
     });
   }
 }
 
 export async function subscribePresence(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Misc"]
+   *#swagger.tags = ["Misc"]
      #swagger.operationId = 'subscribePresence'
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -627,7 +537,7 @@ export async function subscribePresence(req: Request, res: Response) {
             }
           },
           example: {
-            phone: '601112345678',
+            phone: '601234567890',
             isGroup: false,
             all: false,
           }
@@ -637,7 +547,6 @@ export async function subscribePresence(req: Request, res: Response) {
    */
   try {
     const { phone, isGroup = false, all = false } = req.body;
-
     if (all) {
       let contacts;
       if (isGroup) {
@@ -652,7 +561,6 @@ export async function subscribePresence(req: Request, res: Response) {
       for (const contato of contactToArray(phone, isGroup)) {
         await req.client.subscribePresence(contato);
       }
-
     return await res.status(200).json({
       status: 'success',
       response: { message: 'Subscribe presence executed' },
@@ -668,29 +576,25 @@ export async function subscribePresence(req: Request, res: Response) {
 
 export async function editBusinessProfile(req: Request, res: Response) {
   /**
-   * #swagger.tags = ["Profile"]
+   *#swagger.tags = ["Profile"]
      #swagger.operationId = 'editBusinessProfile'
-   * #swagger.description = 'Edit your Business profile'
+   * #swagger.description = 'Edit your bussiness profile'
      #swagger.autoBody = false
-     #swagger.security = [{
-            "bearerAuth": []
-     }]
-     #swagger.parameters["session"] = {
-      schema: '60123456789'
-     }
+     #swagger.security = [{ "bearerAuth": [] }]
+     #swagger.parameters["session"] = { schema: '60123456789' }
      #swagger.parameters["obj"] = {
       in: 'body',
       schema: {
-        $adress: 'PETRONAS Twin Towers, Kuala Lumpur City Centre, 50088 Kuala Lumpur, Malaysia',
-        $email: 'user@domain.tld',
-        $categories: {
-          $id: "133436743388217",
-          $localized_display_name: "Arts and Entertainment",
-          $not_a_biz: false,
+        adress: 'Av. Nossa Senhora de Copacabana, 315',
+        email: 'test@test.com.br',
+        categories: {
+          id: "133436743388217",
+          localized_display_name: "Artes e entretenimento",
+          not_a_biz: false,
         },
-        $website: [
+        website: [
           "https://www.wppconnect.io",
-          "https://www.teste2.my",
+          "https://www.teste2.com.br",
         ],
       }
      }
@@ -709,16 +613,16 @@ export async function editBusinessProfile(req: Request, res: Response) {
             }
           },
           example: {
-            adress: 'PETRONAS Twin Towers, Kuala Lumpur City Centre, 50088 Kuala Lumpur, Malaysia',
-            email: 'user@domain.tld',
+            adress: 'Av. Nossa Senhora de Copacabana, 315',
+            email: 'test@test.com.br',
             categories: {
               $id: "133436743388217",
-              $localized_display_name: "Arts and Entertainment",
+              $localized_display_name: "Artes e entretenimento",
               $not_a_biz: false,
             },
             website: [
               "https://www.wppconnect.io",
-              "https://www.teste2.my",
+              "https://www.teste2.com.br",
             ],
           }
         }
