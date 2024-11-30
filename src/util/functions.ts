@@ -278,7 +278,7 @@ async function archive(client: any, req: any) {
   }
   req.logger.info(`${client.session} : Start archiving chats`);
   try {
-    let chats = await client.getAllChats();
+    let chats = await client.listChats();
     if (chats && Array.isArray(chats) && chats.length > 0) {
       chats = chats.filter((c) => !c.archive);
     }
