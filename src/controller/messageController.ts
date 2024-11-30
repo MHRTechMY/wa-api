@@ -22,7 +22,7 @@ function returnError(req: Request, res: Response, error: any) {
   req.logger.error(error);
   res.status(500).json({
     status: 'Error',
-    message: 'Erro ao enviar a mensagem.',
+    message: 'Error sending message.',
     error: error,
   });
 }
@@ -827,7 +827,7 @@ export async function sendMentioned(req: Request, res: Response) {
     req.logger.error(error);
     return res.status(500).json({
       status: 'error',
-      message: 'Error on send mentioned message',
+      message: 'Error send mentioned message',
       error: error,
     });
   }
