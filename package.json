@@ -28,7 +28,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.701.0",
+    "@aws-sdk/client-s3": "^3.703.0",
     "@wppconnect-team/wppconnect": "^1.35.1",
     "archiver": "^7.0.1",
     "axios": "^1.7.8",
@@ -81,7 +81,7 @@
     "@typescript-eslint/parser": "^8.16.0",
     "@typescript-eslint/typescript-estree": "^8.16.0",
     "@wppconnect/wa-js": "^3.15.1",
-    "@wppconnect/wa-version": "^1.5.726",
+    "@wppconnect/wa-version": "^1.5.735",
     "commitizen": "^4.3.1",
     "conventional-changelog-cli": "^5.0.0",
     "crypto-js": "^4.2.0",
