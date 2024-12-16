@@ -445,7 +445,6 @@ export async function sendButtons(req: Request, res: Response) {
      #swagger.autoBody = false
      #swagger.security = [{ "bearerAuth": [] }]
      #swagger.parameters["session"] = { schema: '60123456789' }
-     #swagger.deprecated=true
    */
   const { phone, message, options } = req.body;
   try {

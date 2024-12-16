@@ -362,7 +362,12 @@ routes.post(
   statusConnection,
   DeviceController.reactMessage,
 );
-// routes.post('/api/:session/send-reply', verifyToken, statusConnection, MessageController.replyMessage);
+routes.post(
+  '/api/:session/send-reply',
+  verifyToken,
+  statusConnection,
+  MessageController.replyMessage,
+);
 // routes.post('/api/:session/send-status', verifyToken, statusConnection, MessageController.sendStatusText);
 routes.post(
   '/api/:session/send-buttons',

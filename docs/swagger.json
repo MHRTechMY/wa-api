@@ -168,9 +168,7 @@
                     "format": "binary"
                   }
                 },
-                "required": [
-                  "file"
-                ]
+                "required": ["file"]
               }
             }
           }
@@ -650,9 +648,7 @@
                   "example": "My new status"
                 }
               },
-              "required": [
-                "status"
-              ]
+              "required": ["status"]
             }
           }
         ],
@@ -2374,9 +2370,7 @@
                     "phone": "601234567890",
                     "isGroup": false,
                     "name": "Name of contact",
-                    "contactsId": [
-                      "601234567890"
-                    ]
+                    "contactsId": ["601234567890"]
                   }
                 }
               }
@@ -2687,6 +2681,67 @@
         }
       }
     },
+    "/api/{session}/send-reply": {
+      "post": {
+        "tags": ["Messages"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "session",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "60123456789"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "phone": {
+                    "type": "string"
+                  },
+                  "isGroup": {
+                    "type": "boolean"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "messageId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Default": {
+                  "value": {
+                    "phone": "601234567890",
+                    "isGroup": false,
+                    "message": "Reply to message",
+                    "messageId": "<id_message>"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/{session}/send-buttons": {
       "post": {
         "tags": ["Messages"],
@@ -2711,8 +2766,7 @@
           {
             "bearerAuth": []
           }
-        ],
-        "deprecated": true
+        ]
       }
     },
     "/api/{session}/send-file": {
@@ -3135,11 +3189,7 @@
                     }
                   }
                 },
-                "required": [
-                  "phone",
-                  "message",
-                  "mentioned"
-                ]
+                "required": ["phone", "message", "mentioned"]
               },
               "examples": {
                 "Default": {
@@ -3147,9 +3197,7 @@
                     "phone": "groupId@g.us",
                     "isGroup": true,
                     "message": "Your text message",
-                    "mentioned": [
-                      "556593077171@c.us"
-                    ]
+                    "mentioned": ["556593077171@c.us"]
                   }
                 }
               }
@@ -3213,11 +3261,7 @@
                     "phone": "601234567890",
                     "isGroup": false,
                     "name": "Poll name",
-                    "choices": [
-                      "Option 1",
-                      "Option 2",
-                      "Option 3"
-                    ],
+                    "choices": ["Option 1", "Option 2", "Option 3"],
                     "options": {
                       "selectableCount": 1
                     }
@@ -3274,10 +3318,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "phone",
-                  "path"
-                ]
+                "required": ["phone", "path"]
               },
               "examples": {
                 "Default": {
@@ -3338,10 +3379,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "phone",
-                  "path"
-                ]
+                "required": ["phone", "path"]
               },
               "examples": {
                 "Default": {
@@ -3487,9 +3525,7 @@
               "examples": {
                 "Default": {
                   "value": {
-                    "phones": [
-                      "<array_phone_id"
-                    ],
+                    "phones": ["<array_phone_id"],
                     "message": "Message"
                   }
                 }
@@ -3789,9 +3825,7 @@
                     "type": "object"
                   }
                 },
-                "required": [
-                  "text"
-                ]
+                "required": ["text"]
               },
               "examples": {
                 "Default": {
@@ -3848,9 +3882,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "path"
-                ]
+                "required": ["path"]
               },
               "examples": {
                 "Default": {
@@ -3903,9 +3935,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "path"
-                ]
+                "required": ["path"]
               },
               "examples": {
                 "Default": {
@@ -4012,9 +4042,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId"
-                ]
+                "required": ["groupId"]
               },
               "examples": {
                 "Default": {
@@ -4256,17 +4284,12 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "participants",
-                  "name"
-                ]
+                "required": ["participants", "name"]
               },
               "examples": {
                 "Default": {
                   "value": {
-                    "participants": [
-                      "601234567890"
-                    ],
+                    "participants": ["601234567890"],
                     "name": "Group name"
                   }
                 }
@@ -4573,10 +4596,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId",
-                  "phone"
-                ]
+                "required": ["groupId", "phone"]
               },
               "examples": {
                 "Default": {
@@ -4633,10 +4653,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId",
-                  "phone"
-                ]
+                "required": ["groupId", "phone"]
               },
               "examples": {
                 "Default": {
@@ -4693,10 +4710,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId",
-                  "phone"
-                ]
+                "required": ["groupId", "phone"]
               },
               "examples": {
                 "Default": {
@@ -4753,10 +4767,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId",
-                  "phone"
-                ]
+                "required": ["groupId", "phone"]
               },
               "examples": {
                 "Default": {
@@ -4906,9 +4917,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "inviteCode"
-                ]
+                "required": ["inviteCode"]
               },
               "examples": {
                 "Default": {
@@ -4961,9 +4970,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "groupId"
-                ]
+                "required": ["groupId"]
               }
             }
           }
@@ -5060,10 +5067,7 @@
                   "value": {
                     "name": "My community name",
                     "description": "Description for your community",
-                    "groupIds": [
-                      "groupId1",
-                      "groupId2"
-                    ]
+                    "groupIds": ["groupId1", "groupId2"]
                   }
                 }
               }
@@ -5171,9 +5175,7 @@
                 "Default": {
                   "value": {
                     "id": "<you_community_id@g.us>",
-                    "groupsIds": [
-                      "group1Id@g.us"
-                    ]
+                    "groupsIds": ["group1Id@g.us"]
                   }
                 }
               }
@@ -5229,9 +5231,7 @@
                 "Default": {
                   "value": {
                     "id": "<you_community_id@g.us>",
-                    "groupsIds": [
-                      "group1Id@g.us"
-                    ]
+                    "groupsIds": ["group1Id@g.us"]
                   }
                 }
               }
@@ -5287,9 +5287,7 @@
                 "Default": {
                   "value": {
                     "id": "<you_community_id@g.us>",
-                    "participantsId": [
-                      "group1Id@g.us"
-                    ]
+                    "participantsId": ["group1Id@g.us"]
                   }
                 }
               }
@@ -5345,9 +5343,7 @@
                 "Default": {
                   "value": {
                     "id": "<you_community_id@g.us>",
-                    "participantsId": [
-                      "group1Id@g.us"
-                    ]
+                    "participantsId": ["group1Id@g.us"]
                   }
                 }
               }
@@ -5659,10 +5655,7 @@
                     }
                   }
                 },
-                "required": [
-                  "name",
-                  "options"
-                ]
+                "required": ["name", "options"]
               },
               "examples": {
                 "Default": {
@@ -5738,16 +5731,12 @@
                     }
                   }
                 },
-                "required": [
-                  "chatIds"
-                ]
+                "required": ["chatIds"]
               },
               "examples": {
                 "Default": {
                   "value": {
-                    "chatIds": [
-                      "601234567890"
-                    ],
+                    "chatIds": ["601234567890"],
                     "options": [
                       {
                         "labelId": "76",
@@ -6308,10 +6297,7 @@
                 "Default": {
                   "value": {
                     "name": "Collection name",
-                    "products": [
-                      "<id_product1>",
-                      "<id_product2>"
-                    ]
+                    "products": ["<id_product1>", "<id_product2>"]
                   }
                 }
               }
@@ -6695,10 +6681,7 @@
                   "example": false
                 }
               },
-              "required": [
-                "id",
-                "value"
-              ]
+              "required": ["id", "value"]
             }
           }
         ],
@@ -7078,10 +7061,7 @@
                     "type": "any"
                   }
                 },
-                "required": [
-                  "type",
-                  "value"
-                ]
+                "required": ["type", "value"]
               },
               "examples": {
                 "Default": {
