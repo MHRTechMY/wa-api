@@ -45,7 +45,7 @@ export default {
     logger: ['console', 'file'],
   },
   createOptions: {
-    // whatsappVersion: '2.3000.10173x',
+    // whatsappVersion: '2.3000.10187x',
     browserArgs: [
       '--disable-web-security',
       '--no-sandbox',
