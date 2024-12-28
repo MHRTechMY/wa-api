@@ -34,7 +34,7 @@ function returnError(
 
 export async function createNewsletter(req: Request, res: Response) {
   /**
-     *#swagger.tags = ["Newsletter]
+     *#swagger.tags = ["Channels"]
         #swagger.operationId = 'createNewsletter'
        #swagger.autoBody = false
        #swagger.security = [{ "bearerAuth": [] }]
@@ -76,7 +76,7 @@ export async function createNewsletter(req: Request, res: Response) {
 
 export async function editNewsletter(req: Request, res: Response) {
   /**
-       *#swagger.tags = ["Newsletter]
+       *#swagger.tags = ["Channels"]
          #swagger.operationId = 'editNewsletter'
          #swagger.autoBody = false
          #swagger.security = [{ "bearerAuth": [] }]
@@ -134,7 +134,7 @@ export async function editNewsletter(req: Request, res: Response) {
 
 export async function destroyNewsletter(req: Request, res: Response) {
   /**
- *#swagger.tags = ["Newsletter]
+ *#swagger.tags = ["Channels"]
     #swagger.autoBody = false
     #swagger.operationId = 'destroyNewsletter'
     #swagger.security = [{ "bearerAuth": [] }]
@@ -152,7 +152,7 @@ export async function destroyNewsletter(req: Request, res: Response) {
 
 export async function muteNewsletter(req: Request, res: Response) {
   /**
-   *#swagger.tags = ["Newsletter]
+   *#swagger.tags = ["Channels"]
      #swagger.operationId = 'muteNewsletter'
      #swagger.autoBody = false
      #swagger.security = [{ "bearerAuth": [] }]

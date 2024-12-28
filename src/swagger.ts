@@ -76,7 +76,7 @@ const doc = {
         'Manages communities operations, such as creating, modifying, and deleting communities',
     },
     {
-      name: 'Newsletter',
+      name: 'Channels',
       description:
         'Handles WhatsApp Channel operations such as creating, modifying, deleting channels',
     },
