@@ -44,16 +44,16 @@ export async function backupAllSessions(req: Request, res: Response) {
      */
   const { secretkey } = req.params;
   if (secretkey !== config.secretKey) {
-    return res.status(400).json({
+    res.status(400).json({
       response: 'error',
       message: 'The token is invalid',
     });
   }
   try {
     res.setHeader('Content-Type', 'application/zip');
-    return res.send(await backupSessions(req));
+    res.send(await backupSessions(req));
   } catch (error) {
-    return res.status(500).json({
+    res.status(500).json({
       status: false,
       message: 'Error backup session',
       error: error,
@@ -89,16 +89,16 @@ export async function restoreAllSessions(req: Request, res: Response) {
   */
   const { secretkey } = req.params;
   if (secretkey !== config.secretKey) {
-    return res.status(400).json({
+    res.status(400).json({
       response: 'error',
       message: 'The token is invalid',
     });
   }
   try {
     const result = await restoreSessions(req, req.file as any);
-    return res.status(200).json(result);
+    res.status(200).json(result);
   } catch (error: any) {
-    return res.status(500).json({
+    res.status(500).json({
       status: false,
       message: 'Error restore session',
       error: error,
@@ -115,9 +115,9 @@ export async function takeScreenshot(req: Request, res: Response) {
   */
   try {
     const result = await req.client.takeScreenshot();
-    return res.status(200).json(result);
+    res.status(200).json(result);
   } catch (error: any) {
-    return res.status(500).json({
+    res.status(500).json({
       status: false,
       message: 'Error on take screenshot',
       error: error,
@@ -139,7 +139,7 @@ export async function clearSessionData(req: Request, res: Response) {
     const { secretkey, session } = req.params;
 
     if (secretkey !== config.secretKey) {
-      return res.status(400).json({
+      res.status(400).json({
         response: 'error',
         message: 'The token is invalid',
       });
@@ -158,10 +158,10 @@ export async function clearSessionData(req: Request, res: Response) {
     if (fs.existsSync(pathToken)) {
       await fs.promises.rm(pathToken);
     }
-    return res.status(200).json({ success: true });
+    res.status(200).json({ success: true });
   } catch (error: any) {
     logger.error(error);
-    return res.status(500).json({
+    res.status(500).json({
       status: false,
       message: 'Error clear session data',
       error: error,
@@ -205,9 +205,9 @@ export async function setLimit(req: Request, res: Response) {
     const { type, value } = req.body;
     if (!type || !value) throw new Error('Send the type and value');
     const result = await req.client.setLimit(type, value);
-    return res.status(200).json(result);
+    res.status(200).json(result);
   } catch (error: any) {
-    return res.status(500).json({
+    res.status(500).json({
       status: false,
       message: 'Error set limit',
       error: error,

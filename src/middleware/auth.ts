@@ -22,11 +22,11 @@ function formatSession(session: string) {
   return session.split(':')[0];
 }
 
-const verifyToken = (req: Request, res: Response, next: NextFunction) => {
+const verifyToken = (req: Request, res: Response, next: NextFunction): any => {
   const secureToken = req.serverOptions.secretKey;
   const { session } = req.params;
   const { authorization: token } = req.headers;
-  if (!session) return res.status(401).send({ message: 'Session is empty' });
+  if (!session) res.status(401).send({ message: 'Session is empty' });
   try {
     let tokenDecrypt = '';
     let sessionDecrypt = '';
@@ -43,17 +43,17 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
           if (token_value)
             tokenDecrypt = token_value.replace(/_/g, '/').replace(/-/g, '+');
           else
-            return res.status(401).json({
+            res.status(401).json({
               message: 'Token is not present. Check your header and try again',
             });
         } else {
-          return res.status(401).json({
+          res.status(401).json({
             message: 'Token is not present. Check your header and try again',
           });
         }
       } catch (e) {
         req.logger.error(e);
-        return res.status(401).json({
+        res.status(401).json({
           error: 'Check that a Session and Token are correct',
           message: error,
         });
@@ -77,7 +77,7 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
     );
   } catch (error) {
     req.logger.error(error);
-    return res.status(401).json({
+    res.status(401).json({
       error: 'Check that the Session and Token are correct.',
       message: error,
     });

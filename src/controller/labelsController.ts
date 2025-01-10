@@ -53,7 +53,7 @@ export async function addNewLabel(req: Request, res: Response) {
    */
   const { name, options } = req.body;
   if (!name)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'Name is empty',
     });
   try {
@@ -115,7 +115,7 @@ export async function addOrRemoveLabels(req: Request, res: Response) {
    */
   const { chatIds, options } = req.body;
   if (!chatIds || !options)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'chatIds or options is empty',
     });
   try {

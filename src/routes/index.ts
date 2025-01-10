@@ -36,7 +36,7 @@ import * as prometheusRegister from '../middleware/instrumentation';
 import statusConnection from '../middleware/statusConnection';
 import swaggerDocument from '../swagger.json';
 
-const upload = multer(uploadConfig as any);
+const upload = multer(uploadConfig as any) as any;
 const routes: Router = Router();
 
 //Auth
@@ -859,7 +859,7 @@ routes.post(
 );
 
 //Swagger
-routes.use('/api-docs', swaggerUi.serve);
-routes.get('/api-docs', swaggerUi.setup(swaggerDocument));
+routes.use('/api-docs', swaggerUi.serve as any);
+routes.get('/api-docs', swaggerUi.setup(swaggerDocument) as any);
 
 export default routes;

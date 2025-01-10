@@ -45,7 +45,7 @@ export default async function statusConnection(
             .catch((error) => console.log(error));
           if (!profile?.numberExists) {
             const num = (contact as any).split('@')[0];
-            return res.status(400).json({
+            res.status(400).json({
               response: null,
               status: 'Connected',
               message: `The number ${num} does not exist`,
@@ -61,7 +61,7 @@ export default async function statusConnection(
       }
       req.body.phone = localArr;
     } else {
-      return res.status(404).json({
+      res.status(404).json({
         response: null,
         status: 'Disconnected',
         message: 'The WhatsApp session is inactive',
@@ -70,7 +70,7 @@ export default async function statusConnection(
     next();
   } catch (error) {
     req.logger.error(error);
-    return res.status(404).json({
+    res.status(404).json({
       response: null,
       status: 'Disconnected',
       message: 'The WhatsApp session is inactive',

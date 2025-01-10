@@ -38,15 +38,15 @@ export async function encryptSession(
     tokenDecrypt = secretkey;
   }
   if (tokenDecrypt !== secureTokenEnv) {
-    return res.status(400).json({
+    res.status(400).json({
       response: false,
       message: 'The SECRET_KEY is invalid',
     });
   }
   bcrypt.hash(session + secureTokenEnv, saltRounds, function (err, hash) {
-    if (err) return res.status(500).json(err);
+    if (err) res.status(500).json(err);
     const hashFormat = hash.replace(/\//g, '_').replace(/\+/g, '-');
-    return res.status(201).json({
+    res.status(201).json({
       status: 'success',
       session: session,
       token: hashFormat,

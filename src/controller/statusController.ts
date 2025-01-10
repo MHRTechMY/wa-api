@@ -67,14 +67,14 @@ export async function sendTextStorie(req: Request, res: Response) {
    */
   const { text, options } = req.body;
   if (!text)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'Text was not informed',
     });
   try {
     const results: any = [];
     results.push(await req.client.sendTextStatus(text, options));
     if (results.length === 0)
-      return res.status(400).json('Error sending text story');
+      res.status(400).json('Error sending text story');
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -111,7 +111,7 @@ export async function sendImageStorie(req: Request, res: Response) {
    */
   const { path } = req.body;
   if (!path && !req.file)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'Sending the image is mandatory',
     });
   const pathFile = path || req.file?.path;
@@ -119,7 +119,7 @@ export async function sendImageStorie(req: Request, res: Response) {
     const results: any = [];
     results.push(await req.client.sendImageStatus(pathFile));
     if (results.length === 0)
-      return res.status(400).json('Error sending image story');
+      res.status(400).json('Error sending image story');
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -156,7 +156,7 @@ export async function sendVideoStorie(req: Request, res: Response) {
    */
   const { path } = req.body;
   if (!path && !req.file)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'Sending the Video is mandatory',
     });
   const pathFile = path || req.file?.path;
@@ -164,7 +164,7 @@ export async function sendVideoStorie(req: Request, res: Response) {
     const results: any = [];
     results.push(await req.client.sendVideoStatus(pathFile));
     if (results.length === 0)
-      return res.status(400).json('Error sending video story');
+      res.status(400).json('Error sending video story');
     if (req.file) await unlinkAsync(pathFile);
     returnSucess(res, results);
   } catch (error) {

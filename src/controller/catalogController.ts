@@ -34,7 +34,7 @@ export async function getProducts(req: Request, res: Response) {
    */
   const { phone, qnt } = req.query;
   if (!phone)
-    return res.status(401).send({
+    res.status(401).send({
       message:
         'Please send the contact number you wish to return the products.',
     });
@@ -71,7 +71,7 @@ export async function getProductById(req: Request, res: Response) {
    */
   const { phone, id } = req.query;
   if (!phone || !id)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'Please send the contact number and productId.',
     });
 
@@ -120,7 +120,7 @@ export async function editProduct(req: Request, res: Response) {
    */
   const { id, options } = req.body;
   if (!id || !options)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'productId or options is empty',
     });
 
@@ -165,7 +165,7 @@ export async function delProducts(req: Request, res: Response) {
    */
   const { id } = req.body;
   if (!id)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'productId is empty',
     });
 
@@ -212,7 +212,7 @@ export async function changeProductImage(req: Request, res: Response) {
    */
   const { id, base64 } = req.body;
   if (!id || !base64)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'productId or base64 is empty',
     });
 
@@ -277,7 +277,7 @@ export async function addProduct(req: Request, res: Response) {
     currency = 'MYR',
   } = req.body;
   if (!name || !image || !price)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'name or price or image is empty',
     });
 
@@ -334,7 +334,7 @@ export async function addProductImage(req: Request, res: Response) {
    */
   const { id, base64 } = req.body;
   if (!id || !base64)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'productId or base64 is empty',
     });
 
@@ -381,7 +381,7 @@ export async function removeProductImage(req: Request, res: Response) {
    */
   const { id, index } = req.body;
   if (!id || !index)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'productId or index image is empty',
     });
 
@@ -409,7 +409,7 @@ export async function getCollections(req: Request, res: Response) {
    */
   const { phone, qnt, max } = req.query;
   if (!phone)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'phone is empty',
     });
 
@@ -460,7 +460,7 @@ export async function createCollection(req: Request, res: Response) {
    */
   const { name, products } = req.body;
   if (!name || !products)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'name or products is empty',
     });
 
@@ -509,7 +509,7 @@ export async function editCollection(req: Request, res: Response) {
    */
   const { id, options } = req.body;
   if (!id || !options)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'id or options is empty',
     });
 
@@ -554,7 +554,7 @@ export async function deleteCollection(req: Request, res: Response) {
    */
   const { id } = req.body;
   if (!id)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'id is empty',
     });
 
@@ -608,7 +608,7 @@ export async function setProductVisibility(req: Request, res: Response) {
    */
   const { id, value } = req.body;
   if (!id || !value)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'productId or value (false, true) is empty',
     });
 
@@ -653,7 +653,7 @@ export async function updateCartEnabled(req: Request, res: Response) {
    */
   const { enabled } = req.body;
   if (!enabled)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'enabled (false, true) is empty',
     });
 
@@ -700,7 +700,7 @@ export async function sendLinkCatalog(req: Request, res: Response) {
    */
   const { phones, message } = req.body;
   if (!phones)
-    return res.status(401).send({
+    res.status(401).send({
       message: 'phones is empty',
     });
   const results = [];
@@ -722,7 +722,7 @@ export async function sendLinkCatalog(req: Request, res: Response) {
       );
       (results as any).push({ phone, status: result.id });
     }
-    return res.status(200).json({ status: 'success', response: results });
+    res.status(200).json({ status: 'success', response: results });
   } catch (error) {
     res.status(500).json({
       status: 'Error',

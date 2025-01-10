@@ -93,7 +93,7 @@ export function initServer(serverOptions: Partial<ServerOptions>): {
         }
       }
       res.send = oldSend;
-      return res.send(data);
+      res.send(data);
     };
     next();
   });
