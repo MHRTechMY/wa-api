@@ -81,7 +81,7 @@
     "@typescript-eslint/parser": "^8.19.1",
     "@typescript-eslint/typescript-estree": "^8.19.1",
     "@wppconnect/wa-js": "https://github.com/wppconnect-team/wa-js/releases/download/nightly/wppconnect-nightly.tgz",
-    "@wppconnect/wa-version": "^1.5.903",
+    "@wppconnect/wa-version": "^1.5.904",
     "commitizen": "^4.3.1",
     "conventional-changelog-cli": "^5.0.0",
     "crypto-js": "^4.2.0",
