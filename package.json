@@ -28,7 +28,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.726.0",
+    "@aws-sdk/client-s3": "^3.726.1",
     "@wppconnect-team/wppconnect": "https://github.com/wppconnect-team/wppconnect/releases/download/nightly/wppconnect-nightly.tgz",
     "archiver": "^7.0.1",
     "axios": "^1.7.9",
@@ -54,7 +54,7 @@
   "devDependencies": {
     "@babel/cli": "^7.26.4",
     "@babel/core": "^7.26.0",
-    "@babel/eslint-parser": "^7.25.9",
+    "@babel/eslint-parser": "^7.26.5",
     "@babel/eslint-plugin": "^7.25.9",
     "@babel/node": "^7.26.0",
     "@babel/plugin-transform-runtime": "^7.25.9",
@@ -81,7 +81,7 @@
     "@typescript-eslint/parser": "^8.19.1",
     "@typescript-eslint/typescript-estree": "^8.19.1",
     "@wppconnect/wa-js": "https://github.com/wppconnect-team/wa-js/releases/download/nightly/wppconnect-nightly.tgz",
-    "@wppconnect/wa-version": "^1.5.904",
+    "@wppconnect/wa-version": "^1.5.910",
     "commitizen": "^4.3.1",
     "conventional-changelog-cli": "^5.0.0",
     "crypto-js": "^4.2.0",
@@ -113,7 +113,7 @@
     "shx": "^0.3.4",
     "swagger-ui-dist": "^5.18.2",
     "ts-jest": "^29.2.5",
-    "ts-loader": "^9.5.1",
+    "ts-loader": "^9.5.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3",
     "webpack": "^5.97.1",
