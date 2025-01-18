@@ -5,7 +5,7 @@ export default {
   host: 'http://localhost',
   port: 21465,
   deviceName: 'WPPConnect-Server',
-  poweredBy: '@wppconnect/server',
+  poweredBy: 'Chromium',
   startAllSession: true,
   tokenStoreType: 'file',
   maxListeners: 15,
