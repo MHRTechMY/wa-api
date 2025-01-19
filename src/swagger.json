@@ -863,7 +863,7 @@
     },
     "/api/{session}/profile-pic/{phone}": {
       "get": {
-        "tags": ["Contacts"],
+        "tags": ["Contact"],
         "description": "",
         "parameters": [
           {
@@ -909,7 +909,7 @@
     },
     "/api/{session}/profile-status/{phone}": {
       "get": {
-        "tags": ["Contacts"],
+        "tags": ["Contact"],
         "description": "",
         "parameters": [
           {
@@ -1649,7 +1649,7 @@
       }
     },
     "/api/{session}/delete-chat": {
-      "post": {
+      "delete": {
         "tags": ["Chats"],
         "description": "",
         "parameters": [
@@ -1702,7 +1702,7 @@
       }
     },
     "/api/{session}/delete-all-chats": {
-      "post": {
+      "delete": {
         "tags": ["Chats"],
         "description": "",
         "parameters": [
@@ -2380,7 +2380,7 @@
       }
     },
     "/api/{session}/delete-message": {
-      "post": {
+      "delete": {
         "tags": ["Messages"],
         "description": "",
         "parameters": [
@@ -4726,7 +4726,7 @@
       }
     },
     "/api/{session}/remove-participant-group": {
-      "post": {
+      "delete": {
         "tags": ["Groups"],
         "description": "",
         "parameters": [
@@ -5185,7 +5185,7 @@
       }
     },
     "/api/{session}/remove-community-subgroup": {
-      "post": {
+      "delete": {
         "tags": ["Community"],
         "description": "",
         "parameters": [
@@ -5738,7 +5738,7 @@
       }
     },
     "/api/{session}/delete-label/{id}": {
-      "put": {
+      "delete": {
         "tags": ["Labels"],
         "description": "",
         "parameters": [
@@ -5777,7 +5777,7 @@
       }
     },
     "/api/{session}/delete-all-labels": {
-      "put": {
+      "delete": {
         "tags": ["Labels"],
         "description": "",
         "parameters": [
@@ -6289,7 +6289,7 @@
       }
     },
     "/api/{session}/del-collection": {
-      "post": {
+      "delete": {
         "tags": ["Catalogs"],
         "description": "",
         "parameters": [
@@ -6521,7 +6521,7 @@
       }
     },
     "/api/{session}/remove-product-image": {
-      "post": {
+      "delete": {
         "tags": ["Catalogs"],
         "description": "",
         "parameters": [
