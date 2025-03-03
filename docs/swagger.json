@@ -95,7 +95,7 @@
     },
     "/api/{session}/{secretkey}/clear-session-data": {
       "post": {
-        "tags": ["Misc"],
+        "tags": ["Auth"],
         "description": "",
         "parameters": [
           {
@@ -132,7 +132,7 @@
     },
     "/api/{secretkey}/restore-sessions": {
       "post": {
-        "tags": ["Misc"],
+        "tags": ["Auth"],
         "description": "",
         "parameters": [
           {
@@ -177,7 +177,7 @@
     },
     "/api/{secretkey}/backup-sessions": {
       "get": {
-        "tags": ["Misc"],
+        "tags": ["Auth"],
         "description": "Please, open the router in your browser, in swagger this not run",
         "produces": ["application/zip"],
         "parameters": [
@@ -863,7 +863,7 @@
     },
     "/api/{session}/profile-pic/{phone}": {
       "get": {
-        "tags": ["Contact"],
+        "tags": ["Contacts"],
         "description": "",
         "parameters": [
           {
@@ -909,7 +909,7 @@
     },
     "/api/{session}/profile-status/{phone}": {
       "get": {
-        "tags": ["Contact"],
+        "tags": ["Contacts"],
         "description": "",
         "parameters": [
           {
@@ -948,7 +948,7 @@
     },
     "/api/{session}/blocklist": {
       "get": {
-        "tags": ["Misc"],
+        "tags": ["Contacts"],
         "description": "",
         "parameters": [
           {
@@ -978,7 +978,7 @@
     },
     "/api/{session}/block-contact": {
       "post": {
-        "tags": ["Misc"],
+        "tags": ["Contacts"],
         "description": "",
         "parameters": [
           {
@@ -1034,7 +1034,7 @@
     },
     "/api/{session}/unblock-contact": {
       "post": {
-        "tags": ["Misc"],
+        "tags": ["Contacts"],
         "description": "",
         "parameters": [
           {
@@ -1217,7 +1217,7 @@
     },
     "/api/{session}/all-broadcast-list": {
       "get": {
-        "tags": ["Misc"],
+        "tags": ["Chats"],
         "description": "",
         "parameters": [
           {
