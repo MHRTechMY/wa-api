@@ -115,7 +115,7 @@
     "rimraf": "^6.0.1",
     "sanitize-filename": "^1.6.3",
     "shx": "^0.3.4",
-    "swagger-ui-dist": "^5.20.0",
+    "swagger-ui-dist": "^5.20.1",
     "ts-jest": "^29.2.6",
     "ts-loader": "^9.5.2",
     "tsx": "^4.19.3",
