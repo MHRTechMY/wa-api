@@ -1,3 +1,7 @@
+## 2.8.6 (2025-03-29)
+### Bug Fixes
+- **deps:** update dependency @wppconnect-team/wppconnect to ^1.36.4
+---
 ## 2.8.5 (2025-03-27)
 ### Bug Fixes
 - **deps:** update dependency @wppconnect-team/wppconnect to ^1.36.3
