@@ -93,8 +93,7 @@ export async function sendMessage(req: Request, res: Response) {
     for (const contact of phone) {
       results.push(await req.client.sendText(contact, message, options));
     }
-    if (results.length === 0)
-      res.status(400).json('Error sending message');
+    if (results.length === 0) res.status(400).json('Error sending message');
     req.io.emit('message', results);
     returnSucess(res, results);
   } catch (error) {
@@ -271,8 +270,7 @@ export async function sendVoice(req: Request, res: Response) {
         ),
       );
     }
-    if (results.length === 0)
-      res.status(400).json('Error sending voice');
+    if (results.length === 0) res.status(400).json('Error sending voice');
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -324,8 +322,7 @@ export async function sendVoice64(req: Request, res: Response) {
         ),
       );
     }
-    if (results.length === 0)
-      res.status(400).json('Error sending voice');
+    if (results.length === 0) res.status(400).json('Error sending voice');
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -431,8 +428,7 @@ export async function sendLocation(req: Request, res: Response) {
         }),
       );
     }
-    if (results.length === 0)
-      res.status(400).json('Error sending location');
+    if (results.length === 0) res.status(400).json('Error sending location');
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -768,8 +764,7 @@ export async function replyMessage(req: Request, res: Response) {
     for (const contact of phone) {
       results.push(await req.client.reply(contact, message, messageId));
     }
-    if (results.length === 0)
-      res.status(400).json('Error reply message');
+    if (results.length === 0) res.status(400).json('Error reply message');
     req.io.emit('message', { message: message, to: phone });
     returnSucess(res, results);
   } catch (error) {

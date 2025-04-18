@@ -73,8 +73,7 @@ export async function sendTextStorie(req: Request, res: Response) {
   try {
     const results: any = [];
     results.push(await req.client.sendTextStatus(text, options));
-    if (results.length === 0)
-      res.status(400).json('Error sending text story');
+    if (results.length === 0) res.status(400).json('Error sending text story');
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -118,8 +117,7 @@ export async function sendImageStorie(req: Request, res: Response) {
   try {
     const results: any = [];
     results.push(await req.client.sendImageStatus(pathFile));
-    if (results.length === 0)
-      res.status(400).json('Error sending image story');
+    if (results.length === 0) res.status(400).json('Error sending image story');
     returnSucess(res, results);
   } catch (error) {
     returnError(req, res, error);
@@ -163,8 +161,7 @@ export async function sendVideoStorie(req: Request, res: Response) {
   try {
     const results: any = [];
     results.push(await req.client.sendVideoStatus(pathFile));
-    if (results.length === 0)
-      res.status(400).json('Error sending video story');
+    if (results.length === 0) res.status(400).json('Error sending video story');
     if (req.file) await unlinkAsync(pathFile);
     returnSucess(res, results);
   } catch (error) {
