@@ -853,6 +853,11 @@ routes.get('/unhealthy', HealthCheck.unhealthy);
 routes.post('/api/:session/chatwoot', DeviceController.chatWoot);
 routes.post('/api/:session/set-limit', MiscController.setLimit);
 routes.post(
+  '/api/:session/set-online-presence',
+  verifyToken,
+  SessionController.setOnlinePresence,
+);
+routes.post(
   '/api/:session/subscribe-presence',
   verifyToken,
   SessionController.subscribePresence,
