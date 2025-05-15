@@ -1981,7 +1981,7 @@ export async function chatWoot(req: Request, res: Response) {
             )}`;
             if (message.attachments[0].file_type === 'audio') {
               return client.sendPtt(
-                `${contato}`,
+                `${contact}`,
                 base_url,
                 'Voice Audio',
                 message.content
