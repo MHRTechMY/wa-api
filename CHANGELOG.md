@@ -28,7 +28,7 @@
 ---
 ## 2.7.0 (2024-09-09)
 ### Bug Fixes
-- Compatibily for buttons (v3)
+- Compatibility for buttons (v3)
 - **deps**: update dependency @wppconnect-team/wppconnect to ^1.34.0
 - Fixed docs Improvement docs for delete-message
 ---
