@@ -1955,10 +1955,11 @@ export async function chatWoot(req: Request, res: Response) {
   try {
     if (await client.isConnected()) {
       const event = req.body.event;
+      const is_private = req.body.private || req.body.is_private;
       if (
         event == 'conversation_status_changed' ||
         event == 'conversation_resolved' ||
-        req.body.private
+        is_private
       ) {
         return res
           .status(200)
@@ -1969,8 +1970,11 @@ export async function chatWoot(req: Request, res: Response) {
         phone = req.body.conversation.meta.sender.phone_number.replace('+', ''),
         message = req.body.conversation.messages[0],
       } = req.body;
-      if (event != 'message_created' && message_type != 'outgoing')
-        res.status(200);
+      if (event != 'message_created' && message_type != 'outgoing') {
+        return res
+          .status(200)
+          .json({ status: 'success', message: 'Success on receive chatwoot' });
+      }
       for (const contact of contactToArray(phone, false)) {
         if (message_type == 'outgoing') {
           if (message.attachments) {
