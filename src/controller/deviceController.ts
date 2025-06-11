@@ -1988,7 +1988,7 @@ export async function chatWoot(req: Request, res: Response) {
                 `${contact}`,
                 base_url,
                 'Voice Audio',
-                message.content
+                message.content,
               );
             }
             await client.sendFile(
