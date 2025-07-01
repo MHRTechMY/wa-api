@@ -1,6 +1,5 @@
 !*.png
-LICENSE
-README*
-NOTICE
-*.swagger-ui.txt
-*.LICENSE.txt
+*.txt
+*LICENSE*
+*NOTICE*
+*README*
