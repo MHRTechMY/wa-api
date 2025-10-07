@@ -533,6 +533,12 @@ routes.post(
   statusConnection,
   GroupController.createGroup,
 );
+routes.get(
+  '/api/:session/group-info/:groupId',
+  verifyToken,
+  statusConnection,
+  GroupController.getGroupInfo,
+);
 routes.post(
   '/api/:session/group-subject',
   verifyToken,
