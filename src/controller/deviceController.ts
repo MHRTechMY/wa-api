@@ -1984,19 +1984,20 @@ export async function chatWoot(req: Request, res: Response) {
               message.attachments[0].data_url.indexOf('/rails/') + 1,
             )}`;
             if (message.attachments[0].file_type === 'audio') {
-              return client.sendPtt(
+              await client.sendPtt(
                 `${contact}`,
                 base_url,
                 'Voice Audio',
                 message.content,
               );
+            } else {
+              await client.sendFile(
+                `${contact}`,
+                base_url,
+                'file',
+                message.content
+              );
             }
-            await client.sendFile(
-              `${contact}`,
-              base_url,
-              'file',
-              message.content,
-            );
           } else {
             await client.sendText(contact, message.content);
           }
