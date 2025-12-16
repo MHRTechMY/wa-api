@@ -1581,7 +1581,7 @@ export async function setRecording(req: Request, res: Response) {
     let response;
     for (const contact of contactToArray(phone, isGroup)) {
       if (value) response = await req.client.startRecording(contact, duration);
-      else response = await req.client.stopRecoring(contact);
+      else response = await req.client.stopRecording(contact);
     }
     res.status(200).json({ status: 'success', response: response });
   } catch (error) {
@@ -1648,7 +1648,7 @@ export async function getContact(req: Request, res: Response) {
 
 export async function getAllContacts(req: Request, res: Response) {
   /**
-   *#swagger.tags = ["Contact"]
+   *#swagger.tags = ["Contacts"]
      #swagger.autoBody = false
      #swagger.security = [{ "bearerAuth": [] }]
      #swagger.parameters["session"] = { schema: '60123456789' }
@@ -1696,7 +1696,7 @@ export async function getNumberProfile(req: Request, res: Response) {
 
 export async function getProfilePicFromServer(req: Request, res: Response) {
   /**
-    #swagger.tags = ["Contact"]
+    #swagger.tags = ["Contacts"]
      #swagger.autoBody = false
      #swagger.security = [{ "bearerAuth": [] }]
      #swagger.parameters["session"] = { schema: '60123456789' }
@@ -1724,7 +1724,7 @@ export async function getProfilePicFromServer(req: Request, res: Response) {
 
 export async function getStatus(req: Request, res: Response) {
   /**
-    #swagger.tags = ["Contact"]
+    #swagger.tags = ["Contacts"]
      #swagger.autoBody = false
      #swagger.security = [{ "bearerAuth": [] }]
      #swagger.parameters["session"] = { schema: '60123456789' }
@@ -1995,7 +1995,7 @@ export async function chatWoot(req: Request, res: Response) {
                 `${contact}`,
                 base_url,
                 'file',
-                message.content
+                message.content,
               );
             }
           } else {

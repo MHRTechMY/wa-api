@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.8.3",
+    "version": "2.8.7",
     "title": "WPPConnect API Rest",
     "description": "Welcome to the wppconnect-server API documentation. This API provides a set of endpoints to interact with the wppconnect-server application, allowing you to build integrations and automate interactions with WhatsApp."
   },
@@ -921,10 +921,54 @@
         ]
       }
     },
+    "/api/{session}/contact/pn-lid/{pnLid}": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "session",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "60123456789"
+            }
+          },
+          {
+            "name": "pnLid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "60123456789@lid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/api/{session}/profile-pic/{phone}": {
       "get": {
         "tags": [
-          "Contact"
+          "Contacts"
         ],
         "description": "",
         "parameters": [
@@ -972,7 +1016,7 @@
     "/api/{session}/profile-status/{phone}": {
       "get": {
         "tags": [
-          "Contact"
+          "Contacts"
         ],
         "description": "",
         "parameters": [
@@ -3207,6 +3251,83 @@
                     "filename": "file name lol",
                     "caption": "caption for my file",
                     "base64": "<base64> string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/{session}/send-pix-key": {
+      "post": {
+        "tags": [
+          "Messages"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "session",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "60123456789"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "phone",
+                  "keyType",
+                  "name",
+                  "key"
+                ],
+                "properties": {
+                  "phone": {
+                    "type": "string"
+                  },
+                  "keyType": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  },
+                  "instructions": {
+                    "type": "string"
+                  },
+                  "options": {
+                    "type": "object"
+                  }
+                }
+              },
+              "examples": {
+                "Send PIX key to contact": {
+                  "value": {
+                    "phone": "60123456789",
+                    "keyType": "PHONE",
+                    "name": "WPPCONNECT-TEAM",
+                    "key": "+60123456789",
+                    "instructions": "some instructions about the pix",
+                    "options": {}
                   }
                 }
               }

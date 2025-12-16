@@ -1,3 +1,19 @@
+## 2.8.7 (2025-11-25)
+### Bug Fixes
+- Chatwoot Push-To-Talk (#2196) (4c41072)
+- deps: update dependency @wppconnect-team/wppconnect to ^1.37.6 (#2380) (93c5b4d)
+- Downgrade express (#2192) (40757c3)
+- husky removing warnings (f6bdf31)
+- husky removing warnings2 (df9652f)
+- Repeating messages when sending private messages on chatwoot (#2218) (b1c6881)
+- typos and started using StatusFind enum (eb91101)
+### Features
+- add proxy support (#2323) (da635a8)
+- get detailed information about a group (#2313) (aeee2e7)
+- set online presence (#2187) (cfb4aa6)
+## Reverts
+- Revert "Added support group membership request (#2087)" (#2190) (0c4c997), closes #2087 #2190
+---
 ## 2.8.6 (2025-03-29)
 ### Bug Fixes
 - **deps:** update dependency @wppconnect-team/wppconnect to ^1.36.4

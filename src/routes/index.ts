@@ -20,6 +20,7 @@ import swaggerUi from 'swagger-ui-express';
 import uploadConfig from '../config/upload';
 import * as CatalogController from '../controller/catalogController';
 import * as CommunityController from '../controller/communityController';
+import ContactController from '../controller/contactController';
 import * as DeviceController from '../controller/deviceController';
 import { encryptSession } from '../controller/encryptController';
 import * as GroupController from '../controller/groupController';
@@ -134,6 +135,12 @@ routes.get(
   verifyToken,
   statusConnection,
   DeviceController.getContact,
+);
+routes.get(
+  '/api/:session/contact/pn-lid/:pnLid',
+  verifyToken,
+  statusConnection,
+  ContactController.getContactPnLid,
 );
 routes.get(
   '/api/:session/profile-pic/:phone',
@@ -403,6 +410,12 @@ routes.post(
   verifyToken,
   statusConnection,
   MessageController.sendFile,
+);
+routes.post(
+  '/api/:session/send-pix-key',
+  verifyToken,
+  statusConnection,
+  MessageController.sendPixMessage,
 );
 routes.post(
   '/api/:session/send-location',
