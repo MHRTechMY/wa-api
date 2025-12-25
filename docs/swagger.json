@@ -337,8 +337,8 @@
         "tags": [
           "Auth"
         ],
-        "description": "",
-        "operationId": "closeSession",
+        "description": "Retrieve status of a session",
+        "operationId": "getSessionState",
         "parameters": [
           {
             "name": "session",

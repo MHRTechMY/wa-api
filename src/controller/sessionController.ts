@@ -402,9 +402,9 @@ export async function getMediaByMessage(req: Request, res: Response) {
 
 export async function getSessionState(req: Request, res: Response) {
   /**
-    #swagger.tags = ["Auth"]
+    *#swagger.tags = ["Auth"]
      #swagger.operationId = 'getSessionState'
-     #swagger.summary = 'Retrieve status of a session'
+     #swagger.description = 'Retrieve status of a session'
      #swagger.autoBody = false
      #swagger.security = [{ "bearerAuth": [] }]
      #swagger.parameters["session"] = { schema: '60123456789' }
